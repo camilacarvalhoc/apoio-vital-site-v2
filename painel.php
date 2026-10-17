@@ -10,7 +10,7 @@
    nao deixar a pagina aberta a qualquer um que digite o endereco.
    ========================================================================= */
 
-const CHAVE = 'troque-esta-chave-por-uma-longa-e-aleatoria';
+const CHAVE = 'av-bm5tfw9dcl90v53jzp';
 
 if (!isset($_GET['chave']) || !hash_equals(CHAVE, (string) $_GET['chave'])) {
     http_response_code(404);

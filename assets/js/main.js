@@ -33,7 +33,7 @@
     // Medicao propria, no proprio servidor. Deixe vazio enquanto o site nao
     // estiver na Hostinger; assim nada e enviado e nada quebra.
     // Depois de publicar, coloque: '/medir.php'
-    endpointMedicao: ''
+    endpointMedicao: '/medir.php'
   };
 
   var ehRaiz = !/\/servicos\//.test(window.location.pathname);
