@@ -113,10 +113,15 @@
   --acento-hover:     var(--petroleo-700);
   --foco:             var(--petroleo-500);
 
-  /* --- Tipografia ---
-     Newsreader no display: serifa de noticiario, com eixo optico, sem o
-     charme de padaria da Fraunces anterior. Inter no corpo.             */
-  --fonte-titulo: 'Newsreader', Georgia, 'Times New Roman', serif;
+  /* Figtree no display: sans geometrica de alta altura-x, desenhada para
+   titulo grande. A escolha nao e estetica, e de velocidade de leitura:
+   quem chega aqui decide sob pressao, no celular, depois de uma alta
+   hospitalar, e nessa situacao ninguem le, varre. Peso 800 com
+   entreletra negativa varre mais rapido que serifa.
+   Inter no corpo, que foi desenhada para tela e tem numeral legivel
+   em tamanho pequeno, o que importa num site cheio de telefone,
+   horario e numero de registro. */
+  --fonte-titulo: 'Figtree', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --fonte-corpo:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   --t-base:  1.1875rem; /* 19px */
@@ -213,17 +218,18 @@ table { border-collapse: collapse; width: 100%; }
 /* ============================ 03. TIPOGRAFIA ============================ */
 h1, h2, h3, h4 {
   font-family: var(--fonte-titulo);
-  font-weight: 400;
+  font-weight: 700;
   line-height: var(--altura-titulo);
   color: var(--petroleo-900);
-  letter-spacing: -0.012em;
+  letter-spacing: -0.022em;
   text-wrap: balance;
 }
-h1, h2 { font-weight: 300; }
+/* Titulo pesado e apertado: quem decide sob pressao varre, nao le. */
+h1, h2 { font-weight: 800; letter-spacing: -0.028em; }
 
-h1 { font-size: clamp(2.25rem, 1.45rem + 2.7vw, 3.5rem); line-height: 1.08; }
-h2 { font-size: clamp(1.9rem, 1.35rem + 2.1vw, 2.9rem); line-height: 1.12; }
-h3 { font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem); font-weight: 400; }
+h1 { font-size: clamp(2.3rem, 1.4rem + 3vw, 3.55rem); line-height: 1.06; }
+h2 { font-size: clamp(1.95rem, 1.35rem + 2.2vw, 2.85rem); line-height: 1.1; }
+h3 { font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem); font-weight: 700; letter-spacing: -0.018em; }
 h4 { font-size: var(--t-lg); }
 
 h5, h6 {
@@ -525,7 +531,7 @@ small { font-size: var(--t-sm); }
   color: var(--petroleo-800);
   background: var(--petroleo-050);
 }
-.topo__acoes { display: none; gap: var(--e-3); align-items: center; }
+.topo__acoes { display: none; gap: var(--e-5); align-items: center; }
 .topo__acoes .btn { white-space: nowrap; padding-inline: var(--e-5); }
 
 @media (min-width: 1040px) {
@@ -754,11 +760,13 @@ small { font-size: var(--t-sm); }
   position: relative;
   margin-bottom: var(--e-10);
   border-radius: var(--r-xl);
-  overflow: hidden;
   box-shadow: var(--sombra-4);
   background: var(--petroleo-100);
-  aspect-ratio: 4 / 3;
 }
+/* So recorta e trava a proporcao quando for mesmo imagem. Com o cartao de
+   modalidades dentro, a caixa precisa crescer com o texto. */
+.hero__midia:has(img) { overflow: hidden; aspect-ratio: 4 / 3; }
+.hero__midia:has(.plantao) { background: transparent; box-shadow: none; }
 .hero__midia img { width: 100%; height: 100%; object-fit: cover; }
 
 .hero__cartao {
@@ -1642,6 +1650,88 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 .nota-tabela strong { color: var(--grafite-900); }
 .secao--escura .nota-tabela { color: var(--menta-200); border-left-color: var(--menta-500); }
 .secao--escura .nota-tabela strong { color: #fff; }
+
+/* ============== 17e. CARTAO DE MODALIDADES DE PLANTAO ================== */
+/* Fica no lugar da ilustracao, no alto da home. Responde "o que eu compro e
+   quanta presenca" nos primeiros segundos. Ilustracao e bonita e nao informa:
+   quem chega aqui precisa de resposta, nao de enfeite. */
+
+.plantao {
+  background: var(--grafite-200);
+  border-radius: var(--raio-g);
+  padding: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+}
+.plantao__titulo {
+  font-size: var(--t-lg);
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  margin-bottom: var(--e-4);
+  color: var(--petroleo-900);
+}
+.plantao__linha {
+  display: flex;
+  gap: var(--e-4);
+  align-items: baseline;
+  background: #fff;
+  border-radius: var(--raio-m);
+  padding: var(--e-3) var(--e-4);
+}
+.plantao__linha + .plantao__linha { margin-top: var(--e-2); }
+.plantao__linha b {
+  font-family: var(--fonte-titulo);
+  font-size: var(--t-lg);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--petroleo-700);
+  min-width: 2.8ch;
+  white-space: nowrap;
+}
+.plantao__linha span {
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  color: var(--grafite-800);
+}
+.plantao__nota {
+  font-size: var(--t-sm);
+  line-height: 1.55;
+  color: var(--texto-suave);
+  margin-top: var(--e-4);
+}
+
+/* ================= 17f. TELEFONE NO ALTO DA PAGINA ===================== */
+/* Quem recebeu alta ontem nao procura o telefone, precisa ver. */
+
+.fone-topo {
+  display: none;
+  text-align: right;
+  line-height: 1.15;
+  text-decoration: none;
+  flex: none;
+}
+.fone-topo small {
+  display: block;
+  font-size: .625rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--menta-700);
+  margin-bottom: 2px;
+}
+.fone-topo b {
+  font-family: var(--fonte-titulo);
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--petroleo-900);
+  white-space: nowrap;
+}
+.fone-topo:hover b { color: var(--menta-700); }
+
+/* So entra quando o cabecalho tem folga de verdade. Abaixo disso, o telefone
+   ja aparece na barra preta do alto e na barra fixa do rodape no celular. */
+@media (min-width: 1240px) {
+  .fone-topo { display: block; }
+}
 
 /* ================== 17d. LINK PARA A FONTE OFICIAL ===================== */
 /* Cada norma citada no site leva ao texto oficial, no Planalto, no Diario
