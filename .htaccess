@@ -1,0 +1,111 @@
+# =========================================================================
+# APOIO VITAL
+# Vai sozinho num commit, sem misturar com mudanca de conteudo: erro de
+# sintaxe aqui derruba o site inteiro, e commit isolado e trivial de reverter.
+# =========================================================================
+
+# ---- 1. A pasta .git nao pode ficar publica -----------------------------
+# A integracao de Git do painel clona o repositorio dentro da raiz web,
+# entao .git vai junto. Sem esta linha, apoiovital.com/.git/config entrega
+# o historico inteiro do repositorio para qualquer pessoa.
+RedirectMatch 404 /\.git
+<IfModule mod_authz_core.c>
+  <FilesMatch "^\.">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+
+# ---- 2. Pagina de erro --------------------------------------------------
+ErrorDocument 404 /404.html
+
+# ---- 3. Um endereco so, sempre ------------------------------------------
+# HTTPS obrigatorio e sem www. Conteudo em dois enderecos divide o sinal
+# do buscador e confunde a medicao.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteRule ^(.*)$ https://apoiovital.com/$1 [R=301,L]
+
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+</IfModule>
+
+# ---- 4. Cache: curto no HTML, longo no resto ----------------------------
+# Cache longo no HTML faria uma correcao de texto levar dias para chegar a
+# quem ja visitou. Imagem, folha de estilo e script podem ficar muito tempo
+# porque trocam de nome quando mudam.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 10 minutes"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/x-icon              "access plus 1 year"
+  ExpiresByType image/vnd.microsoft.icon  "access plus 1 year"
+  ExpiresByType text/xml                  "access plus 1 hour"
+  ExpiresByType text/plain                "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "max-age=600, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|svg|png|jpg|jpeg|ico|woff2)$">
+    Header set Cache-Control "max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Cabecalhos de seguranca basicos. Nada que quebre site estatico.
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+</IfModule>
+
+# ---- 5. Compressao ------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript image/svg+xml
+</IfModule>
+
+# ---- 6. O que esta no repositorio mas nao e site ------------------------
+# A integracao de Git copia o repositorio inteiro para dentro da pasta
+# publica. Entao tudo que e documento interno precisa ser bloqueado aqui,
+# senao fica acessivel pela internet.
+
+# Moldes de pagina
+<IfModule mod_authz_core.c>
+  <FilesMatch "^_modelo.*\.html$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "^_modelo.*\.html$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+
+# Documentacao interna, logotipos antigos e qualquer PDF solto
+RedirectMatch 404 ^/docs(/|$)
+RedirectMatch 404 ^/assets/img/logo/_anterior(/|$)
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(md|pdf|py|sh|log|bak|sql|zip)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "\.(md|pdf|py|sh|log|bak|sql|zip)$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>

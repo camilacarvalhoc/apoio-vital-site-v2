@@ -1,0 +1,11 @@
+# Apoio Vital — Assistência domiciliar no Rio de Janeiro
+User-agent: *
+Allow: /
+# obrigado.html usa <meta name="robots" content="noindex">.
+# Bloquear aqui impediria o buscador de ler o noindex e atrapalharia medir conversao.
+Disallow: /painel.php
+Disallow: /medir.php
+Disallow: /_modelo.html
+Disallow: /_modelo-servico.html
+
+Sitemap: https://apoiovital.com/sitemap.xml

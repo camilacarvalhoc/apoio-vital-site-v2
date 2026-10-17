@@ -1,0 +1,26 @@
+# Lixo do sistema
+.DS_Store
+._*
+Thumbs.db
+
+# Copias de seguranca feitas fora do versionamento
+_backup*/
+*BACKUP*/
+
+# Nunca versionar credencial. O historico do Git e permanente:
+# apagar num commit seguinte nao remove o que ja subiu.
+.env
+*.pem
+*.key
+.ftp-config
+sftp-config.json
+
+# Dados da medicao ficam fora do repositorio e fora da pasta publica
+dados-apoio-vital/
+
+# Configuracao local da ferramenta, nao e do projeto
+.claude/
+
+# PDFs de exportacao: a mesma informacao ja esta em docs/v1/*.md, em texto.
+# O historico do Git e permanente, entao nao vale carregar 4,8 MB para sempre.
+docs/*.pdf
