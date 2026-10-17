@@ -220,7 +220,11 @@ h1, h2, h3, h4 {
   font-family: var(--fonte-titulo);
   font-weight: 700;
   line-height: var(--altura-titulo);
-  color: var(--petroleo-900);
+  /* Petroleo 700 e a cor da marca, a mesma do uniforme. Com peso 800 o
+     titulo ja tem presenca de sobra, entao a cor pode relaxar: o quase
+     preto de antes (#06161d) endurecia a pagina sem ganhar legibilidade.
+     Contraste medido: 13,55:1 sobre o creme, muito acima do exigido. */
+  color: var(--petroleo-700);
   letter-spacing: -0.022em;
   text-wrap: balance;
 }
@@ -746,7 +750,10 @@ small { font-size: var(--t-sm); }
   .hero__grade { grid-template-columns: 7fr 5fr; }
 }
 .hero h1 { color: var(--petroleo-900); }
-.hero h1 em { font-style: normal; color: var(--petroleo-600); }
+/* O destaque do titulo precisa se separar do titulo. Com o titulo em
+   petroleo 700, o petroleo 600 de antes virava quase a mesma cor.
+   Menta escura da contraste de matiz, nao so de tom. */
+.hero h1 em { font-style: normal; color: var(--menta-700); }
 .hero__texto .subtitulo { font-size: clamp(var(--t-md), 1rem + .5vw, 1.3125rem); }
 
 .hero__selos {
