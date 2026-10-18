@@ -30,7 +30,11 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  RewriteCond %{HTTPS} !=on [OR]
+  # Sem [OR]: as tres condicoes sao E. So redireciona quando NENHUM dos dois
+  # indicadores diz HTTPS. Com [OR] isto virava (A OU B) E C, e uma requisicao
+  # que ja era HTTPS mas chegasse sem X-Forwarded-Proto seria redirecionada
+  # para si mesma, em laco, com 301 guardado em cache pelo navegador.
+  RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteCond %{HTTP_HOST} !^localhost [NC]
   RewriteRule ^(.*)$ https://apoiovital.com/$1 [R=301,L]
@@ -70,6 +74,17 @@ ErrorDocument 404 /404.html
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+  # O que o PHP gera nao entra em cache e nao vaza referencia. Sem isto, o
+  # Referrer-Policy acima sobrescreve o no-referrer que o painel manda, e o
+  # mod_expires carimba validade de 10 minutos numa pagina autenticada,
+  # porque ele age por tipo de conteudo e a saida do painel e text/html.
+  <FilesMatch "\.php$">
+    Header always set Cache-Control "no-store, max-age=0, must-revalidate"
+    Header always set Referrer-Policy "no-referrer"
+    Header always unset Expires
+    Header always set Expires "0"
+  </FilesMatch>
 </IfModule>
 
 # ---- 5. Compressao ------------------------------------------------------
@@ -98,6 +113,10 @@ ErrorDocument 404 /404.html
 # Documentacao interna, logotipos antigos e qualquer PDF solto
 RedirectMatch 404 ^/docs(/|$)
 RedirectMatch 404 ^/assets/img/logo/_anterior(/|$)
+# Pasta de trabalho local. Nao vai para o Git nem para o servidor, mas se um dia
+# for enviada a mao, nao pode ser servida. Nao se bloqueia .txt aqui: o
+# robots.txt precisa continuar publico.
+RedirectMatch 404 ^/_local(/|$)
 <IfModule mod_authz_core.c>
   <FilesMatch "\.(md|pdf|py|sh|log|bak|sql|zip)$">
     Require all denied
