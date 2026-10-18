@@ -137,6 +137,45 @@ nesta mudanca, todos corrigidos: o viewBox que cortava a arte, o campo `height` 
 JSON-LD que ficou com a altura do PNG antigo (335 em vez de 264) e o `alt` do menu de
 celular que continuava dizendo so "Apoio Vital" para uma arte que mostra HOME CARE.
 
+## Regras de reducao
+
+Fechadas com o ChatGPT em 18/10/2026, depois que ele examinou as capturas da
+producao em 320 e 390 px, em 1x e em 2x. Ate entao ele tinha avaliado so pelo
+meu relato, e disse isso com todas as letras; vendo as imagens, mudou a
+recomendacao para o celular estreito.
+
+| aplicacao | versao |
+|---|---|
+| cabecalho desktop | com descritor |
+| cabecalho de celular acima de 350 px | com descritor |
+| cabecalho de celular ate 350 px | **sem descritor** |
+| topo do menu de celular | segue a mesma regra do cabecalho |
+| rodape, fundo escuro | com descritor, em verde-agua claro |
+| favicon e icones pequenos | so o simbolo |
+
+O limite de 350 px nao e arbitrario. Acima de 366 px de tela a altura de 30 px
+manda e a arte fica em 226,9 x 30, com o descritor em 6,67 px de altura de
+maiuscula. Abaixo disso quem manda e a largura maxima de 62% da tela, e a arte
+encolhe: 6,56 px a 360, 6,38 a 350, 5,83 a 320. O corte em 350 separa os
+aparelhos da classe de 320, que e onde o descritor de fato se perde, dos de 360
+e 375, onde ele e praticamente do mesmo tamanho que a 390.
+
+A troca e feita com `<picture>` e uma consulta de midia, sem JavaScript, e
+conferida com o script desligado. As duas versoes tem a mesma altura total e o
+simbolo do mesmo tamanho, entao no limite nada se deforma: o nome nao muda de
+corpo, so o descritor sai.
+
+O que o ChatGPT aprovou junto, olhando as imagens: a composicao serve como
+assinatura institucional, o descritor em Figtree pertence ao conjunto e nao
+parece legenda acrescentada, a entreletra esta razoavel e o alinhamento optico
+esta equilibrado. Ele registrou que a razao de 12,4 medida na prancha nao deve
+ser tratada como regra absoluta, porque reproduzir proporcao geometrica nao
+garante resultado optico.
+
+O teste que ele deixou em aberto, e que depende de aparelho de verdade: abrir o
+site num celular de 320 px sem ampliar a pagina e pedir a alguem que nao conheca
+a marca que olhe o cabecalho normalmente.
+
 ## O resto da marca antiga, tambem trocado
 
 Depois da assinatura, a socia pediu para fechar tudo o que ainda mostrava o simbolo

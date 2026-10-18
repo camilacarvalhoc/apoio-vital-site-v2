@@ -354,7 +354,13 @@
 <header class="topo">
   <div class="container">
     <a class="marca-logo" href="index.html" aria-label="Apoio Vital Home Care. Ir para a página inicial">
-      <img src="assets/img/logo/apoio-vital-assinatura-h.svg" alt="" width="1394" height="184">
+      <picture>
+        <!-- Abaixo de 350px a largura manda e a arte encolhe: HOME CARE cai de
+             6,7 para 5,8 px de altura de maiuscula. Ai entra a assinatura sem
+             descritor. Sem JavaScript, e o simbolo e o nome nao mudam de tamanho. -->
+        <source media="(max-width: 350px)" srcset="assets/img/logo/apoio-vital-assinatura-h-nome.svg">
+        <img src="assets/img/logo/apoio-vital-assinatura-h.svg" alt="" width="1394" height="184">
+      </picture>
     </a>
 
     <nav class="nav-principal" aria-label="Navegação principal">
@@ -398,7 +404,13 @@
   <div class="menu-mobile__painel" role="dialog" aria-modal="true" aria-label="Menu de navegação">
     <div class="menu-mobile__topo">
       <span class="marca-logo">
-        <img src="assets/img/logo/apoio-vital-assinatura-h.svg" alt="Apoio Vital Home Care" width="1394" height="184">
+        <picture>
+          <!-- Abaixo de 350px a largura manda e a arte encolhe: HOME CARE cai de
+               6,7 para 5,8 px de altura de maiuscula. Ai entra a assinatura sem
+               descritor. Sem JavaScript, e o simbolo e o nome nao mudam de tamanho. -->
+          <source media="(max-width: 350px)" srcset="assets/img/logo/apoio-vital-assinatura-h-nome.svg">
+          <img src="assets/img/logo/apoio-vital-assinatura-h.svg" alt="Apoio Vital Home Care" width="1394" height="184">
+        </picture>
       </span>
       <button type="button" class="fechar-menu" aria-label="Fechar menu">&times;</button>
     </div>
