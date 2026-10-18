@@ -54,7 +54,7 @@ function lerConfiguracao($caminho) {
     return array('sal' => $ms[1][0], 'hash' => $mh[1][0]);
 }
 
-$cfg = lerConfiguracao(__DIR__ . '/../apoio-vital-config/painel-config.php');
+$cfg = lerConfiguracao(__DIR__ . '/../painel-config.php');
 
 // Sem configuracao nao ha acesso, e nao existe chave padrao de reserva.
 // Corpo vazio: quem pede de fora nao distingue isto de um 404 qualquer.

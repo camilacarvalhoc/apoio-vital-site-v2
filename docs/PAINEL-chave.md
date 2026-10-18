@@ -24,16 +24,15 @@ A chave **nao esta em lugar nenhum do repositorio**. O que o servidor guarda e
 um sal e um HMAC-SHA256, num arquivo fora da pasta publica.
 
 ```
-/home/<conta>/
-├── apoio-vital-config/
-│   └── painel-config.php   <- sal e hash. Fora do Git, fora da web.
+domains/apoiovital.com/
+├── painel-config.php       <- sal e hash. Fora do Git, fora da web.
 ├── dados-apoio-vital/      <- os CSV da medicao, como ja era
 └── public_html/            <- o site, que o deploy por Git sobrescreve
     └── painel.php
 ```
 
-A pasta de configuracao fica **irma** da `public_html`, pelo mesmo motivo que a
-pasta de dados: o deploy por Git substitui o conteudo da pasta publica, e o que
+O arquivo fica **irmao** da `public_html`, pelo mesmo motivo que a pasta de
+dados: o deploy por Git substitui o conteudo da pasta publica, e o que
 estiver dentro dela seria sobrescrito ou publicado.
 
 **Sem esse arquivo o painel responde 404.** Nao existe chave padrao de reserva:
@@ -57,10 +56,11 @@ certo passa a ser `password_hash`.
 
 ## Como instalar
 
-1. Enviar o arquivo `painel-config.php` para a pasta `apoio-vital-config`,
-   irma da `public_html`. Criar a pasta se nao existir. **O nome do arquivo
-   precisa ser exatamente `painel-config.php`**: o codigo procura esse nome e
-   so esse. Com outro nome o painel responde 404 e nao ha mensagem que explique.
+1. Enviar `painel-config.php` para a pasta **irma** da `public_html`, que no
+   servidor e `domains/apoiovital.com/`, a mesma onde ja esta a pasta
+   `dados-apoio-vital`. **O nome precisa ser exatamente `painel-config.php`**:
+   o codigo procura esse e so esse. Com outro nome o painel responde 404 e nao
+   ha mensagem que explique.
 2. Guardar a chave no gerenciador de senhas e **apagar o arquivo de texto**.
 3. Abrir `https://apoiovital.com/painel.php`, entrar com a chave nova.
 4. Conferir que a chave antiga nao funciona mais.
