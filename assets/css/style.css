@@ -1513,7 +1513,7 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
   border-bottom: 1.5px solid var(--petroleo-700);
 }
 .artefato__marca { display: flex; align-items: center; gap: var(--e-2); }
-.artefato__marca svg { width: 34px; height: 17px; flex: none; }
+.artefato__marca img { width: 34px; height: 14px; flex: none; }
 .artefato__marca b {
   font-family: var(--fonte-corpo);
   font-size: var(--t-xs);
@@ -1695,13 +1695,16 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
   content: "";
   position: absolute;
   left: 0;
-  top: .34em;
-  width: 27px;
-  height: 21px;
+  top: .52em;
+  width: 28px;
+  height: 11px;
   background: currentColor;
   opacity: .85;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 61.90 82.40 C68.60 82.40 74.04 81.28 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 61.90 82.40 C68.60 82.40 74.04 81.28 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  /* O simbolo vem do arquivo e nao embutido aqui: embutido sao 25 KB a mais
+     num CSS de 68 KB, por causa de dois ornamentos. O arquivo tem 6 KB, e
+     carregado uma vez e tem cache de um ano. */
+  -webkit-mask: url("../img/logo/apoio-vital-simbolo-m-mono-reduzido.svg") no-repeat center / contain;
+          mask: url("../img/logo/apoio-vital-simbolo-m-mono-reduzido.svg") no-repeat center / contain;
   color: var(--petroleo-700);
 }
 .secao--escura .lista-ecg li::before { color: var(--menta-200); }
@@ -1964,8 +1967,8 @@ html[data-texto="gg"] { --t-base: 1.5rem;    --t-md: 1.3125rem; --t-sm: 1.1875re
   height: 46px;
   opacity: .30;
   background: var(--petroleo-700);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80' preserveAspectRatio='xMidYMid meet'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 61.90 82.40 C68.60 82.40 74.04 81.28 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80' preserveAspectRatio='xMidYMid meet'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 61.90 82.40 C68.60 82.40 74.04 81.28 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  -webkit-mask: url("../img/logo/apoio-vital-simbolo-m-mono-reduzido.svg") no-repeat center / contain;
+          mask: url("../img/logo/apoio-vital-simbolo-m-mono-reduzido.svg") no-repeat center / contain;
 }
 .foto--vazia::after { opacity: 0; }
 

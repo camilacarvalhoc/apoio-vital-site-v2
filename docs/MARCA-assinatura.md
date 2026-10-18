@@ -137,8 +137,29 @@ nesta mudanca, todos corrigidos: o viewBox que cortava a arte, o campo `height` 
 JSON-LD que ficou com a altura do PNG antigo (335 em vez de 264) e o `alt` do menu de
 celular que continuava dizendo so "Apoio Vital" para uma arte que mostra HOME CARE.
 
-## O que continua com a marca antiga
+## O resto da marca antiga, tambem trocado
 
-O favicon, o icone do iOS e a imagem de compartilhamento ainda trazem o simbolo
-anterior. Sao artes proprias, nao a assinatura, e ficaram de fora desta etapa.
-Ha candidatos prontos, derivados do simbolo aprovado, aguardando decisao.
+Depois da assinatura, a socia pediu para fechar tudo o que ainda mostrava o simbolo
+anterior. Nada disso foi desenhado: tudo sai do simbolo vetorizado aprovado.
+
+| onde | o que era | o que e agora |
+|---|---|---|
+| `favicon.svg`, `favicon-16/32.png`, `favicon.ico` | circulo com a linha de ECG | circulo petroleo `#1F5D6B` com o simbolo reduzido a 80% do lado |
+| `apple-touch-icon.png` | circulo com transparencia | quadrado cheio de 180 px, que e o que o iOS espera |
+| `og-apoio-vital.png` | simbolo antigo e nome empilhado | assinatura negativa, mesmo texto de antes |
+| `.lista-ecg li::before` | tracado antigo embutido no CSS | simbolo reduzido, referenciado do arquivo |
+| `.foto--vazia::before` | o mesmo tracado | o mesmo simbolo, a 30% |
+| `.artefato__marca` na home | SVG do tracado antigo escrito no HTML | `<img>` do simbolo mono reduzido |
+
+O 80% foi escolhido olhando: a 72% o simbolo fica pequeno dentro do circulo e a 88%
+encosta na borda.
+
+As duas mascaras do CSS **referenciam o arquivo** em vez de embutir o caminho. Embutido
+seriam 25 KB a mais num CSS de 68 KB, por causa de dois ornamentos; o arquivo tem 6 KB,
+e carregado uma vez e tem cache de um ano.
+
+Como esses arquivos mantiveram o nome, o cache de um ano foi furado por `?v=` com hash
+de conteudo, a mesma convencao que o projeto ja usava em `style.css` e `main.js`.
+
+Com isso o tracado antigo nao existe mais em nada que o servidor entrega: zero
+ocorrencias em HTML, CSS e JS.
