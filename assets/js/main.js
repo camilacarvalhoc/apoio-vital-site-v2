@@ -6,6 +6,12 @@
 (function () {
   'use strict';
 
+  // A marca data-js="on" NAO e posta aqui: ela e posta por um script de uma
+  // linha no <head> de cada pagina, antes do primeiro desenho da tela. Se
+  // fosse aqui, este arquivo e "defer" e o cabecalho piscaria em modo sem
+  // JavaScript antes de assumir a forma normal. Ver a secao CABECALHO SEM
+  // JAVASCRIPT no style.css.
+
   /* ======================================================================
      CONFIG - altere apenas este bloco ao trocar os dados da empresa
      ====================================================================== */

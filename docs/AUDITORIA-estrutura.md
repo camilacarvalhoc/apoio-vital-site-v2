@@ -208,3 +208,215 @@ Esta lista importa tanto quanto a de problemas, e costuma ser esquecida numa ref
 - A disciplina dos blocos desativados com comentário de restauração no rodapé (RT, licença sanitária, CNES). É o que vai permitir religar cada um no dia em que existir, sem reinventar o texto nem errar a norma. Apagar os comentários para limpar o HTML seria perder a memória da decisão. Vale o mesmo para a escolha de 'regido pela' em vez de 'em conformidade com' a RDC 917/2024.
 - A independência de JavaScript: os botões de WhatsApp com o endereço no HTML, os formulários com action e method. Qualquer reforma que introduza roteamento ou componente dinâmico tem que preservar isso, e a verificação com o script desligado continua sendo condição de publicação.
 - A tipografia Figtree e a paleta pérola e terracota. A PESQUISA-mercado.md já decidiu com evidência: Montserrat aparece em 4 de 9 concorrentes, Figtree em nenhum, e o azul hospitalar com verde-água domina 8 sites conferidos. A direção atual já diferencia. Trocar seria perder diferenciação sem ganhar nada.
+
+---
+
+# O que foi executado em 18/10/2026
+
+A sócia autorizou corrigir **os três problemas que não dependiam de ninguém**. O
+diagnóstico acima fica como estava: é o registro do que o site era antes. Esta seção
+registra só o que mudou, e o que foi medido para provar que mudou.
+
+## 1. O telefone voltou a existir
+
+Eram **zero** `href="tel:"` da empresa em 22 páginas, enquanto a barra do topo promete
+atendimento 24 horas e o formulário pergunta o melhor horário para ligar.
+
+Nenhum número novo entrou. É o `(21) 97479-2051`, o mesmo que já estava nos 150 botões
+de WhatsApp e nos três blocos de JSON-LD do index desde 17/10/2026.
+
+Três pontos fixos em toda página, mais um:
+
+| onde | quando aparece | rótulo |
+|---|---|---|
+| barra do topo | 720px para cima | `(21) 97479-2051` |
+| barra fixa do rodapé | abaixo de 720px | **Ligar**, ao lado do WhatsApp |
+| rodapé | sempre | `(21) 97479-2051` |
+| cartão "Canais diretos" | só em contato.html | `(21) 97479-2051` |
+
+Os dois primeiros se revezam no mesmo corte de 719px: quem está no celular tem o botão
+grande embaixo, quem está no computador tem o número em cima. Nenhum dos dois repete o
+outro, e a barra do topo não ganhou mais uma linha no celular.
+
+O botão **Ligar** é `--petroleo-700` com letra branca: **7,40:1**, calculado pela
+luminância relativa, não estimado. O WhatsApp ao lado dá 5,94:1. Os dois passam o
+critério 1.4.3 da WCAG com folga.
+
+Nenhuma palavra nova sobre prazo ou horário entrou junto. As cinco formulações
+concorrentes de "24 horas" continuam exatamente como estavam, porque resolvê-las
+depende da sócia.
+
+## 2. As páginas de confiança deixaram de ser beco sem saída
+
+**Nove links novos, em sete lugares**, todos dentro do `<main>` e nenhum em menu ou
+rodapé:
+
+| de | para | onde exatamente |
+|---|---|---|
+| sobre | segurança e seleção | no cartão "Você sabe quem entra na sua casa", que resume aquela página |
+| sobre | preços | no cartão "Tudo por escrito", que fala de valores discriminados |
+| segurança e seleção | preços | no fim de "O que este processo não garante" |
+| preços | segurança e seleção | depois de "Sobre valores e contrato" |
+| preços | como funciona | mesmo lugar |
+| trabalhe conosco | formação de cuidadores | no compromisso "Treinamento continuado" |
+| obrigado | como funciona, preços, segurança | bloco novo "Enquanto você espera", três links |
+
+Saídas no corpo, antes e depois:
+
+| página | antes | depois |
+|---|---|---|
+| sobre | 1 (só a migalha) | 3 |
+| segurança e seleção | 3 | 4 |
+| preços | 3 | 5 |
+| obrigado | 1 | 4 |
+| formação de cuidadores | recebia **0** links de corpo | recebe 1 |
+
+Nada foi reescrito. Só links, nos lugares onde a própria página já falava do assunto
+da outra.
+
+## 3. As páginas órfãs entraram na navegação do computador
+
+Estavam fora do menu de barra: segurança e seleção, o plano de saúde cobre, formação de
+cuidadores e trabalhe conosco. As duas primeiras são, pela própria auditoria, as páginas
+mais fortes do site.
+
+O menu continua com seis itens. Dois deles viraram submenu, no padrão que "Serviços" já
+usava:
+
+```
+Serviços ▾        ... + Formação de cuidadores
+Como funciona ▾   Como funciona · Segurança e seleção
+Preços ▾          Preços · O plano de saúde cobre?
+Sobre · Dúvidas · Contato
+```
+
+"Trabalhe conosco" não entrou no menu porque **já estava** na barra de contato do topo,
+visível em toda página de 720px para cima. Ele fala com o profissional, não com a
+família, e repeti-lo nos dois lugares disputaria espaço com quem veio contratar.
+
+Nenhum rótulo novo foi inventado: "Segurança e seleção" e "O plano de saúde cobre?" são
+os mesmos nomes que o rodapé e o menu do celular já usam. A discordância entre o menu
+("Preços") e o rodapé ("Como calculamos o valor") **continua aberta de propósito**, porque
+resolvê-la depende de a sócia decidir antes se vai existir faixa de preço publicada.
+
+### O que o submenu custou, e como foi pago
+
+O botão de submenu não é link: sem JavaScript ele não abriria nada, e "Como funciona" e
+"Preços" deixariam de ser alcançáveis pelo menu. Isso levou a resolver, de uma vez, uma
+regra do `CLAUDE.md` que o site descumpria desde antes: **o menu tem que funcionar com o
+script desligado.** Ver a seção seguinte.
+
+## Dois defeitos antigos que apareceram na régua
+
+Não estavam na auditoria porque auditoria se faz lendo, e estes só aparecem medindo.
+
+**O cabeçalho passava da largura da página em qualquer janela entre 1040 e 1200px.**
+O menu de barra aparecia a partir de 1040px, mas logo (270) + menu (692) + botão (179) +
+vãos precisavam de 1171px. O botão "Pedir orçamento" ficava fora da tela e o site inteiro
+rolava de lado: **146px medidos a 1040px no commit anterior**, antes de qualquer coisa
+que eu tenha feito. Os dois submenus novos trouxeram duas setinhas e teriam levado para
+176px.
+
+Corrigido em duas frentes: os itens do menu fecharam 4px de cada lado (a altura de toque
+de 44px continua intacta) e o corte subiu de 1040 para **1220px**, que é onde a conta
+fecha com 23px de folga.
+
+Medido nas 22 páginas, com a mesma régua nas duas versões:
+
+| largura | commit anterior | agora |
+|---|---|---|
+| 1100px | **22 de 22 páginas rolando 205px** | 0 |
+| 1400px | 0 | 0 |
+| 768px | 6 páginas rolando 4px | as mesmas 6, os mesmos 4px |
+| 390px | 0 | 0 |
+| 320px | 0 | 0 |
+
+As seis de 768px são `index`, `como-funciona`, `plano-de-saude-cobre-home-care`,
+`servicos/tecnico-de-enfermagem`, `servicos/enfermagem-e-equipe-multidisciplinar` e
+`servicos/remocao-de-pacientes`. Conferido nas duas versões: nada mudou nelas.
+
+Abaixo de 1220px o cabeçalho passa a usar o botão **Menu**, que abre o painel com as 22
+páginas. Em janelas entre 1040 e 1220 isso é visível: antes aparecia a barra de menu
+quebrada, agora aparece o botão. É a troca que paga o fim da rolagem lateral.
+
+**O controle "Texto" quebrava o cabeçalho no tamanho maior.** No tamanho "bem maior" a
+fonte do menu cresce junto com a do texto, e o cabeçalho passava da página: 3px no commit
+anterior, e teria virado 33px com os submenus. Agora o cabeçalho quebra em linha em vez de
+empurrar: 0px de rolagem nos três tamanhos. Isso importa mais aqui do que na média dos
+sites, porque quem usa o botão de texto maior é exatamente o público deste.
+
+## O menu passou a funcionar sem JavaScript
+
+O botão "Menu" sempre abriu o painel do celular por script, e o botão de submenu nunca foi
+link. Com o script desligado, os dois eram controles que não fazem nada, e a navegação
+inteira do cabeçalho sumia. O `CLAUDE.md` exige o contrário, e o item estava na lista de
+testes de publicação. **Era uma regra descumprida desde antes desta madrugada.**
+
+Agora, enquanto a marca `data-js="on"` não existir no `<html>`, o cabeçalho abre o menu
+inteiro em lista única: o botão "Menu" some, o menu de barra aparece em qualquer largura,
+os submenus achatam e os 17 links ficam todos visíveis. O cabeçalho também deixa de ser
+fixo nesse estado, porque uma lista de 586px grudada no alto cobriria o site durante a
+rolagem.
+
+A marca é posta por um script de uma linha no `<head>` de cada página, **antes do primeiro
+desenho da tela**. Se estivesse no `main.js`, que carrega com `defer`, quem tem JavaScript
+veria o cabeçalho piscar na forma achatada antes de assumir a normal.
+
+### A matriz de teste, medida nas 22 páginas
+
+| estado | largura | rolagem lateral | links do menu | altura do cabeçalho |
+|---|---|---|---|---|
+| sem JavaScript | 320 | 0 | 17 de 17 | 715 |
+| sem JavaScript | 390 | 0 | 17 de 17 | 586 |
+| sem JavaScript | 768 | 4 (as seis de sempre) | 17 de 17 | 329 |
+| sem JavaScript | 1100 | 0 | 17 de 17 | 243 |
+| sem JavaScript | 1219 | 0 | 17 de 17 | 200 |
+| sem JavaScript | 1220 | 0 | 17 de 17 | 200 |
+| sem JavaScript | 1400 | 0 | 17 de 17 | 200 |
+| com JavaScript | 1219 | 0 | botão Menu | 77 |
+| com JavaScript | 1220 | 0 | barra de menu | 77 |
+| com JavaScript, texto bem maior | 1100 | 0 | botão Menu | 77 |
+| com JavaScript, texto bem maior | 1219 | 0 | botão Menu | 77 |
+| com JavaScript, texto bem maior | 1220 | 0 | barra de menu | 126 |
+
+Três leituras dessa tabela.
+
+**Na travessia do corte, no tamanho de texto normal, o cabeçalho não muda de altura:**
+77px de um lado, 77px do outro. O que muda é o botão Menu virar barra de menu.
+
+**No tamanho de texto bem maior, ele passa de 77 para 126px ao cruzar 1220.** É a barra de
+menu aparecendo e quebrando em duas linhas, porque a fonte do menu cresceu junto com a do
+texto. Fica registrado: é o único salto que sobrou, não produz rolagem lateral, e a
+alternativa seria manter o botão Menu até uma largura que o CSS não tem como calcular,
+porque media query não enxerga tamanho de fonte.
+
+**Sem JavaScript o cabeçalho tem a mesma altura em 1219, 1220 e 1400.** Para isso o botão
+"Pedir orçamento" sai nesse estado: ele só aparece de 1220px para cima e faria o cabeçalho
+crescer 68px de uma vez ao cruzar o corte. Contato já está na lista de links logo abaixo, e
+os botões de WhatsApp da página continuam todos funcionando.
+
+Cada link da lista achatada tem entre 39 e 45px de altura, acima do mínimo de 24.
+
+Fica registrado um laço: **se um dia entrar uma Content-Security-Policy**, esse script de
+uma linha precisa de hash ou nonce. Sem isso ele não roda, e o site inteiro passa a ser
+servido no modo sem JavaScript.
+
+## O que ficou de pé e precisa ser dito
+
+**As seis páginas que rolam 4px a 768px continuam rolando.** Medidas de novo hoje, nas
+duas versões: os mesmos 4px, nas mesmas seis. A pendência segue aberta.
+
+## O que NÃO foi tocado, de propósito
+
+Tudo que depende de uma decisão da sócia:
+
+- as 40 afirmações sobre a enfermeira responsável técnica, em 13 páginas;
+- as cinco formulações concorrentes de prazo, inclusive a que está dentro do JSON-LD;
+- o `priceRange` órfão de `index.html:102`;
+- a ausência de faixa de preço;
+- "São quatro serviços" em servicos.html contra os seis do menu;
+- as promessas operacionais sem processo que as sustente;
+- os números sem fonte e as duas comparações com o concorrente;
+- os quatro nomes da página de dúvidas e os dois da de preços.
+
+E tudo que está na lista "O que NÃO mudar" acima continua intacto, palavra por palavra.

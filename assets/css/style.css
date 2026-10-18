@@ -508,6 +508,10 @@ small { font-size: var(--t-sm); }
 @media (max-width: 719px) {
   .barra-contato__aviso { display: none; }
   .barra-contato .container { justify-content: center; }
+  /* Abaixo daqui a barra fixa do rodape ja tem o botao Ligar.
+     Repetir o numero aqui so faria a barra do topo quebrar em
+     mais uma linha e empurrar o cabecalho para baixo. */
+  .barra-contato a.barra-contato__tel { display: none; }  /* precisa vencer .barra-contato a */
 }
 
 .topo {
@@ -529,6 +533,8 @@ small { font-size: var(--t-sm); }
   gap: var(--e-5);
   min-height: var(--altura-topo);
 }
+.topo .nav-principal { flex: 0 1 auto; min-width: 0; }  /* encolhe, nunca cresce */
+.nav-principal ul { flex-wrap: wrap; justify-content: flex-end; }
 
 /* Logotipo oficial. A arte ja traz o nome e o descritor HOME CARE,
    por isso nao ha texto ao lado: duplicaria a marca. O slogan nunca esteve
@@ -596,10 +602,29 @@ small { font-size: var(--t-sm); }
 .topo__acoes { display: none; gap: var(--e-5); align-items: center; }
 .topo__acoes .btn { white-space: nowrap; padding-inline: var(--e-5); }
 
-@media (min-width: 1040px) {
+/* Tudo aqui foi medido no navegador, nao estimado. A caixa do cabecalho tem
+   1180px uteis (1220 de largura maxima menos 40 de respiro). Logo + menu +
+   botao "Pedir orcamento", com os dois vaos de 20px, somavam 1151px antes dos
+   submenus e 1181px depois deles: 1px a mais do que cabe.
+   O corte, porem, estava em 1040px, e isso ja era defeito antes de hoje: a
+   1100px de janela, as 22 paginas rolavam 205px de lado, com o botao "Pedir
+   orcamento" fora da tela. Abaixo de 1220 o cabecalho passa a usar o botao
+   Menu, que abre o painel com as 22 paginas. */
+@media (min-width: 1220px) {
   .nav-principal { display: block; }
   .topo__acoes { display: flex; }
   .abrir-menu { display: none; }
+  /* Em vez de devolver as duas setinhas dos submenus, cada item do menu fecha
+     4px de cada lado. A soma cai para 1157px, sobram 23px de folga, e a altura
+     de toque de 44px continua intacta. */
+  .nav-principal a,
+  .tem-submenu > button { padding-inline: var(--e-3); }
+  /* O controle "Texto" do alto aumenta a fonte do menu junto com a do conteudo.
+     Sem a quebra, no tamanho bem maior o cabecalho passava da largura da pagina
+     e o site inteiro rolava de lado. Com ela, o menu desce de linha.
+     So vale daqui para cima: no celular o logotipo encolhe, e deve continuar
+     encolhendo em vez de empurrar o botao Menu para baixo. */
+  .topo .container { flex-wrap: wrap; }
 }
 
 /* Submenu de servicos */
@@ -616,6 +641,7 @@ small { font-size: var(--t-sm); }
   color: var(--grafite-700);
   font-size: var(--t-md);
   font-weight: 600;
+  white-space: nowrap;
   transition: background var(--tr-rapida), color var(--tr-rapida);
 }
 .tem-submenu > button:hover { background: var(--petroleo-050); color: var(--petroleo-800); }
@@ -644,6 +670,8 @@ small { font-size: var(--t-sm); }
   gap: 2px;
 }
 .tem-submenu > button[aria-expanded="true"] + .submenu { display: flex; }
+/* Mesma marcacao visual de "voce esta aqui" que os itens sem submenu tem. */
+.tem-submenu > button[data-ativo="true"] { color: var(--petroleo-800); background: var(--petroleo-050); }
 .submenu a {
   display: block;
   padding: var(--e-3) var(--e-4);
@@ -691,8 +719,65 @@ small { font-size: var(--t-sm); }
 .abrir-menu__barras::after { bottom: 0; }
 
 /* Precisa vir DEPOIS da definicao de .abrir-menu acima, senao a cascata
-   reverte o display:none declarado na media query de 1040px. */
-@media (min-width: 1040px) { .abrir-menu { display: none; } }
+   reverte o display:none declarado na media query do cabecalho.
+   O numero tem que ser o mesmo dos 1220px de la: se este corte ficar mais
+   baixo, existe uma faixa de largura sem menu nenhum. */
+@media (min-width: 1220px) { .abrir-menu { display: none; } }
+
+/* ===================== CABECALHO SEM JAVASCRIPT ========================
+   O painel do botao Menu so abre por script, e o botao do submenu nao e
+   link. Sem JavaScript, os dois viram controles que nao fazem nada, e o
+   CLAUDE.md exige que o menu continue funcionando com o script desligado.
+
+   A marca data-js="on" e posta no <html> por um script de uma linha no
+   <head> de cada pagina, antes do primeiro desenho da tela, para que quem
+   tem JavaScript nunca veja este estado. Enquanto ela nao existe, o
+   cabecalho abre o menu inteiro em lista unica, achatando os submenus:
+   feio, mas todas as paginas continuam a um clique, e nenhum controle
+   aparece prometendo algo que nao faz.
+
+   Se um dia entrar uma Content-Security-Policy, o script do <head> precisa
+   de hash ou nonce, senao o site inteiro cai neste estado. */
+html:not([data-js="on"]) .abrir-menu { display: none; }
+/* A lista achatada passa de 580px de altura no celular. Grudada no alto da
+   tela ela cobriria o site inteiro durante a rolagem, entao aqui o cabecalho
+   deixa de ser fixo e rola junto com a pagina. */
+html:not([data-js="on"]) .topo { position: static; }
+html:not([data-js="on"]) .topo .container { flex-wrap: wrap; }
+/* O botao "Pedir orcamento" aparece a partir de 1220px e, neste estado, so
+   faria o cabecalho crescer 68px de uma vez ao cruzar esse corte. Contato ja
+   esta na lista de links logo abaixo, e os botoes de WhatsApp da pagina
+   continuam todos funcionando, entao ele sai e o cabecalho fica igual em
+   qualquer largura. */
+html:not([data-js="on"]) .topo__acoes { display: none; }
+html:not([data-js="on"]) .nav-principal { display: block; flex-basis: 100%; }
+html:not([data-js="on"]) .nav-principal ul { flex-wrap: wrap; justify-content: flex-start; }
+html:not([data-js="on"]) .tem-submenu > button { display: none; }
+html:not([data-js="on"]) .submenu {
+  display: flex;
+  position: static;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-width: 0;
+  padding: 0;
+  gap: var(--e-1);
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+html:not([data-js="on"]) .submenu a,
+html:not([data-js="on"]) .nav-principal > ul > li > a {
+  /* Sao 17 links em lista unica. Com os 44px de alvo de toque de cada um, o
+     cabecalho comia uma tela inteira de celular. Aqui eles ficam com cerca de
+     40px de altura, acima dos 24px minimos, e o conteudo volta a aparecer. */
+  min-height: 0;
+  padding: var(--e-2) var(--e-3);
+  font-size: var(--t-md);
+  font-weight: 600;
+  color: var(--grafite-700);
+}
+/* As descricoes de cada item virariam um paredao de texto na lista achatada. */
+html:not([data-js="on"]) .submenu a span { display: none; }
 
 /* Painel mobile */
 .menu-mobile {
@@ -1495,7 +1580,8 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
   line-height: 1.2;
 }
 .barra-acao svg { width: 21px; height: 21px; flex: none; }
-.barra-acao__whats { background: var(--whatsapp-escuro); color: #fff; }
+.barra-acao__tel   { background: var(--petroleo-700); color: #fff; }  /* branco por cima: 7,40:1 */
+.barra-acao__whats { background: var(--whatsapp-escuro); color: #fff; }  /* branco por cima: 5,94:1 */
 .barra-acao a:active { filter: brightness(.92); }
 
 @media (max-width: 719px) {

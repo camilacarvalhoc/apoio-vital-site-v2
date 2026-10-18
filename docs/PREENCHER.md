@@ -150,8 +150,22 @@ também permite medir conversão no Google Analytics.
 ### O que ainda é dado de exemplo
 
 **Nenhum.** O telefone e o WhatsApp foram preenchidos em 17/10/2026 com o número
-`(21) 97479-2051`, aplicado em 385 lugares: texto visível, links de ligar, os 160
-botões de WhatsApp, o `main.js` e os blocos de dados estruturados.
+`(21) 97479-2051`.
+
+> **Conferido e corrigido em 18/10/2026.** A contagem de 385 que estava escrita aqui
+> descrevia links de ligar que o HTML não tinha mais: a auditoria das 22 páginas achou
+> **zero** `href="tel:"` da empresa. Os botões foram devolvidos. A contagem de hoje,
+> medida arquivo por arquivo nas 22 páginas públicas:
+>
+> | onde | quantas |
+> |---|---|
+> | `href="tel:"` da empresa | 67 (3 por página, mais o cartão de contato.html) |
+> | botões `wa.me` | 150 |
+> | número visível em texto | 45 |
+>
+> Os três pontos fixos de `tel:` em toda página são a barra do topo (some abaixo de
+> 719px), o botão **Ligar** da barra fixa do celular (aparece abaixo de 719px) e o
+> rodapé. Trocar o número exige trocar os três, mais o `main.js` e o JSON-LD do index.
 
 Se um dia existir um telefone fixo separado do celular, a troca é a mesma do passo 2,
 trocando `(21) 97479-2051` pelo fixo apenas nos pontos de "central 24 horas".
