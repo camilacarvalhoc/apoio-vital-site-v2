@@ -42,40 +42,57 @@
      Contraste anotado = calculado (WCAG 2.1), nunca estimado.
      --------------------------------------------------------------------- */
 
-  /* --- Petroleo --- */
-  --petroleo-900: #06161d;
-  --petroleo-800: #091c25;  /* 17,44:1 com texto branco */
-  --petroleo-700: #0d2935;  /* 15,15:1 em branco | COR PRINCIPAL, do uniforme */
-  --petroleo-600: #1c3948;  /* 12,15:1 em branco */
-  --petroleo-500: #2a5366;  /*  7,43:1 sobre o fundo cru | acento de texto */
-  --petroleo-200: #afc4ce;  /*  9,64:1 sobre petroleo-800 */
-  --petroleo-100: #d8e2e7;
-  --petroleo-050: #edf2f4;
+  /* --- Petroleo ---
+     Ancorado nas duas cores da Camila: #1F5D6B e #1B4B57.
+     O 700 e a cor da marca e a dos titulos; o 900 e a superficie escura.
+     Eles quase nao contrastam entre si (1,29:1), entao nenhum texto usa
+     um sobre o outro: sobre o escuro o texto vem da faixa --sobre-escuro. */
+  --petroleo-900: #1b4b57;  /* azul petroleo escuro, fundo | perola por cima da 8,42:1 */
+  --petroleo-800: #1d5461;  /* intermediario, bordas no escuro */
+  --petroleo-700: #1f5d6b;  /* AZUL PETROLEO, cor da marca | 6,50:1 na perola */
+  --petroleo-600: #2a7180;  /* um grau mais claro, estado de hover */
+  --petroleo-500: #3b8798;  /* acento e anel de foco */
+  --petroleo-200: #a9cfd7;  /* sobre fundo escuro */
+  --petroleo-100: #d3e6ea;
+  --petroleo-050: #edf5f7;
 
-  /* --- Menta ---
+  /* --- Verde-agua ---
      REGRA DE UMA LINHA, calculada:
-       #8FC5BC existe APENAS sobre fundo petroleo (7,85:1, 47,5 pontos
-       de reflexao). Sobre fundo claro ou cru ele da 1,37:1 e some para
-       o olho de 75 anos, que e o olho do paciente. Sobre claro, o
-       filete usa --menta-700. --- */
-  --menta-700: #2e6059;  /*  6,46:1 no fundo | 5,14:1 no cru  */
-  --menta-600: #5aa296;
-  --menta-500: #8fc5bc;     /* 1,93:1 em branco: so forma, nunca letra */
-  --menta-200: #c9e3de;
-  --menta-100: #e2f0ed;
-  --menta-050: #f0f8f6;
+       #65B8A5 da 2,06:1 na perola e #8FC5BC da 1,69:1. Nenhum dos dois
+       pode ser letra sobre fundo claro: somem para o olho de 75 anos,
+       que e o olho do paciente. Eles existem como acento, preenchimento
+       e letra sobre o petroleo. Letra verde no claro usa --menta-700,
+       que e o mesmo matiz escurecido ate passar no contraste. --- */
+  --menta-700: #337062;  /* verde de texto no claro | 5,07:1 na perola | 5,78:1 no branco */
+  --menta-600: #4a9484;
+  --menta-500: #8fc5bc;  /* VERDE-AGUA CLARO | 4,97:1 sobre o petroleo-900 */
+  --menta-400: #65b8a5;  /* VERDE-AGUA | acento e preenchimento, nunca letra no claro */
+  --menta-200: #cfe0dc;
+  --menta-100: #e3f0ed;
+  --menta-050: #f1f8f6;
 
   /* --- Cru e grafite --- */
-  --grafite-900: #15232b;   /* 14,36:1 sobre o fundo | texto */
-  --grafite-700: #3a4650;
-  --grafite-600: #5c6670;   /*  5,25:1 sobre o fundo | texto secundario */
-  --grafite-400: #98a2aa;
-  --grafite-200: #dcd9d4;   /* cru do uniforme | borda forte */
-  --grafite-100: #e9e6e0;
-  --grafite-050: #f4f2ed;
+  --grafite-900: #33383d;  /* corpo | 10,40:1 na perola */
+  --grafite-700: #474c52;  /* 7,69:1 na perola */
+  --grafite-600: #5f6469;  /* secundario | 5,30:1 na perola */
+  --grafite-400: #9a9ea2;
+  --grafite-200: #ded9cd;  /* linha */
+  --grafite-100: #ebe7dc;
+  --grafite-050: #f3f0e8;
 
-  --creme:       #e9e6e0;
-  --creme-claro: #f4f2ed;   /* fundo da pagina */
+  /* --- Terracota ---
+     REGRA, calculada: a #C47A5A nao e letra em lugar nenhum. Da 2,94:1 na
+     perola e 2,87:1 sobre o petroleo escuro. Ela e acento grafico, filete e
+     preenchimento. Tudo que carrega palavra usa a escura, #854930, que da
+     7,02:1 com branco em cima e 6,16:1 na perola. E a escura tambem nao
+     entra nas secoes escuras: contra o petroleo-900 da 1,37:1 e o botao
+     sumiria dentro do fundo. La o botao continua claro. --- */
+  --terracota:        #c47a5a;  /* acento, nunca texto */
+  --terracota-escura: #854930;  /* botao e link | 7,02:1 com branco | 6,16:1 na perola */
+  --terracota-fundo:  #6d3b27;  /* estado de hover do botao */
+
+  --creme:       #ebe7dc;
+  --creme-claro: #f3f0e8;  /* OFF-WHITE PEROLA, fundo da pagina */
   --branco:      #ffffff;
 
   /* --- Texto sobre fundo escuro --- */
@@ -107,9 +124,11 @@
   --texto:            var(--grafite-900);
   --texto-suave:      var(--grafite-600);
   --texto-invertido:  var(--branco);
-  --marca:            var(--petroleo-700);
+  --marca:            var(--petroleo-700);     /* identidade, titulos */
   --marca-hover:      var(--petroleo-600);
-  --acento:           var(--petroleo-500);
+  --interativo:       var(--terracota-escura);  /* botao e link */
+  --interativo-hover: var(--terracota-fundo);
+  --acento:           var(--terracota);         /* grafico, nunca texto */
   --acento-hover:     var(--petroleo-700);
   --foco:             var(--petroleo-500);
 
@@ -207,10 +226,21 @@ table { border-collapse: collapse; width: 100%; }
 
 ::selection { background: var(--petroleo-200); color: var(--petroleo-900); }
 
-/* Foco visivel e consistente em tudo que recebe teclado */
+/* Foco visivel e consistente em tudo que recebe teclado.
+   ANEL DUPLO, e a razao e medida: um anel de cor unica nao consegue passar
+   em todos os fundos do site ao mesmo tempo. O anel antigo, #3b8798, dava
+   2,33:1 nas secoes escuras, 1,71:1 sobre o botao terracota e 1,44:1 sobre
+   o verde do WhatsApp, abaixo do minimo de 3:1 da WCAG 1.4.11.
+   Com branco por dentro e petroleo por fora, um dos dois sempre contrasta:
+   o branco da 9,59:1 no petroleo e 7,02:1 na terracota escura; o petroleo
+   da 8,42:1 na perola e 9,59:1 no branco. */
 :focus-visible {
-  outline: 3px solid var(--foco);
-  outline-offset: 3px;
+  outline: 3px solid var(--branco);
+  outline-offset: 0;
+  /* o important e deliberado: cartoes e botoes ja declaram sombra propria e
+     venceriam por especificidade, apagando o anel externo justamente em quem
+     mais precisa dele. Enquanto focado, a sombra decorativa cede. */
+  box-shadow: 0 0 0 6px var(--petroleo-900) !important;
   border-radius: var(--r-sm);
 }
 :focus:not(:focus-visible) { outline: none; }
@@ -250,14 +280,21 @@ p { max-width: var(--largura-texto); }
 p + p { margin-top: var(--e-4); }
 
 a {
-  color: var(--petroleo-700);
+  color: var(--interativo);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
   transition: color var(--tr-rapida);
 }
-a:hover { color: var(--petroleo-900); }
+a:hover { color: var(--interativo-hover); }
 
 strong, b { font-weight: 600; color: var(--petroleo-900); }
+/* Nas superficies escuras o petroleo-900 acima e exatamente a cor do fundo,
+   entao o negrito sumia. Estas sao todas as superficies escuras do site. */
+.secao--escura strong, .secao--escura b,
+.cartao--destaque strong, .cartao--destaque b,
+.faixa-cta strong, .faixa-cta b,
+.barra-contato strong, .barra-contato b,
+.rodape strong, .rodape b { color: var(--branco); }
 
 small { font-size: var(--t-sm); }
 
@@ -349,7 +386,7 @@ small { font-size: var(--t-sm); }
 
 /* =============================== 05. BOTOES ============================= */
 .btn {
-  --btn-fundo: var(--marca);
+  --btn-fundo: var(--interativo);
   --btn-texto: var(--texto-invertido);
   --btn-borda: transparent;
   display: inline-flex;
@@ -372,7 +409,7 @@ small { font-size: var(--t-sm); }
               transform var(--tr-rapida), box-shadow var(--tr-rapida),
               border-color var(--tr-rapida);
 }
-.btn:hover { background: var(--marca-hover); color: var(--btn-texto); transform: translateY(-1px); box-shadow: var(--sombra-2); }
+.btn:hover { background: var(--interativo-hover); color: var(--btn-texto); transform: translateY(-1px); box-shadow: var(--sombra-2); }
 .btn:active { transform: translateY(0); box-shadow: var(--sombra-1); }
 
 .btn--acento { --btn-fundo: var(--acento); }
@@ -879,6 +916,8 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 .cartao--destaque h3 { color: var(--branco); }
 .cartao--destaque p { color: var(--sobre-escuro-suave); }
 .cartao--destaque .cartao__icone { background: rgba(255,255,255,.1); color: var(--petroleo-200); }
+/* .cartao__lista fixa o cinza secundario, que no cartao escuro da 2,36:1 */
+.cartao--destaque .cartao__lista { color: var(--sobre-escuro); }
 
 /* ============================ 09. PASSO A PASSO ========================= */
 .passos { counter-reset: passo; display: grid; gap: var(--e-6); }
@@ -1313,20 +1352,23 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
   gap: var(--e-3);
   min-height: 60px;
   padding: var(--e-3) var(--e-5) var(--e-3) var(--e-3);
-  background: var(--whatsapp);
-  color: #06301a;
+  /* O verde neon do WhatsApp briga com o petroleo e puxa o site para baixo.
+     O verde escuro da mesma marca mantem o reconhecimento, pelo icone e
+     pela palavra, sem gritar. */
+  background: var(--whatsapp-escuro);
+  color: #ffffff;
   border-radius: var(--r-full);
   font-size: var(--t-md);
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 8px 24px rgba(37, 211, 102, .35), var(--sombra-3);
+  box-shadow: 0 8px 24px rgba(18, 115, 57, .30), var(--sombra-3);
   transition: transform var(--tr-media), box-shadow var(--tr-media), background var(--tr-rapida);
 }
 .whats-flutuante:hover {
-  background: #1cc45d;
-  color: #06301a;
+  background: var(--whatsapp-mais-escuro);
+  color: #ffffff;
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(37, 211, 102, .45), var(--sombra-4);
+  box-shadow: 0 12px 32px rgba(18, 115, 57, .38), var(--sombra-4);
 }
 .whats-flutuante__icone {
   display: inline-flex;
@@ -1344,10 +1386,63 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 }
 
 
+/* =================== 16c. VOLTAR AO ALTO DA PAGINA ===================== */
+/* As paginas de servico sao longas de proposito, porque a familia le tudo
+   antes de ligar. Sem isto, quem chega ao fim precisa rolar a pagina
+   inteira de volta para achar o menu. E uma ancora de verdade: com o
+   JavaScript desligado ele nao aparece, e nada fica quebrado na tela. */
+
+.ao-topo {
+  position: fixed;
+  right: clamp(var(--e-4), 3vw, var(--e-8));
+  /* 68px e a altura real do botao do WhatsApp, medida no navegador */
+  bottom: calc(clamp(var(--e-4), 3vw, var(--e-8)) + 68px + var(--e-4));
+  z-index: 89;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  background: var(--creme-claro);
+  color: var(--petroleo-700);
+  border: 1px solid var(--borda-forte);
+  border-radius: var(--r-full);
+  box-shadow: var(--sombra-2);
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity var(--tr-media), transform var(--tr-media),
+              visibility var(--tr-media), background var(--tr-rapida),
+              color var(--tr-rapida);
+}
+.ao-topo svg { width: 20px; height: 20px; }
+.ao-topo--visivel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.ao-topo:hover {
+  background: var(--petroleo-700);
+  color: var(--branco);
+  border-color: var(--petroleo-700);
+}
+
+/* No celular o botao flutuante some e entra a barra fixa do rodape, entao
+   o calculo da altura muda junto. */
+@media (max-width: 719px) {
+  .ao-topo {
+    right: var(--e-4);
+    bottom: calc(58px + env(safe-area-inset-bottom, 0px) + var(--e-3));
+    width: 42px;
+    height: 42px;
+  }
+}
+
 /* ================= 16b. BARRA DE ACAO FIXA NO CELULAR ================== */
 /* No celular o botao flutuante redondo cobre justamente os botoes de
-   contato do fim de cada secao. Aqui ele vira uma barra com os dois
-   canais lado a lado, que e o padrao que mais converte no setor. */
+   contato do fim de cada secao. Aqui ele vira uma barra de largura
+   inteira, que e o padrao que mais converte no setor. */
 
 .barra-acao {
   display: none;
@@ -1376,7 +1471,6 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 }
 .barra-acao svg { width: 21px; height: 21px; flex: none; }
 .barra-acao__whats { background: var(--whatsapp-escuro); color: #fff; }
-.barra-acao__tel   { background: var(--petroleo-700); color: #fff; }
 .barra-acao a:active { filter: brightness(.92); }
 
 @media (max-width: 719px) {
@@ -1602,8 +1696,8 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
   height: 21px;
   background: currentColor;
   opacity: .85;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 62 82.40 C68.80 82.40 79.54 55.88 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 62 82.40 C68.80 82.40 79.54 55.88 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 61.90 82.40 C68.60 82.40 74.04 81.28 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 61.90 82.40 C68.60 82.40 74.04 81.28 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
   color: var(--petroleo-700);
 }
 .secao--escura .lista-ecg li::before { color: var(--menta-200); }
@@ -1656,7 +1750,6 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 .nota-tabela + .nota-tabela { margin-top: var(--e-2); }
 .nota-tabela strong { color: var(--grafite-900); }
 .secao--escura .nota-tabela { color: var(--menta-200); border-left-color: var(--menta-500); }
-.secao--escura .nota-tabela strong { color: #fff; }
 
 /* ============== 17e. CARTAO DE MODALIDADES DE PLANTAO ================== */
 /* Fica no lugar da ilustracao, no alto da home. Responde "o que eu compro e
@@ -1665,7 +1758,7 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 
 .plantao {
   background: var(--grafite-200);
-  border-radius: var(--raio-g);
+  border-radius: var(--r-lg);
   padding: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
 }
 .plantao__titulo {
@@ -1680,7 +1773,7 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
   gap: var(--e-4);
   align-items: baseline;
   background: #fff;
-  border-radius: var(--raio-m);
+  border-radius: var(--r-md);
   padding: var(--e-3) var(--e-4);
 }
 .plantao__linha + .plantao__linha { margin-top: var(--e-2); }
@@ -1696,48 +1789,14 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 .plantao__linha span {
   font-size: var(--t-sm);
   line-height: 1.5;
-  color: var(--grafite-800);
+  color: var(--grafite-700);
 }
 .plantao__nota {
   font-size: var(--t-sm);
   line-height: 1.55;
-  color: var(--texto-suave);
+  /* grafite-600 da so 4,17:1 sobre o grafite-200 do cartao. 700 da 6,10:1 */
+  color: var(--grafite-700);
   margin-top: var(--e-4);
-}
-
-/* ================= 17f. TELEFONE NO ALTO DA PAGINA ===================== */
-/* Quem recebeu alta ontem nao procura o telefone, precisa ver. */
-
-.fone-topo {
-  display: none;
-  text-align: right;
-  line-height: 1.15;
-  text-decoration: none;
-  flex: none;
-}
-.fone-topo small {
-  display: block;
-  font-size: .625rem;
-  font-weight: 600;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--menta-700);
-  margin-bottom: 2px;
-}
-.fone-topo b {
-  font-family: var(--fonte-titulo);
-  font-size: 1.18rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--petroleo-900);
-  white-space: nowrap;
-}
-.fone-topo:hover b { color: var(--menta-700); }
-
-/* So entra quando o cabecalho tem folga de verdade. Abaixo disso, o telefone
-   ja aparece na barra preta do alto e na barra fixa do rodape no celular. */
-@media (min-width: 1240px) {
-  .fone-topo { display: block; }
 }
 
 /* ================== 17d. LINK PARA A FONTE OFICIAL ===================== */
@@ -1901,8 +1960,8 @@ html[data-texto="gg"] { --t-base: 1.5rem;    --t-md: 1.3125rem; --t-sm: 1.1875re
   height: 46px;
   opacity: .30;
   background: var(--petroleo-700);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80' preserveAspectRatio='xMidYMid meet'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 62 82.40 C68.80 82.40 79.54 55.88 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80' preserveAspectRatio='xMidYMid meet'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 62 82.40 C68.80 82.40 79.54 55.88 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80' preserveAspectRatio='xMidYMid meet'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 61.90 82.40 C68.60 82.40 74.04 81.28 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 9 104 80' preserveAspectRatio='xMidYMid meet'%3E%3Cpath d='M5 50 L27 50 L38 17.50 L47.40 68.50 C49.76 81.28 55.20 82.40 61.90 82.40 C68.60 82.40 74.04 81.28 76.40 68.50 L81 50 L103 50' fill='none' stroke='%23000' stroke-width='9' stroke-linecap='butt' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 .foto--vazia::after { opacity: 0; }
 
@@ -1963,7 +2022,8 @@ html[data-texto="gg"] { --t-base: 1.5rem;    --t-md: 1.3125rem; --t-sm: 1.1875re
     transition: none !important;
     animation: none !important;
   }
-  .topo, .barra-contato, .menu-mobile, .whats-flutuante, .faixa-cta, .pular-conteudo { display: none !important; }
+  .topo, .barra-contato, .menu-mobile, .whats-flutuante, .faixa-cta,
+  .pular-conteudo, .barra-acao, .ao-topo { display: none !important; }
   body { background: #fff; font-size: 11pt; }
   .secao { padding-block: 1rem; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }

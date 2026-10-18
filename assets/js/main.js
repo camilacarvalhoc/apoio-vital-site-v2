@@ -599,6 +599,51 @@
   }
 
   /* ======================================================================
+     12. Voltar ao alto da pagina
+     ====================================================================== */
+  function voltarAoTopo() {
+    var botao = $('.ao-topo');
+    if (!botao) return;
+
+    // Aparece depois de uma tela e meia, que e quando o cabecalho ja saiu
+    // de vista e a pessoa perdeu a referencia do menu.
+    var gatilho = Math.round(window.innerHeight * 1.5);
+    var ticking = false;
+
+    function atualizar() {
+      botao.classList.toggle('ao-topo--visivel', window.scrollY > gatilho);
+      ticking = false;
+    }
+
+    on(window, 'scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(atualizar); ticking = true; }
+    }, { passive: true });
+
+    on(window, 'resize', function () {
+      gatilho = Math.round(window.innerHeight * 1.5);
+      atualizar();
+    }, { passive: true });
+
+    // O href="#top" ja sobe a pagina sozinho, e o CSS cuida da suavidade.
+    // Interceptamos so para nao sujar a barra de enderecos com o fragmento
+    // e para devolver o foco ao inicio, que e o que o teclado precisa.
+    on(botao, 'click', function (ev) {
+      ev.preventDefault();
+      var parado = window.matchMedia &&
+                   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      try {
+        window.scrollTo({ top: 0, behavior: parado ? 'auto' : 'smooth' });
+      } catch (e) {
+        window.scrollTo(0, 0);
+      }
+      var pular = $('.pular-conteudo');
+      if (pular) pular.focus();
+    });
+
+    atualizar();
+  }
+
+  /* ======================================================================
      Inicializacao
      ====================================================================== */
   function iniciar() {
@@ -613,6 +658,7 @@
     formularios();
     anoRodape();
     tamanhoTexto();
+    voltarAoTopo();
     medicao();
   }
 
