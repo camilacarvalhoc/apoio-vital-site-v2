@@ -526,8 +526,12 @@ small { font-size: var(--t-sm); }
   min-height: var(--altura-topo);
 }
 
-/* Logotipo oficial. A arte ja contem o nome e o slogan -
-   por isso nao ha texto ao lado: duplicaria a marca. */
+/* Logotipo oficial. A arte ja traz o nome e o descritor HOME CARE,
+   por isso nao ha texto ao lado: duplicaria a marca. O slogan nunca esteve
+   na arte; quem o declara e o JSON-LD.
+   Assinatura: caixa de tinta 1394,13 x 184,30, proporcao 7,576:1. O viewBox
+   e a caixa de tinta e nao a de desenho, porque as maiusculas redondas
+   transbordam a linha de maiuscula e a de base. Ver docs/MARCA-assinatura.md. */
 .marca-logo {
   display: inline-flex;
   align-items: center;
