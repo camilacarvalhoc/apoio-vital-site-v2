@@ -1,10 +1,8 @@
 # Painel de medicao: como a chave funciona
 
-> **Estado em 18/10/2026: em teste controlado.** O codigo novo esta publicado
-> como `painel-novo.php`, e o `painel.php` que atende hoje continua com o
-> mecanismo antigo, intocado. A promocao so acontece depois que o temporario
-> for testado com a configuracao instalada. Este documento descreve o estado
-> de destino.
+> **Estado em 18/10/2026: em producao.** Testado primeiro como arquivo
+> temporario, no PHP real da hospedagem, e promovido depois que a socia entrou
+> com a chave nova e viu os dados. A chave antiga deixou de valer na promocao.
 
 ## O que estava errado
 
