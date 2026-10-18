@@ -152,23 +152,31 @@ também permite medir conversão no Google Analytics.
 **Nenhum.** O telefone e o WhatsApp foram preenchidos em 17/10/2026 com o número
 `(21) 97479-2051`.
 
-> **Conferido e corrigido em 18/10/2026.** A contagem de 385 que estava escrita aqui
-> descrevia links de ligar que o HTML não tinha mais: a auditoria das 22 páginas achou
-> **zero** `href="tel:"` da empresa. Os botões foram devolvidos. A contagem de hoje,
-> medida arquivo por arquivo nas 22 páginas públicas:
+> **Conferido duas vezes em 18/10/2026, e a segunda desfez a primeira.** A contagem de
+> 385 que estava escrita aqui descrevia links de ligar que o HTML não tinha mais: a
+> auditoria das 22 páginas achou **zero** `href="tel:"` da empresa. De manhã os botões
+> foram devolvidos, 67 deles. À tarde a sócia decidiu que **o site não oferece telefone**,
+> só WhatsApp, e eles saíram de novo.
+>
+> Contagem de agora, medida arquivo por arquivo nas 22 páginas públicas:
 >
 > | onde | quantas |
 > |---|---|
-> | `href="tel:"` da empresa | 67 (3 por página, mais o cartão de contato.html) |
+> | `href="tel:"` da empresa | **0, por decisão** |
 > | botões `wa.me` | 150 |
 > | número visível em texto | 45 |
 >
-> Os três pontos fixos de `tel:` em toda página são a barra do topo (some abaixo de
-> 719px), o botão **Ligar** da barra fixa do celular (aparece abaixo de 719px) e o
-> rodapé. Trocar o número exige trocar os três, mais o `main.js` e o JSON-LD do index.
+> O único `tel:` do site é o 0800 da ANS, em `plano-de-saude-cobre-home-care.html`.
+> Ele não é da empresa e deve ficar.
+>
+> **Se um dia o telefone voltar**, são três pontos por página, mais um: a barra do topo
+> (visível de 720px para cima), o botão da barra fixa do celular (abaixo de 720px), o
+> rodapé, e o cartão "Canais diretos" de `contato.html`. O CSS dos dois primeiros saiu
+> junto: `.barra-contato__tel` e `.barra-acao__tel` não existem mais no `style.css`.
+> O commit que os trouxe é `ab94c6d`, e o que os tirou está logo depois dele.
 
-Se um dia existir um telefone fixo separado do celular, a troca é a mesma do passo 2,
-trocando `(21) 97479-2051` pelo fixo apenas nos pontos de "central 24 horas".
+O número `(21) 97479-2051` continua sendo o do WhatsApp e continua no `main.js` e no
+JSON-LD do index. Trocar o número exige trocar os três lugares.
 
 ### O que NÃO deve ser trocado
 

@@ -508,10 +508,6 @@ small { font-size: var(--t-sm); }
 @media (max-width: 719px) {
   .barra-contato__aviso { display: none; }
   .barra-contato .container { justify-content: center; }
-  /* Abaixo daqui a barra fixa do rodape ja tem o botao Ligar.
-     Repetir o numero aqui so faria a barra do topo quebrar em
-     mais uma linha e empurrar o cabecalho para baixo. */
-  .barra-contato a.barra-contato__tel { display: none; }  /* precisa vencer .barra-contato a */
 }
 
 .topo {
@@ -1580,7 +1576,6 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
   line-height: 1.2;
 }
 .barra-acao svg { width: 21px; height: 21px; flex: none; }
-.barra-acao__tel   { background: var(--petroleo-700); color: #fff; }  /* branco por cima: 7,40:1 */
 .barra-acao__whats { background: var(--whatsapp-escuro); color: #fff; }  /* branco por cima: 5,94:1 */
 .barra-acao a:active { filter: brightness(.92); }
 

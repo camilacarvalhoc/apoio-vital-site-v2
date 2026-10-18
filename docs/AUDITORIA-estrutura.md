@@ -217,34 +217,124 @@ A sócia autorizou corrigir **os três problemas que não dependiam de ninguém*
 diagnóstico acima fica como estava: é o registro do que o site era antes. Esta seção
 registra só o que mudou, e o que foi medido para provar que mudou.
 
-## 1. O telefone voltou a existir
+## 1. O telefone voltou a existir, e no mesmo dia saiu de novo
 
-Eram **zero** `href="tel:"` da empresa em 22 páginas, enquanto a barra do topo promete
-atendimento 24 horas e o formulário pergunta o melhor horário para ligar.
+**Resolvido por decisão, não por código.** Na manhã de 18/10/2026 o problema era real:
+eram **zero** `href="tel:"` da empresa em 22 páginas, enquanto a barra do topo promete
+atendimento 24 horas e o formulário pergunta o melhor horário para ligar. Os botões
+foram devolvidos em três pontos por página, com a sócia confirmando por escrito que o
+número recebia ligação e que ela queria oferecer o canal.
 
-Nenhum número novo entrou. É o `(21) 97479-2051`, o mesmo que já estava nos 150 botões
-de WhatsApp e nos três blocos de JSON-LD do index desde 17/10/2026.
+**Na mesma tarde ela decidiu o contrário:** o site não oferece telefone, só WhatsApp.
+Os links saíram de todas as 22 páginas, junto com o botão **Ligar** da barra fixa, a
+entrada do rodapé, o cartão de `contato.html` e as duas regras de CSS que os vestiam.
 
-Três pontos fixos em toda página, mais um:
+O único `tel:` que resta no site é o **0800 da ANS**, em
+`plano-de-saude-cobre-home-care.html`. Não é da empresa e não sai.
 
-| onde | quando aparece | rótulo |
+**E a promessa de 24 horas teve que mudar junto.** Com o telefone fora, ela recaía
+inteira sobre o WhatsApp, e o ChatGPT condicionou a publicação a uma confirmação factual
+da sócia. A resposta dela, em 18/10/2026: **urgência tem resposta a qualquer hora; o
+resto espera o horário comercial.**
+
+Entrou **uma formulação só**, reusada sem variação, justamente para não virar a sexta:
+
+> Urgência tem resposta a qualquer hora
+
+Na barra do topo ela ganha ", todos os dias, em todo o Rio de Janeiro"; no rodapé e no
+cartão de canais ela aparece inteira e sozinha. Trocou em 57 lugares:
+
+| onde | quantos |
+|---|---|
+| barra do topo, cromo de toda página | 24 |
+| rodapé e cartão "Canais diretos" | 25 |
+| `contato.html`, meta description e og:description | 2 |
+| `contato.html`, cartão Horários | 1 |
+| `obrigado.html`, aviso do fim | 1 |
+| `sobre.html`, tabela de identificação | 1 |
+| `servicos/acompanhante-hospitalar.html`, chamada final | 1 |
+| `index.html`, cartão do topo e faixa de indicadores | 2 |
+
+**O que NÃO mudou, de propósito:** "plantão 24 horas" e "plantão de 24h" aparecem 25
+vezes e são **modalidade de serviço**, não promessa de atendimento. Um cuidador que fica
+24 horas na casa não tem nada a ver com a central responder de madrugada. Confundir as
+duas coisas era justamente um dos cinco sentidos que a auditoria separou.
+
+**Duas frases de `contato.html` eu quis deixar de pé, e o ChatGPT não deixou.** Vale
+registrar porque eu estava errado nas duas:
+
+**Linha 357**, antes: *"A gente responde no mesmo dia, sempre. Não separamos contato
+urgente de contato comum."* Eu argumentei que era sobre o formulário, não sobre o
+WhatsApp de madrugada. Ele respondeu que um formulário recebe os dois tipos de contato,
+e que a frase nega expressamente a distinção de que a operação depende. Mais: "sempre"
+é promessa absoluta, sem horário nem condição. **Bloqueador.**
+
+**Linha 408**, antes: *"A central atende a qualquer hora."* Eu argumentei que o título
+"É urgente?" qualificava. Ele aceitou o enquadramento mas apontou outra coisa, mais fina
+e correta: "a central atende" afirma que existe uma **estrutura** permanentemente
+disponível, e a sócia confirmou uma **regra de resposta**, não uma estrutura. São coisas
+diferentes, e a segunda não foi verificada.
+
+Como ficaram, usando a formulação já aprovada e sem inventar prazo novo:
+
+> **Urgência tem resposta a qualquer hora.** Se o seu caso não pode esperar, não use o
+> formulário: chame no WhatsApp, inclusive de madrugada, fim de semana e feriado. Os
+> outros contatos a gente responde no horário do escritório, que está logo ao lado.
+
+> Não espere o formulário. Urgência tem resposta a qualquer hora, inclusive de madrugada
+> e em feriado.
+
+O "horário do escritório" não é número novo: aponta para o cartão Horários que está na
+mesma tela, com "segunda a sexta, das 8h às 18h" já publicado.
+
+**Uma terceira, que eu achei conferindo e quis deixar para depois**, e o ChatGPT mandou
+entrar nesta rodada: `precos.html:380` dizia *"Pelo WhatsApp, com resposta no mesmo
+dia"*. O argumento dele: a sócia confirmou que contato comum espera o horário comercial,
+logo uma mensagem de sábado à noite não recebe resposta no mesmo dia. Ficou:
+
+> Pelo WhatsApp. Urgência tem resposta a qualquer hora; os outros contatos, no horário do
+> escritório. Uma enfermeira entende o quadro e já diz qual perfil de profissional o caso
+> pede.
+
+Com isso, **nenhuma promessa absoluta de resposta sobrou no site.** O que ainda contém
+"no mesmo dia" são três frases sobre o cuidado começar no mesmo dia, não sobre alguém
+responder: `alta-hospitalar.html:312`, `servicos/tecnico-de-enfermagem.html:472` e
+`servicos/acompanhante-hospitalar.html:464`, esta última já qualificada com "em boa parte
+dos casos". São da família de prazo de início, que segue parada esperando o questionário.
+
+O formulário continua perguntando "Melhor horário para te ligar", e isso segue certo:
+é a empresa que liga para a família, não o contrário.
+
+**O telefone saiu também dos dados estruturados.** Levantei a questão com o ChatGPT em
+vez de decidir sozinho, e ele decidiu tirar: a propriedade `telephone` é recomendada pelo
+Google, não obrigatória, e a coerência entre o canal que a empresa escolheu oferecer e o
+que o site declara vale mais do que preservar uma propriedade recomendada. A ressalva
+dele, registrada: tirar daqui não garante que o Google deixe de exibir uma opção de
+ligar, porque ele pode ter o número de outras fontes, e os cadastros externos, como o
+Perfil da Empresa no Google, são decisão comercial separada.
+
+A varredura que isso exigiu achou **mais do que estava mapeado**. Não eram três
+ocorrências, eram nove:
+
+| onde | o que era | o que ficou |
 |---|---|---|
-| barra do topo | 720px para cima | `(21) 97479-2051` |
-| barra fixa do rodapé | abaixo de 720px | **Ligar**, ao lado do WhatsApp |
-| rodapé | sempre | `(21) 97479-2051` |
-| cartão "Canais diretos" | só em contato.html | `(21) 97479-2051` |
+| `index.html`, Organization | `telephone` | removido |
+| `index.html`, MedicalBusiness | `telephone` | removido |
+| `index.html`, ContactPoint | `telephone` | virou `url` do WhatsApp |
+| 6 páginas de serviço, ServiceChannel | `servicePhone` | removido, o `serviceUrl` fica |
 
-Os dois primeiros se revezam no mesmo corte de 719px: quem está no celular tem o botão
-grande embaixo, quem está no computador tem o número em cima. Nenhum dos dois repete o
-outro, e a barra do topo não ganhou mais uma linha no celular.
+As seis `servicePhone` não estavam na auditoria nem no plano: apareceram quando conferi
+se tinha sobrado algum telefone em dado estruturado. Ficam registradas porque mostram que
+um dado publicado pode estar em mais lugares do que a leitura de uma página revela.
 
-O botão **Ligar** é `--petroleo-700` com letra branca: **7,40:1**, calculado pela
-luminância relativa, não estimado. O WhatsApp ao lado dá 5,94:1. Os dois passam o
-critério 1.4.3 da WCAG com folga.
+No `ContactPoint` eu não segui a instrução ao pé da letra. Tirar só o `telephone` ali
+deixaria um ponto de contato sem nenhuma forma de contato, que é marcação sem sentido.
+Entrou a URL do WhatsApp no lugar, e eu disse isso ao ChatGPT em vez de fazer calado.
 
-Nenhuma palavra nova sobre prazo ou horário entrou junto. As cinco formulações
-concorrentes de "24 horas" continuam exatamente como estavam, porque resolvê-las
-depende da sócia.
+**Fica aberto no mesmo bloco:** o `hoursAvailable` daquele `ContactPoint` declara
+00:00 às 23:59, todos os dias. É a promessa de 24 horas em forma legível por máquina, e
+agora ela recai inteiramente sobre o WhatsApp. Depende da mesma resposta que a barra do
+topo depende.
 
 ## 2. As páginas de confiança deixaram de ser beco sem saída
 
