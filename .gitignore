@@ -24,3 +24,10 @@ dados-apoio-vital/
 # PDFs de exportacao: a mesma informacao ja esta em docs/v1/*.md, em texto.
 # O historico do Git e permanente, entao nao vale carregar 4,8 MB para sempre.
 docs/*.pdf
+
+# Segredo do painel e a chave em claro. Nunca entram no repositorio: o
+# historico do Git e permanente, e foi exatamente esse o erro que esta
+# rodada corrigiu. Ver docs/PAINEL-chave.md
+_local/
+painel-config.php
+CHAVE-*.txt

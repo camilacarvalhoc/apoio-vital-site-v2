@@ -245,18 +245,22 @@ por:
 endpointMedicao: '/medir.php'
 ```
 
-**2.** Abrir `painel.php` e trocar a chave na linha 15:
+O passo 1 **já está feito**: `assets/js/main.js` já aponta para `/medir.php`.
 
-```php
-const CHAVE = 'troque-esta-chave-por-uma-longa-e-aleatoria';
+**2.** A chave do painel **não fica mais no código** e não vai mais na URL. O procedimento
+mudou por inteiro, e está num lugar só: **`docs/PAINEL-chave.md`**.
+
+Em resumo: o sal e o hash ficam em `apoio-vital-config/painel-config.php`, pasta irmã da
+`public_html`, fora do Git e fora da web. Sem esse arquivo o painel responde 404.
+
+Não recriar a constante `CHAVE` dentro do `painel.php`, e não usar chave curta e
+memorizável: foi exatamente isso que vazou o segredo para o código e para o histórico
+do Git. A chave é gerada por máquina e mora no gerenciador de senhas.
+
+**3.** Abrir no navegador e entrar pelo formulário:
+
 ```
-
-Use algo longo e sem sentido, por exemplo `av-7f3k9x2m-painel-2026`. Guarde essa frase.
-
-**3.** Abrir no navegador, uma vez, para conferir:
-
-```
-https://apoiovital.com/painel.php?chave=SUA_CHAVE
+https://apoiovital.com/painel.php
 ```
 
 Nos primeiros minutos vai aparecer vazio. Clique num botão de WhatsApp do site, espere um
