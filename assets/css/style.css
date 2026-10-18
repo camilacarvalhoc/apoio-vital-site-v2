@@ -378,6 +378,10 @@ small { font-size: var(--t-sm); }
   gap: clamp(var(--e-8), 5vw, var(--e-16));
   align-items: center;
 }
+/* Item de grade nao encolhe abaixo do seu conteudo minimo sem isto, e o que
+   tem formulario dentro empurrava a pagina de contato 1px para fora da tela
+   em 320px. */
+.duas-colunas > * { min-width: 0; }
 @media (min-width: 900px) {
   .duas-colunas { grid-template-columns: 7fr 5fr; }
   .duas-colunas--texto-maior { grid-template-columns: 8fr 4fr; }
@@ -548,6 +552,19 @@ small { font-size: var(--t-sm); }
 }
 .menu-mobile__topo .marca-logo img { height: 30px; }
 .rodape .marca-logo img { height: 50px; max-width: 300px; }
+
+/* Abaixo de 375px o botao Menu nao cabe ao lado do logotipo com o espacamento
+   normal. O botao tem rotulo de texto e nao pode ser espremido: a palavra Menu
+   vazava para fora da tela e, a 320px, levava a pagina inteira a rolar na
+   horizontal por 5px. A causa dos dois sintomas e a mesma.
+   A correcao e de prioridade, nao de recorte: o botao fica com a largura que
+   precisa e o logotipo cede o que sobra, encolhendo proporcionalmente. Nada
+   e escondido e nada fica inacessivel. */
+@media (max-width: 374px) {
+  .topo .abrir-menu { flex: none; }
+  .topo .marca-logo { flex: 0 1 auto; min-width: 0; }
+  .topo .marca-logo img { max-width: 100%; }
+}
 
 .nav-principal { display: none; }
 .nav-principal ul {
@@ -1161,6 +1178,10 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 .campo select,
 .campo textarea {
   width: 100%;
+  /* Campo de formulario tem largura minima propria, herdada do atributo size.
+     Sem isto ele nao encolhe abaixo dela e empurra a grade: em tela de 320px a
+     pagina de contato passava a rolar 1px na horizontal. */
+  min-width: 0;
   min-height: var(--alvo-toque);
   padding: var(--e-3) var(--e-4);
   background: var(--branco);
