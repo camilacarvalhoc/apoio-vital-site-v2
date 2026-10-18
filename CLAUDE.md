@@ -29,10 +29,25 @@ docs/               documentação interna, bloqueada na web
 
 ## Regras que não se quebram
 
-**Nada que não seja verdade.** A empresa ainda não tem responsável técnico registrado, licença
-sanitária nem CNES. O site não pode afirmar que tem. Os blocos correspondentes estão
-desativados no HTML, com comentário explicando como restaurar. Restaurar antes de existirem é
-regressão, não melhoria.
+**Nada que não seja verdade.** A empresa **não tem responsável técnico registrado** nem
+inscrição no COREN-RJ: os dois estão em andamento, segundo a sócia em 18/10/2026. O site não
+pode afirmar que tem.
+
+Na mesma data a sócia informou que a empresa **tem alvará, licença sanitária e CNES**, o que
+inverte a premissa anterior deste arquivo. Mesmo assim **nada foi religado**, e nada deve ser:
+ela não forneceu o número de nenhum dos três, e número conferido é a condição para publicar.
+Publicar "temos licença sanitária" sem o número é adjetivo, que é exatamente o que a pesquisa
+de mercado condenou nos concorrentes. Ver `docs/RESPOSTAS-operacao.md`.
+
+Os blocos correspondentes seguem desativados no HTML, com comentário explicando como
+restaurar. Restaurar antes de ter o número é regressão, não melhoria.
+
+**O que a operação de fato é, confirmado pela sócia, e que o site levou um dia inteiro para
+parar de contradizer:** os profissionais são pessoa jurídica e autônomos, não CLT; quem
+acompanha a execução do trabalho é o próprio profissional; a supervisão é sob demanda, por
+profissional que ela não identificou; quatro dos sete serviços do site são apenas planejados;
+e a empresa já opera sem contrato formal. Qualquer texto novo tem que caber nisso. O confronto
+página a página está em `docs/CONFRONTO-operacao.md`.
 
 **"Regido pela" e não "em conformidade com"** a RDC ANVISA nº 917/2024. Diferença de duas
 palavras e de peso jurídico inteiramente distinto.
