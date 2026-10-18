@@ -409,8 +409,8 @@
         if (retorno) {
           retorno.setAttribute('data-estado', 'sucesso');
           retorno.textContent = janela
-            ? 'Abrimos o WhatsApp com os seus dados preenchidos. \u00c9 s\u00f3 tocar em enviar. A gente tamb\u00e9m recebeu por aqui e responde ainda hoje.'
-            : 'Recebemos os seus dados e respondemos ainda hoje.';
+            ? 'Abrimos o WhatsApp com os seus dados preenchidos. \u00c9 s\u00f3 tocar em enviar. A gente tamb\u00e9m recebeu por aqui e responde assim que poss\u00edvel.'
+            : 'Recebemos os seus dados e respondemos assim que poss\u00edvel.';
         }
 
         if (!destino) return;

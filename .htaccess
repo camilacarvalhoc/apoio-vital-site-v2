@@ -43,7 +43,24 @@ ErrorDocument 404 /404.html
   RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 </IfModule>
 
-# ---- 4. Cache: curto no HTML, longo no resto ----------------------------
+# ---- 4. Servicos retirados da oferta ------------------------------------
+# Quatro servicos sairam da oferta comercial. As paginas continuam no
+# repositorio de proposito, porque o conteudo serve quando o servico existir,
+# mas nao podem seguir acessiveis: quem chega por link antigo ou por resultado
+# de busca encontraria uma oferta que a empresa nao pode cumprir.
+# Por isso 301 e nao 404: o 301 preserva quem ja tem o endereco e avisa ao
+# buscador que o conteudo mudou de lugar, em vez de deixar o resultado morto.
+# Os quatro saem do sitemap.xml junto com esta mudanca.
+#
+# PARA RESTAURAR, quando o servico passar a existir: apagar a linha do servico
+# aqui, devolver o item ao menu e ao rodape das paginas, e recolocar a entrada
+# no sitemap.xml.
+Redirect 301 /servicos/remocao-de-pacientes.html /servicos.html
+Redirect 301 /servicos/enfermagem-e-equipe-multidisciplinar.html /servicos.html
+Redirect 301 /servicos/aluguel-de-equipamento.html /servicos.html
+Redirect 301 /formacao-de-cuidadores.html /servicos.html
+
+# ---- 5. Cache: curto no HTML, longo no resto ----------------------------
 # Cache longo no HTML faria uma correcao de texto levar dias para chegar a
 # quem ja visitou. Imagem, folha de estilo e script podem ficar muito tempo
 # porque trocam de nome quando mudam.
@@ -87,12 +104,12 @@ ErrorDocument 404 /404.html
   </FilesMatch>
 </IfModule>
 
-# ---- 5. Compressao ------------------------------------------------------
+# ---- 6. Compressao ------------------------------------------------------
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript image/svg+xml
 </IfModule>
 
-# ---- 6. O que esta no repositorio mas nao e site ------------------------
+# ---- 7. O que esta no repositorio mas nao e site ------------------------
 # A integracao de Git copia o repositorio inteiro para dentro da pasta
 # publica. Entao tudo que e documento interno precisa ser bloqueado aqui,
 # senao fica acessivel pela internet.
