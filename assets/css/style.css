@@ -2729,3 +2729,121 @@ h1 { line-height: 1.25; }
   .cartao:has(> .cartao__icone) { padding-top: calc(clamp(var(--e-6), 3vw, var(--e-8)) + 26px); }
   .grade:has(.cartao > .cartao__icone) { row-gap: calc(var(--e-6) + 26px); margin-top: 26px; }
 }
+
+/* ======================================================================= */
+/* 27. DIRECAO DO DEDICARE, ETAPA 3                                        */
+/* ======================================================================= */
+
+/* ---- 27.1 o filete sob o titulo de cada coluna do rodape -------------- */
+/* No Dedicare cada coluna do rodape tem um risco curto embaixo do titulo. */
+/* E barato e organiza a leitura das tres colunas.                          */
+.rodape h3 { position: relative; padding-bottom: var(--e-3); }
+.rodape h3::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 58px; height: 3px;
+  background: var(--terracota);
+  border-radius: 3px;
+}
+
+/* O ENTALHE NAO VEIO, e a razao e geometrica, nao estetica.               */
+/* No Dedicare o entalhe aparece porque a faixa acima do rodape e cinza    */
+/* claro e o rodape e rosa: o triangulo recorta uma cor contra a outra.    */
+/* Aqui a .faixa-cta termina em petroleo 900 e o rodape e petroleo 900. O  */
+/* triangulo seria da mesma cor do fundo, ou seja, invisivel. Copiar isso  */
+/* seria acrescentar codigo que nao desenha nada.                          */
+
+/* ---- 27.2 o formulario como ficha branca flutuante -------------------- */
+/* No Dedicare a ficha do formulario flutua sobre a faixa de fundo, com    */
+/* sombra. Aqui o formulario ja divide a tela com os cartoes de horario,   */
+/* entao so falta ele se destacar do fundo como peca propria.              */
+.secao .form {
+  background: var(--branco);
+  border: 1px solid rgba(13, 41, 53, .12);
+  border-radius: var(--r-lg);
+  padding: clamp(var(--e-6), 3vw, var(--e-8));
+  box-shadow: 0 2px 6px rgba(9, 28, 37, .05), 0 22px 46px -30px rgba(9, 28, 37, .4);
+}
+
+/* ---- 27.3 o banner de pagina, com fotografia e veu da marca ----------- */
+/* Medido antes de escrever, nos quatro tamanhos, porque a socia avisou    */
+/* para a imagem nao ficar torta e ela estava certa:                        */
+/*                                                                          */
+/*   1440 x 340, enquadramento no centro .... mostra 23,6% da foto e CORTA  */
+/*                                            as duas cabecas. Inutil.      */
+/*   1440 x 460, enquadramento em 32% ....... mostra 31,9% e pega os dois   */
+/*                                            rostos inteiros. Esta serve.  */
+/*   1024 x 340 ............................. 33,2%, serve                  */
+/*    768 x 300 ............................. 39,1%, serve                  */
+/*    390 x 260 ............................. 66,7%, quase nao corta        */
+/*                                                                          */
+/* Dai a altura ser presa a largura da tela, com piso e teto, e o           */
+/* enquadramento vertical ficar em 32% e nao no centro: a 50% o corte cai   */
+/* na linha dos ombros e decepa as duas.                                    */
+.banner-pagina {
+  position: relative;
+  overflow: hidden;
+  background: var(--petroleo-900);
+  height: clamp(260px, 32vw, 480px);
+  display: flex;
+  align-items: flex-end;
+}
+.banner-pagina > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 32%;
+}
+.banner-pagina::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg,
+    rgba(27, 75, 87, .93) 0%,
+    rgba(27, 75, 87, .74) 40%,
+    rgba(27, 75, 87, .20) 100%);
+}
+.banner-pagina .container { position: relative; z-index: 1; padding-block: clamp(var(--e-6), 3vw, var(--e-10)); }
+.banner-pagina__nome {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 1rem + 2vw, 2.4rem);
+  line-height: 1.2;
+  color: var(--branco);
+  margin: 0 0 10px;
+  padding-left: clamp(var(--e-4), 1.4vw, var(--e-5));
+  border-left: 5px solid var(--terracota);
+}
+.banner-pagina .migalhas { margin: 0; padding: 0; background: transparent; border: 0; }
+.banner-pagina .migalhas ol { padding-left: calc(clamp(var(--e-4), 1.4vw, var(--e-5)) + 5px); }
+.banner-pagina .migalhas a,
+.banner-pagina .migalhas span { color: var(--menta-500); }
+.banner-pagina .migalhas li::after { color: rgba(143, 197, 188, .6); }
+/* ONDE O BANNER ENTRA, E POR QUE NAO EM TODA PAGINA.
+   Medido a 1440 x 900, que e a tela de notebook mais comum:
+
+                          botao do topo    com banner
+     servicos.html ........... 640 px ...... 1101 px
+     cuidador-de-idosos ...... 871 px ...... 1332 px
+     acompanhante ............ 765 px ...... 1226 px
+
+   A dobra fica em 900. O banner empurra o botao para baixo dela nas tres.
+   E nao da para ter os dois: para o botao voltar, o banner teria de ter no
+   maximo 260 px, e a 260 px o recorte decepa as duas cabecas, que foi o que
+   a socia avisou e a medicao confirmou.
+
+   Entao a escolha e por pagina, nao global:
+   - servicos.html NAO leva banner. E a pagina de decisao, onde o botao
+     "Nao sei qual preciso. Me ajuda?" e o proprio objetivo da pagina.
+   - as duas paginas de servico levam. Ali o visitante ja escolheu ler, o
+     texto e longo, e o botao flutuante do WhatsApp continua fixo na tela.
+
+   As demais paginas internas tambem nao levam, por outra razao: a unica
+   fotografia do site mostra duas pessoas especificas. Repeti-la no alto de
+   "Precos", "Politica de privacidade" e "Trabalhe conosco" nao faz sentido. */
+
+/* a pagina que tem banner nao precisa repetir o nome no sobretitulo */
+.banner-pagina + .topo-pagina .sobretitulo { display: none; }
