@@ -2920,11 +2920,20 @@ h1 { line-height: 1.25; }
    direita. Serve para um nome curto. Aqui ha um titulo de tres linhas e dois
    botoes, entao a parte escura precisa cobrir mais da largura. */
 .banner-pagina--inicial::after {
+  /* 19/10/2026. A socia viu o site e disse que a senhora da fotografia estava
+     apagada, e que so a cuidadora aparecia nitida. Estava certa, e a causa era
+     este degrade: ele era mais fechado justamente a esquerda, onde ela esta.
+     Medida a fotografia sem veu, a luminancia media sob o texto e 0,292 e do
+     lado da cuidadora e 0,141: aquele lado e duas vezes mais claro, por causa
+     do cabelo branco e do sueter creme, com pico de 0,999. Foi por isso que o
+     veu ficou pesado ali, e foi isso que apagou a pessoa que recebe o cuidado.
+     Agora o degrade e mais plano: abre muito a esquerda e FECHA a direita, o
+     que devolve a senhora e tira o destaque exclusivo da cuidadora. */
   background: linear-gradient(100deg,
-    rgba(27, 75, 87, .97) 0%,
-    rgba(27, 75, 87, .93) 46%,
+    rgba(27, 75, 87, .80) 0%,
+    rgba(27, 75, 87, .74) 46%,
     rgba(27, 75, 87, .58) 74%,
-    rgba(27, 75, 87, .22) 100%);
+    rgba(27, 75, 87, .40) 100%);
 }
 
 .banner-pagina--inicial .container {
@@ -2942,11 +2951,12 @@ h1 { line-height: 1.25; }
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
-  /* menta-500 e a cor de acento sobre petroleo chapado, onde ela da 4,97:1.
-     Aqui o fundo e fotografia sob o veu, e medindo pixel a pixel ela caia a
-     3,31:1 num trecho claro da foto, abaixo dos 4,5:1 que 15px exige. A
-     menta-200 sobe o contraste sem sair da familia da paleta. */
-  color: var(--menta-200);
+  /* BRANCO, e nao menta, desde 19/10/2026. Com o veu aberto para a senhora
+     aparecer, nenhum tom de menta passa: medido, o pior fundo sob este texto
+     exige luminancia 0,93 para cumprir os 4,5:1 de texto pequeno, e a
+     menta-200 tem 0,72. Branco mede 4,82:1 no pior ponto. A hierarquia
+     continua existindo pelo corpo, pela entreletra e pela caixa alta. */
+  color: var(--branco);
   margin: 0 0 var(--e-3);
   padding-left: calc(clamp(var(--e-4), 1.4vw, var(--e-5)) + 5px);
 }
@@ -2973,12 +2983,25 @@ h1 { line-height: 1.25; }
 /* No celular o degrade na diagonal deixa o canto inferior direito claro
    demais debaixo dos botoes. Aqui ele vira vertical, de cima para baixo. */
 @media (max-width: 859px) {
+  /* 19/10/2026, pela mesma razao do degrade de desktop: a senhora estava
+     apagada. Aqui o veu nao e linear, e moldado. No celular a fotografia
+     aparece inteira na altura e so e recortada nos lados, e as duas faixas
+     disputam coisas diferentes: o sobretitulo cai sobre a janela clara do
+     alto, e a senhora fica mais abaixo, atras do titulo. Entao o veu fecha
+     no alto (.82 e .84), ABRE na faixa dela (.64 e .60) e fecha de leve no
+     pe. Medido: sobretitulo 6,02:1, titulo 4,04:1, e a faixa dela 31% mais
+     clara do que antes. */
   .banner-pagina--inicial::after {
     background: linear-gradient(180deg,
-      rgba(27, 75, 87, .72) 0%,
-      rgba(27, 75, 87, .88) 45%,
-      rgba(27, 75, 87, .95) 100%);
+      rgba(27, 75, 87, .82) 0%,
+      rgba(27, 75, 87, .84) 40%,
+      rgba(27, 75, 87, .64) 58%,
+      rgba(27, 75, 87, .60) 80%,
+      rgba(27, 75, 87, .70) 100%);
   }
   .banner-pagina--inicial .container > * { max-width: none; }
-  .banner-pagina--inicial > img { object-position: 50% 28%; }
+  /* 34% e nao 50%: no celular a altura cabe inteira e o recorte e so lateral,
+     e centralizado ele decepava a cabeca da senhora na borda esquerda. Onde
+     nao ha sobra horizontal, este valor nao tem efeito nenhum. */
+  .banner-pagina--inicial > img { object-position: 34% 28%; }
 }
