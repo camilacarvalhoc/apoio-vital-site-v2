@@ -90,18 +90,25 @@ de tarde, convivencia cotidiana, sem leito hospitalar, sem equipamento medico,
 sem procedimento clinico, em tons quentes que convivem com o perola e o
 terracota da paleta.
 
-### A pendencia conhecida, registrada e nao resolvida
+### O emblema no uniforme: decisao tomada, nao pendencia
 
 **O emblema no uniforme da cuidadora foi desenhado pela propria IA e NAO e a
 marca da Apoio Vital.** O batimento virou uma cruz, as duas fitas trocaram de
 hierarquia e ganharam degrade que os arquivos aprovados nao tem, e o nome
-embaixo saiu ilegivel. Mostrei a ampliacao lado a lado a socia e ela optou por
-publicar assim e ajustar depois.
+embaixo saiu ilegivel.
 
-A correcao ja esta montada e e a que a lei 9 da
-`docs/REFERENCIA-sites-cinematograficos.md` prescreve: compor o arquivo
-aprovado `apoio-vital-simbolo-m-negativo.svg` por cima da fotografia, por
-edicao de imagem, em vez de pedir a IA que desenhe o logotipo.
+Mostrei a ampliacao lado a lado a socia, contra o arquivo aprovado, e montei a
+alternativa que a lei 9 da `REFERENCIA-sites-cinematograficos.md` prescreve:
+compor `apoio-vital-simbolo-m-negativo.svg` por cima da fotografia, por edicao,
+em vez de pedir a IA que desenhe o logotipo.
+
+**Em 19/10/2026 ela decidiu manter o emblema como esta.** Fica registrado aqui
+para quem ler depois nao tratar como defeito esquecido: e escolha feita, com a
+diferenca a vista. Nao troque sem ela pedir.
+
+O risco que fica, e que ela conhece: um emblema que se parece com a marca mas
+nao e a marca enfraquece a propria identidade, e a empresa tem conflito de
+anterioridade no INPI registrado em `v1/02-marca-vitalmed.md`.
 
 ### O texto alternativo
 
