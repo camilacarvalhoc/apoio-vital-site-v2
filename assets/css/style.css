@@ -2847,3 +2847,29 @@ h1 { line-height: 1.25; }
 
 /* a pagina que tem banner nao precisa repetir o nome no sobretitulo */
 .banner-pagina + .topo-pagina .sobretitulo { display: none; }
+
+/* ======================================================================= */
+/* 28. NO CELULAR A FOTOGRAFIA VEM ANTES DO TEXTO                          */
+/* 19/10/2026. A socia abriu o site no telefone e disse que a nova versao  */
+/* nao tinha aparecido. Fui medir o que o aparelho dela recebeu: estava    */
+/* tudo la, o CSS certo e todas as alteracoes. O que faltava era a foto    */
+/* na tela.                                                                */
+/*                                                                         */
+/* Medido no viewport de 375x812: a fotografia comecava em 1344px, ou      */
+/* seja, 532px ABAIXO do fim da primeira tela. No desktop ela fica ao lado */
+/* do texto e aparece de imediato; no celular a grade empilha na ordem do  */
+/* HTML, texto primeiro, e a imagem ia parar atras de dois paragrafos.     */
+/*                                                                         */
+/* A referencia que a socia aprovou, e o Dedicare de onde ela veio, poem a */
+/* imagem no alto no celular. Entao aqui ela sobe, com order, sem mexer na */
+/* ordem do HTML: leitor de tela e busca continuam lendo titulo primeiro.  */
+/*                                                                         */
+/* A moldura passa de 4:3 para 3:2 no celular, o que custa 85px a menos de */
+/* altura e deixa o titulo inteiro visivel na primeira tela. A 390 de      */
+/* largura o recorte mostra 66,7% da foto, medido antes: quase nao corta.  */
+/* ======================================================================= */
+
+@media (max-width: 719px) {
+  .hero__grade > :has(> .hero__foto) { order: -1; }
+  .hero__foto { aspect-ratio: 3 / 2; }
+}
