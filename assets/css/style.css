@@ -666,6 +666,20 @@ small { font-size: var(--t-sm); }
   gap: 2px;
 }
 .tem-submenu > button[aria-expanded="true"] + .submenu { display: flex; }
+/* A faixa de 10px entre a base do botao e o topo do painel nao pertencia a
+   nenhum dos dois. Ao descer o mouse em direcao aos itens, o ponteiro
+   atravessava esse vazio, o mouseleave do grupo disparava e o menu fechava
+   antes de a pessoa chegar la. Esta ponte invisivel cobre exatamente esses
+   10px e faz parte do .submenu, entao o ponteiro nunca sai do grupo.
+   O afastamento visual continua igual. */
+.submenu::before {
+  content: "";
+  position: absolute;
+  top: -11px;    /* 10px de vao + 1px de borda: top conta da caixa de padding */
+  left: 0;
+  right: 0;
+  height: 11px;
+}
 /* Mesma marcacao visual de "voce esta aqui" que os itens sem submenu tem. */
 .tem-submenu > button[data-ativo="true"] { color: var(--petroleo-800); background: var(--petroleo-050); }
 .submenu a {
@@ -774,6 +788,11 @@ html:not([data-js="on"]) .nav-principal > ul > li > a {
 }
 /* As descricoes de cada item virariam um paredao de texto na lista achatada. */
 html:not([data-js="on"]) .submenu a span { display: none; }
+/* Sem script o painel vira lista achatada e position: static. A ponte do hover
+   passaria a se ancorar no grupo e atravessaria os links com uma faixa
+   invisivel de 11px. Aqui ela nao existe, e nem precisa: sem script nao ha
+   hover para preservar. */
+html:not([data-js="on"]) .submenu::before { content: none; }
 
 /* Painel mobile */
 .menu-mobile {

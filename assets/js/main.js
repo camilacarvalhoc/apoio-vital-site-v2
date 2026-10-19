@@ -167,7 +167,18 @@
         fecharTodos(g);
         botao.setAttribute('aria-expanded', aberto ? 'false' : 'true');
       });
-      on(g, 'mouseleave', function () { botao.setAttribute('aria-expanded', 'false'); });
+      /* Fechar no instante em que o ponteiro sai do grupo quebra a diagonal:
+         quem mira o canto do painel passa de rasgao por cima da navegacao e
+         perde o menu no meio do caminho. Com a tolerancia, sair e voltar
+         dentro de 220ms nao fecha nada. */
+      var aguardando;
+      on(g, 'mouseleave', function () {
+        clearTimeout(aguardando);
+        aguardando = setTimeout(function () {
+          botao.setAttribute('aria-expanded', 'false');
+        }, 220);
+      });
+      on(g, 'mouseenter', function () { clearTimeout(aguardando); });
     });
 
     on(document, 'click', function () { fecharTodos(null); });
