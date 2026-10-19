@@ -2323,11 +2323,19 @@ html[data-texto="gg"] { --t-base: 1.5rem;    --t-md: 1.3125rem; --t-sm: 1.1875re
 
 /* Botao principal do hero em terracota, como na referencia. O destino e  */
 /* o icone continuam os do WhatsApp: muda a cor, nao a funcao.            */
-.hero .btn--whatsapp {
+/* CORRIGIDO EM 19/10/2026. A regra era ".hero .btn--whatsapp", e so a home
+   tem .hero: o botao principal ficava terracota na home e VERDE em todas as
+   outras 17 paginas. Incoerencia que eu mesmo criei em 18/10 e que a socia
+   viu ao comparar o site com o prototipo que ela aprovou.
+   Agora vale em todo botao de acao. O verde continua marcando o canal do
+   WhatsApp onde ele e a propria identidade do canal: no botao flutuante
+   (.whats-flutuante) e na aba do celular (.barra-acao__whats), que nao usam
+   a classe .btn--whatsapp e por isso nao sao atingidos. */
+.btn--whatsapp {
   --btn-fundo: var(--interativo);
   --btn-texto: var(--texto-invertido);
 }
-.hero .btn--whatsapp:hover { --btn-fundo: var(--interativo-hover); }
+.btn--whatsapp:hover { --btn-fundo: var(--interativo-hover); }
 
 /* ---- 20.10 ajustes da comparacao visual, rodada 2 ----------------- */
 /* .hero__foto img tem especificidade 0,1,1 e vencia a classe sozinha.  */
