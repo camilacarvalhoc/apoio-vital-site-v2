@@ -29,9 +29,12 @@
 
     // Para onde o formulario envia ALEM do WhatsApp.
     // Vazio significa usar o action do proprio formulario, que e '/enviar.php',
-    // o arquivo PHP que fica no site e manda para contato@apoiovital.com.
+    // o arquivo PHP que fica no site e manda para contato@ (contato) ou vagas@ (candidatos).
     // So preencha aqui se um dia for usar servico de terceiro.
     endpointFormulario: '',
+
+    // Caixa que recebe os curriculos; so aparece como alternativa quando o envio falha.
+    emailCandidatos: 'vagas@apoiovital.com',
 
     // Pagina de agradecimento apos envio bem-sucedido
     paginaObrigado: 'obrigado.html',
@@ -549,12 +552,12 @@
             if (cadastro) {
               var textoErro = (motivo || 'N\u00e3o conseguimos enviar o cadastro agora.') +
                 (janela ? ' O WhatsApp abriu com os seus dados.' : '');
-              if (/contato@apoiovital\.com/.test(motivo)) {
+              if (/@apoiovital\.com/.test(motivo)) {
                 aviso('erro', textoErro);
               } else {
                 aviso('erro',
                   textoErro + (temArquivo && !motivo ? ' Para mandar o curr\u00edculo, escolha o arquivo de novo ou envie para' : ' Se preferir, escreva para'),
-                  { href: 'mailto:contato@apoiovital.com', texto: 'contato@apoiovital.com' });
+                  { href: 'mailto:' + CONFIG.emailCandidatos, texto: CONFIG.emailCandidatos });
               }
             } else if (janela) {
               aviso('erro', 'O WhatsApp abriu com os seus dados, mas n\u00e3o conseguimos enviar pelo site agora. \u00c9 s\u00f3 tocar em enviar l\u00e1.');

@@ -45,7 +45,9 @@ mensagem de outro endereço para `contato@apoiovital.com` e confirmar que chega.
   vence em data separada da hospedagem.
   Situação em 19/10/2026: plano "Teste grátis do Starter Business Email", com vencimento em
   10/10/2027; 2 caixas (`contato@` e `vagas@`), 1 GB cada, 100 envios por 24 h, até 5 apelidos
-  por caixa. `privacidade@`, `ouvidoria@` e `financeiro@` são apelidos de `contato@`. O que
+  por caixa. `privacidade@`, `ouvidoria@` e `financeiro@` são apelidos de `contato@`. A sócia testou o
+  recebimento nos quatro endereços (`ouvidoria@`, `vagas@`, `financeiro@`, `privacidade@`) em
+  19/10/2026. O que
   acontece com as 2 caixas depois do teste não foi confirmado com a Hostinger.
 
 **O limite de caixas não afeta o site:** o `enviar.php` entrega por `mail()` da hospedagem, sem

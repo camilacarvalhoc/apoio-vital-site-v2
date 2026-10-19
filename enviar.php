@@ -19,13 +19,14 @@
    continua conseguindo enviar.
    ========================================================================= */
 
-/* O Trabalhe Conosco vai para contato@, a unica caixa que se sabe que existe.
-   rh@apoiovital.com so serve se for criado antes (hPanel > E-mails): e-mail
-   para endereco que nao existe nao chega a ninguem. Para usar rh@, troque so
-   a linha 'trabalhe' abaixo. */
+/* O Trabalhe Conosco vai para vagas@, caixa criada no hPanel em 19/10/2026 e
+   com recebimento testado pela socia. O formulario de contato segue em
+   contato@. E-mail para endereco que nao existe nao chega a ninguem: antes de
+   trocar o destino, confirme que a caixa existe. Para mudar para onde vao os
+   curriculos, troque so a linha 'trabalhe' abaixo. */
 $DESTINO = array(
     'contato'  => 'contato@apoiovital.com',
-    'trabalhe' => 'contato@apoiovital.com',
+    'trabalhe' => 'vagas@apoiovital.com',
 );
 $REMETENTE = 'contato@apoiovital.com';   // mesmo dominio: passa pelo SPF e DKIM
 $OBRIGADO  = '/obrigado.html';
@@ -305,5 +306,5 @@ if ($enviado) {
     termina(true, 'Recebemos a sua mensagem.', $OBRIGADO);
 }
 termina(false, $tipo === 'trabalhe'
-    ? 'Não conseguimos enviar agora. Tente de novo em alguns minutos ou mande o currículo para contato@apoiovital.com.'
+    ? 'Não conseguimos enviar agora. Tente de novo em alguns minutos ou mande o currículo para ' . $DESTINO['trabalhe'] . '.'
     : 'Não conseguimos enviar agora. Por favor, fale com a gente no WhatsApp.', $OBRIGADO);

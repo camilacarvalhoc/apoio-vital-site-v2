@@ -96,9 +96,9 @@
   --branco:      #ffffff;
 
   /* --- Texto sobre fundo escuro --- */
-  --sobre-escuro-forte: #ffffff;  /* 17,44:1 sobre petroleo-800 */
-  --sobre-escuro:       #d8e2e7;  /* 13,24:1 sobre petroleo-800 */
-  --sobre-escuro-suave: #afc4ce;  /*  9,64:1 sobre petroleo-800 */
+  --sobre-escuro-forte: #ffffff;  /* 8,42:1 sobre petroleo-800, 9,59:1 sobre o 900 */
+  --sobre-escuro:       #d8e2e7;  /* 6,40:1 sobre petroleo-800, 7,28:1 sobre o 900 */
+  --sobre-escuro-suave: #afc4ce;  /* 4,66:1 sobre petroleo-800, 5,30:1 sobre o 900 */
 
   /* --- Semanticas --- */
   --ok-600:     #1e6b4f;
@@ -1478,6 +1478,10 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 .rodape__contato { display: grid; gap: var(--e-3); margin-top: var(--e-5); }
 .rodape__contato a { align-items: flex-start; gap: var(--e-3); line-height: 1.5; }
 .rodape__contato svg { width: 20px; height: 20px; flex: none; margin-top: 10px; color: var(--petroleo-200); }
+.rodape .rodape__emails { padding-left: calc(20px + var(--e-3)); gap: 0; }
+.rodape__emails li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); align-items: center; }
+.rodape__emails span { font-size: var(--t-xs); color: var(--sobre-escuro-suave); }
+.rodape__emails a { min-height: 36px; font-size: var(--t-sm); overflow-wrap: anywhere; }
 
 .rodape__legal {
   border-top: 1px solid rgba(255, 255, 255, .12);
