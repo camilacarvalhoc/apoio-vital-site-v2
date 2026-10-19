@@ -2900,3 +2900,85 @@ h1 { line-height: 1.25; }
   .hero__grade > :has(> .hero__foto) { order: -1; }
   .hero__foto { aspect-ratio: 3 / 2; }
 }
+
+/* ======================================================================= */
+/* 29. A PAGINA INICIAL ABRE COM A FOTOGRAFIA EM LARGURA CHEIA             */
+/* 19/10/2026, a pedido da socia. O banner que estava em servicos.html veio */
+/* para ca, e aqui ele carrega o h1 e os dois botoes por cima da imagem.    */
+/* Isso desfaz o impasse da secao 27: la, banner e botao acima da dobra     */
+/* eram excludentes porque o banner empurrava o botao para baixo. Com o     */
+/* botao DENTRO do banner, os dois cabem.                                   */
+/* ======================================================================= */
+
+.banner-pagina--inicial {
+  height: auto;                     /* a altura passa a vir do conteudo */
+  min-height: clamp(440px, 46vw, 620px);
+  align-items: center;
+}
+
+/* O degrade do banner comum vai de 93% a 20% de opacidade da esquerda para a
+   direita. Serve para um nome curto. Aqui ha um titulo de tres linhas e dois
+   botoes, entao a parte escura precisa cobrir mais da largura. */
+.banner-pagina--inicial::after {
+  background: linear-gradient(100deg,
+    rgba(27, 75, 87, .97) 0%,
+    rgba(27, 75, 87, .93) 46%,
+    rgba(27, 75, 87, .58) 74%,
+    rgba(27, 75, 87, .22) 100%);
+}
+
+.banner-pagina--inicial .container {
+  padding-block: clamp(var(--e-10), 6vw, var(--e-20));
+}
+
+/* O conteudo fica na metade escura. Sem esse teto o titulo invadiria a parte
+   clara do degrade e perderia contraste contra a janela ao fundo. */
+.banner-pagina--inicial .container > * { max-width: 36rem; }
+/* os dois botoes lado a lado passam de 36rem e quebrariam um sob o outro */
+.banner-pagina--inicial .grupo-botoes { max-width: none; }
+
+.banner-pagina__sobre {
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  /* menta-500 e a cor de acento sobre petroleo chapado, onde ela da 4,97:1.
+     Aqui o fundo e fotografia sob o veu, e medindo pixel a pixel ela caia a
+     3,31:1 num trecho claro da foto, abaixo dos 4,5:1 que 15px exige. A
+     menta-200 sobe o contraste sem sair da familia da paleta. */
+  color: var(--menta-200);
+  margin: 0 0 var(--e-3);
+  padding-left: calc(clamp(var(--e-4), 1.4vw, var(--e-5)) + 5px);
+}
+
+.banner-pagina--inicial .banner-pagina__nome {
+  font-size: clamp(2rem, 1.1rem + 3.1vw, 3.25rem);
+  line-height: 1.16;
+  margin-bottom: var(--e-6);
+}
+
+.banner-pagina--inicial .grupo-botoes {
+  margin-left: calc(clamp(var(--e-4), 1.4vw, var(--e-5)) + 5px);
+}
+
+/* O texto que antes dividia o hero com a foto agora desce para a faixa de
+   baixo: paragrafos a esquerda, aviso e selos a direita. */
+.hero--inicial .hero__texto > .subtitulo:first-child { margin-top: 0; }
+.hero--inicial .hero__apoio {
+  align-self: center;
+  padding-left: clamp(0px, 2vw, var(--e-6));
+}
+.hero--inicial .hero__apoio > .mt-6 { margin-top: 0; }
+
+/* No celular o degrade na diagonal deixa o canto inferior direito claro
+   demais debaixo dos botoes. Aqui ele vira vertical, de cima para baixo. */
+@media (max-width: 859px) {
+  .banner-pagina--inicial::after {
+    background: linear-gradient(180deg,
+      rgba(27, 75, 87, .72) 0%,
+      rgba(27, 75, 87, .88) 45%,
+      rgba(27, 75, 87, .95) 100%);
+  }
+  .banner-pagina--inicial .container > * { max-width: none; }
+  .banner-pagina--inicial > img { object-position: 50% 28%; }
+}

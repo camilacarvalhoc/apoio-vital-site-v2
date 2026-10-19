@@ -40,7 +40,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=22053453">
+<link rel="stylesheet" href="assets/css/style.css?v=fe9c6edf">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -193,20 +193,19 @@
 </div>
 
 <main id="conteudo">
-<section class="banner-pagina">
-  <img src="assets/img/fotos/hero-cuidado-em-casa.jpg" alt="" width="1254" height="1254" fetchpriority="high" decoding="async">
+<!-- O BANNER SAIU DAQUI EM 19/10/2026, a pedido da socia: a imagem grande
+     passou a abrir a pagina inicial. Isso devolve servicos.html a conclusao
+     medida em 18/10 e registrada no CSS: esta e a pagina de decisao, e com o
+     banner o botao "Nao sei qual preciso. Me ajuda?" caia de 640px para
+     1101px, abaixo da dobra de 900px. -->
+<nav class="migalhas" aria-label="Você está aqui">
   <div class="container">
-    <p class="banner-pagina__nome">Serviços</p>
-    <nav class="migalhas" aria-label="Você está aqui">
-    <div class="container">
-      <ol>
-        <li><a href="index.html">Início</a></li>
-        <li><span aria-current="page">Serviços</span></li>
-      </ol>
-    </div>
-  </nav>
+    <ol>
+      <li><a href="index.html">Início</a></li>
+      <li><span aria-current="page">Serviços</span></li>
+    </ol>
   </div>
-</section>
+</nav>
 
 <section class="topo-pagina">
   <div class="container">
