@@ -2614,3 +2614,11 @@ h1 { line-height: 1.25; }
 @media (min-width: 1040px) {
   .hero__grade { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); }
 }
+
+/* ---- 24. a vitrine de artefatos ficou com uma peca so ----------------- */
+/* A peca do "plano de cuidados" saiu em 19/10/2026, pela auditoria. Com um */
+/* item so, a grade de duas colunas deixava metade da largura vazia.        */
+.artefatos--unico { max-width: 560px; }
+@media (min-width: 900px) {
+  .artefatos--unico { grid-template-columns: 1fr; margin-inline: auto; }
+}
