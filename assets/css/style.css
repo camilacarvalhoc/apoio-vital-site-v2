@@ -2256,8 +2256,13 @@ html[data-texto="gg"] { --t-base: 1.5rem;    --t-md: 1.3125rem; --t-sm: 1.1875re
   }
   .barra-acao a[aria-current] { color: var(--petroleo-700); }
   .barra-acao svg { width: 22px; height: 22px; }
-  /* o WhatsApp continua sendo o canal principal, entao segue preenchido */
-  .barra-acao__whats { background: var(--whatsapp-escuro); color: #fff; }
+  /* O WhatsApp continua sendo o canal principal, entao segue preenchido.
+     A classe sozinha tem especificidade 0,1,0 e PERDIA para o
+     ".barra-acao a { color: var(--texto-suave) }" logo acima, que tem 0,1,1.
+     Resultado: texto cinza sobre verde, contraste medido de 1,01:1, ilegivel.
+     Com o seletor abaixo a especificidade vai para 0,2,1 e o branco ganha.
+     O icone usa currentColor, entao acompanha. */
+  .barra-acao a.barra-acao__whats { background: var(--whatsapp-escuro); color: #fff; }
   .rodape__legal { padding-bottom: calc(62px + var(--e-8) + env(safe-area-inset-bottom, 0px)); }
 }
 
