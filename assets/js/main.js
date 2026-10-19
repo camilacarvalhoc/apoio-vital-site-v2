@@ -298,7 +298,8 @@
     consentimento: '\u00c9 preciso concordar para que possamos entrar em contato.',
     arquivoTipo: 'Envie o curr\u00edculo em PDF, DOC ou DOCX.',
     arquivoGrande: 'O arquivo \u00e9 maior que 5 MB. Envie um PDF, DOC ou DOCX de at\u00e9 5 MB.',
-    arquivoVazio: 'O arquivo est\u00e1 vazio. Escolha outro.'
+    arquivoVazio: 'O arquivo est\u00e1 vazio. Escolha outro.',
+    arquivoFalta: 'Anexe o curr\u00edculo em PDF, DOC ou DOCX.'
   };
 
   // Mesmos limites do enviar.php, que confere de novo no servidor
@@ -306,7 +307,7 @@
 
   function erroDoArquivo(campo) {
     var f = campo.files && campo.files[0];
-    if (!f) return '';
+    if (!f) return campo.hasAttribute('required') ? MENSAGENS.arquivoFalta : '';
     if (!/\.(pdf|doc|docx)$/i.test(f.name)) return MENSAGENS.arquivoTipo;
     if (f.size === 0) return MENSAGENS.arquivoVazio;
     if (f.size > ARQUIVO_MAX) return MENSAGENS.arquivoGrande;
@@ -403,7 +404,8 @@
       var textoBotao = botao ? botao.textContent : '';
 
       // O botao "Remover arquivo" so existe com JavaScript e so aparece com um
-      // arquivo escolhido. Sem JS o campo continua opcional e o form envia igual.
+      // arquivo escolhido. Sem JS o campo continua funcionando: o required do
+      // HTML segura o envio e o enviar.php confere de novo no servidor.
       var arqCampo = $('input[type="file"]', form);
       var remover = null;
       if (arqCampo && arqCampo.parentNode) {
@@ -471,11 +473,12 @@
 
         if (retorno) retorno.removeAttribute('data-estado');
 
-        // Dois caminhos ao mesmo tempo, por decisao da socia:
-        //   1. abre o WhatsApp com os dados preenchidos, que e onde o setor fecha
-        //   2. manda o mesmo conteudo por e-mail (no cadastro de profissional, com
-        //      o curriculo anexado), para nada se perder se a pessoa desistir no
-        //      meio ou nao tiver WhatsApp naquele aparelho
+        // O formulario de contato segue por dois caminhos ao mesmo tempo, por
+        // decisao da socia: abre o WhatsApp com os dados preenchidos, que e onde
+        // o atendimento acontece, e manda o mesmo conteudo por e-mail, para nada
+        // se perder se a pessoa desistir no meio.
+        // A candidatura nao abre WhatsApp nenhum: por decisao da socia em
+        // 19/10/2026, o curriculo chega so por e-mail, em vagas@apoiovital.com.
         // Sem JavaScript, o proprio form tem action e method e vai direto
         // para o enviar.php.
         // A tela so diz que o e-mail chegou depois que o servidor confirmou.
@@ -509,10 +512,16 @@
         }
 
         // O WhatsApp abre primeiro, porque navegador bloqueia janela aberta
-        // depois de uma resposta assincrona.
-        var janela = window.open(linkWhats(montarResumoWhats(form)), '_blank', 'noopener');
+        // depois de uma resposta assincrona. No cadastro de profissional nao
+        // abre: a candidatura vai so por e-mail.
+        var janela = cadastro ? null : window.open(linkWhats(montarResumoWhats(form)), '_blank', 'noopener');
 
         if (!destino) {
+          if (cadastro) {
+            aviso('erro', 'N\u00e3o conseguimos enviar o cadastro agora. Se preferir, escreva para',
+              { href: 'mailto:' + CONFIG.emailCandidatos, texto: CONFIG.emailCandidatos });
+            return;
+          }
           aviso(janela ? 'sucesso' : 'erro', janela
             ? 'Abrimos o WhatsApp com os seus dados preenchidos. \u00c9 s\u00f3 tocar em enviar.'
             : 'N\u00e3o conseguimos abrir o WhatsApp.');
@@ -542,16 +551,13 @@
               return;
             }
             if (botao) { botao.disabled = false; botao.textContent = textoBotao; }
-            aviso('sucesso', cadastro
-              ? 'Recebemos o seu cadastro' + (temArquivo ? ' e o seu curr\u00edculo' : '') + '. Abrimos tamb\u00e9m o WhatsApp com os seus dados preenchidos: \u00e9 s\u00f3 tocar em enviar.'
-              : 'Abrimos o WhatsApp com os seus dados preenchidos. \u00c9 s\u00f3 tocar em enviar. A gente tamb\u00e9m recebeu por aqui e responde assim que poss\u00edvel.');
+            aviso('sucesso', 'Abrimos o WhatsApp com os seus dados preenchidos. \u00c9 s\u00f3 tocar em enviar. A gente tamb\u00e9m recebeu por aqui e responde assim que poss\u00edvel.');
           })
           .catch(function (erro) {
             if (botao) { botao.disabled = false; botao.textContent = textoBotao; }
             var motivo = (erro && erro.servidor) || '';
             if (cadastro) {
-              var textoErro = (motivo || 'N\u00e3o conseguimos enviar o cadastro agora.') +
-                (janela ? ' O WhatsApp abriu com os seus dados.' : '');
+              var textoErro = motivo || 'N\u00e3o conseguimos enviar o cadastro agora.';
               if (/@apoiovital\.com/.test(motivo)) {
                 aviso('erro', textoErro);
               } else {

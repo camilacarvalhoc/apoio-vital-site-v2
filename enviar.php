@@ -81,8 +81,9 @@ function nomeDoAnexo($nome, $ext) {
 }
 
 /* Confere o curriculo enviado. Devolve array('vazio'=>true) se nao veio
-   arquivo (o campo e opcional), array('erro'=>texto) se veio e nao serve, ou
-   array('ext','dados','tam') se esta tudo certo. */
+   arquivo, array('erro'=>texto) se veio e nao serve, ou
+   array('ext','dados','tam') se esta tudo certo. No Trabalhe Conosco o
+   arquivo e obrigatorio e quem recusa o 'vazio' e o bloco la embaixo. */
 function confereArquivo($f, $max, $tipos) {
     if (!is_array($f) || !isset($f['error']) || is_array($f['error'])) {
         return array('vazio' => true);
@@ -233,7 +234,7 @@ foreach ($consentes as $c) {
     }
 }
 
-/* ------------------------------------------------------ o curriculo, se veio */
+/* -------------------------------------------- o curriculo, que e obrigatorio */
 $anexo = null;
 if ($tipo === 'trabalhe') {
     $nomeAssunto = trim(preg_replace('/[^A-Za-z0-9 .\'\-]/', '', semAcento(limpo($_POST['nome'], 60))));
@@ -241,6 +242,12 @@ if ($tipo === 'trabalhe') {
     $r = confereArquivo(isset($_FILES['curriculo']) ? $_FILES['curriculo'] : null, $ARQUIVO_MAX, $ARQUIVO_TIPOS);
     if (isset($r['erro'])) {
         termina(false, $r['erro'], $OBRIGADO);
+    }
+    /* Por decisao da socia em 19/10/2026 a candidatura so vale com o
+       curriculo em arquivo. O required do HTML segura no navegador; aqui
+       e a segunda conferencia, que vale tambem sem JavaScript. */
+    if (isset($r['vazio'])) {
+        termina(false, 'Anexe o currículo em PDF, DOC ou DOCX de até 5 MB.', $OBRIGADO);
     }
     if (isset($r['dados'])) {
         $r['nome'] = nomeDoAnexo(limpo($_POST['nome'], 60), $r['ext']);

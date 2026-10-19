@@ -2326,6 +2326,14 @@ html[data-texto="gg"] { --t-base: 1.5rem;    --t-md: 1.3125rem; --t-sm: 1.1875re
   .rodape__legal { padding-bottom: calc(62px + var(--e-8) + env(safe-area-inset-bottom, 0px)); }
 }
 
+/* A pagina Trabalhe Conosco nao tem a barra fixa nem o botao flutuante: por
+   decisao da socia em 19/10/2026 a candidatura vai so por e-mail, e o
+   WhatsApp saiu dali. Sem a barra, o espaco reservado para ela no rodape
+   ficava como um vao em branco no celular. */
+@media (max-width: 719px) {
+  .pagina-trabalhe-conosco .rodape__legal { padding-bottom: var(--e-8); }
+}
+
 /* ---- 20.8 o conteudo que saiu da coluna direita do hero ----------- */
 .modalidades__grade { display: grid; gap: var(--e-6); }
 @media (min-width: 940px) {

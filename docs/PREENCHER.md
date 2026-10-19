@@ -125,19 +125,29 @@ o comentário.
 
 ## 5. Para onde o formulário envia
 
-Hoje, sem configuração, o formulário **monta a mensagem e abre o WhatsApp** já preenchido.
-Funciona sem nenhum servidor, e é uma escolha válida para começar.
+> **Reescrito em 19/10/2026.** A versão anterior dizia que o formulário só abria o WhatsApp
+> e mandava criar conta no Formspree. Nada disso vale mais: quem envia é o `enviar.php`, que
+> já está no site.
 
-Se quiser receber por e-mail, crie uma conta gratuita no Formspree, Getform ou Basin,
-copie o endereço que eles fornecem e cole na linha `endpointFormulario` em
-`assets/js/main.js`:
+Os dois formulários mandam por e-mail, pelo `enviar.php`, e cada um tem um destino:
 
-```js
-endpointFormulario: 'https://formspree.io/f/SEU_ID_AQUI',
-```
+| formulário | campo `formulario` | destino | abre o WhatsApp? |
+|---|---|---|---|
+| Contato e orçamento | `contato` | `contato@apoiovital.com` | Sim, com os dados preenchidos |
+| Trabalhe Conosco | `trabalhe` | `vagas@apoiovital.com` | **Não** |
 
-Com o endpoint configurado, o envio passa a redirecionar para `obrigado.html`, o que
-também permite medir conversão no Google Analytics.
+**O Trabalhe Conosco não passa mais pelo WhatsApp.** A sócia decidiu em 19/10/2026 que a
+candidatura chega só por e-mail: o currículo em arquivo virou obrigatório, e o WhatsApp saiu
+da página inteira, inclusive o botão flutuante e a barra de baixo do celular. Quem mexer nessa
+página depois precisa saber disso antes de colar bloco de outra página, que traz o WhatsApp
+junto.
+
+Sem JavaScript nada se perde: os dois formulários têm `action="/enviar.php"` e `method="post"`,
+e o servidor confere de novo o que o navegador conferiu, inclusive a obrigatoriedade do
+currículo.
+
+A linha `endpointFormulario` em `assets/js/main.js` continua vazia de propósito. Ela só serve
+se um dia o envio for para serviço de terceiro, e aí o `enviar.php` deixa de ser usado.
 
 ---
 
