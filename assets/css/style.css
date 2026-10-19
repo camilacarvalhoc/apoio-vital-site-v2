@@ -2622,3 +2622,58 @@ h1 { line-height: 1.25; }
 @media (min-width: 900px) {
   .artefatos--unico { grid-template-columns: 1fr; margin-inline: auto; }
 }
+
+/* ======================================================================= */
+/* 25. DIRECAO DO DEDICARE, ETAPA 1: A BARRA E O CABECALHO EM DUAS COLUNAS */
+/* 19/10/2026. A socia mandou olhar dedicarecuidadoshomecare.com.br e pediu */
+/* a mesma estrutura com a identidade da Apoio Vital. Estudei a pagina      */
+/* inteira e separei o que serve. Esta etapa traz os dois recursos que      */
+/* valem para as 18 paginas de uma vez.                                     */
+/*                                                                          */
+/* O que NAO veio de la, e por que:                                         */
+/* - o veu rosa sobre a foto, que naquela opacidade apaga a fotografia      */
+/* - o texto de corpo em #9B9B9B sobre branco, que da contraste de 2,78:1,  */
+/*   quando o minimo da WCAG e 4,5. Para leitor de 55 anos no celular isso  */
+/*   e quase invisivel. O nosso fica em 5,25:1                              */
+/* - "Read More" em ingles num site em portugues                            */
+/* - o campo de newsletter, que a empresa nao tem o que alimentar           */
+/* ======================================================================= */
+
+/* ---- 25.1 a barra vertical terracota antes do titulo ------------------ */
+/* E o melhor achado da pagina deles: um filete que marca onde a secao      */
+/* comeca e vira assinatura visual sem custar nada de leitura.              */
+.topo-pagina h1,
+.cabecalho-secao:not(.cabecalho-secao--centro) h2 {
+  padding-left: clamp(var(--e-4), 1.4vw, var(--e-5));
+  border-left: 5px solid var(--terracota);
+}
+
+/* No centro a barra nao funciona: vira enfeite solto. Ali o sobretitulo
+   ja carrega a marcacao, entao o titulo centralizado fica como estava. */
+
+/* ---- 25.2 o cabecalho de secao em duas colunas ------------------------ */
+/* Titulo a esquerda, paragrafo de apresentacao a direita. Resolve o titulo */
+/* solto no meio do vazio, que e como as nossas secoes abriam.              */
+/* Feito so com grade, sem tocar no HTML das 24 paginas: o sobretitulo e o  */
+/* h2 vao para a coluna da esquerda, o subtitulo para a direita, e qualquer */
+/* outro filho, como grupo de botoes, desce para a largura inteira.         */
+@media (min-width: 900px) {
+  .cabecalho-secao:not(.cabecalho-secao--centro) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    column-gap: clamp(var(--e-8), 4vw, var(--e-16));
+    align-items: end;
+  }
+  .cabecalho-secao:not(.cabecalho-secao--centro) > * { grid-column: 1 / -1; }
+  .cabecalho-secao:not(.cabecalho-secao--centro) > .sobretitulo { grid-column: 1; grid-row: 1; }
+  .cabecalho-secao:not(.cabecalho-secao--centro) > h2 { grid-column: 1; grid-row: 2; margin-bottom: 0; }
+  .cabecalho-secao:not(.cabecalho-secao--centro) > .subtitulo {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: end;
+    margin-bottom: 0;
+    max-width: 52ch;
+  }
+  /* o que vier depois disso, como botao, vai para baixo e inteiro */
+  .cabecalho-secao:not(.cabecalho-secao--centro) > .grupo-botoes { grid-row: 3; margin-top: var(--e-8); }
+}
