@@ -2677,3 +2677,55 @@ h1 { line-height: 1.25; }
   /* o que vier depois disso, como botao, vai para baixo e inteiro */
   .cabecalho-secao:not(.cabecalho-secao--centro) > .grupo-botoes { grid-row: 3; margin-top: var(--e-8); }
 }
+
+/* ======================================================================= */
+/* 26. DIRECAO DO DEDICARE, ETAPA 2: O ICONE DESLOCADO PARA FORA DO CARTAO */
+/* 19/10/2026. E o recurso que faz a grade de servicos parecer desenhada e */
+/* nao listada: a placa do icone pousa na borda de cima do cartao, metade  */
+/* dentro e metade fora.                                                   */
+/*                                                                         */
+/* Tres cuidados, medidos antes de escrever:                               */
+/* - 50 cartoes tem icone e 65 nao tem. So os que tem recebem o recuo de   */
+/*   topo, com :has(), senao os outros ganhariam um vazio sem motivo.      */
+/* - ha um .cartao__icone solto em obrigado.html, fora de cartao, com      */
+/*   estilo embutido. O seletor usa filho direto de .cartao e nao o pega.  */
+/* - a placa sobe 27px acima do cartao, entao a grade precisa de folga     */
+/*   extra entre as linhas, senao ela encosta no cartao de cima.           */
+/* ======================================================================= */
+
+.cartao:has(> .cartao__icone) {
+  position: relative;
+  padding-top: calc(clamp(var(--e-6), 3vw, var(--e-8)) + 30px);
+}
+
+.cartao > .cartao__icone {
+  position: absolute;
+  top: -27px;
+  left: clamp(var(--e-6), 3vw, var(--e-8));
+  width: 58px;
+  height: 58px;
+  margin-bottom: 0;
+  background: var(--petroleo-700);
+  color: var(--sobre-escuro-forte);
+  border-radius: var(--r-md);
+  box-shadow: 0 8px 20px -10px rgba(27, 75, 87, .6);
+}
+.cartao > .cartao__icone svg { width: 27px; height: 27px; stroke-width: 1.7; }
+
+/* O cartao de acento tem o seu proprio tom e continua distinto. */
+.cartao--acento > .cartao__icone { background: var(--menta-700); }
+
+/* A grade precisa de folga nas linhas, porque a placa sobe 27px.
+   E a primeira linha precisa de folga acima, senao a placa encosta
+   no cabecalho da secao. */
+.grade:has(.cartao > .cartao__icone) {
+  row-gap: calc(var(--e-6) + 30px);
+  margin-top: 30px;
+}
+
+/* No celular o cartao e mais estreito e a placa fica mais perto da borda. */
+@media (max-width: 719px) {
+  .cartao > .cartao__icone { width: 52px; height: 52px; top: -24px; }
+  .cartao:has(> .cartao__icone) { padding-top: calc(clamp(var(--e-6), 3vw, var(--e-8)) + 26px); }
+  .grade:has(.cartao > .cartao__icone) { row-gap: calc(var(--e-6) + 26px); margin-top: 26px; }
+}
