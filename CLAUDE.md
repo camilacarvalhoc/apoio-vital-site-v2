@@ -61,8 +61,24 @@ saúde não admite, e não convence quem está com medo. "Ente querido" não: é
 **Publicidade vincula.** Cada prazo e cada "24h" vira obrigação contratual exigível. Nenhum
 número novo entra sem confirmação da sócia.
 
-**Nenhuma pessoa inventada por máquina.** Proibido usar imagem de IA representando equipe,
-paciente ou a casa. Ver `docs/FOTOGRAFIA.md`.
+**Imagem de IA: a regra mudou em 19/10/2026, por decisão expressa da sócia.**
+Até 18/10 era proibido usar imagem de IA representando equipe, paciente ou a casa. Apresentei
+a ela as três saídas para o espaço da fotografia e mostrei, antes da escolha, o texto desta
+regra e o motivo registrado em `docs/FOTOGRAFIA.md`: no dia em que alguém percebe que a
+cuidadora da foto não existe, o que cai não é a imagem, é a confiança em tudo que o site
+afirma. Ciente disso, ela escolheu publicar a fotografia gerada por IA. É a empresa dela e a
+regra era dela.
+
+**O que continua valendo, e não é negociável:**
+
+- A marca na imagem é o arquivo aprovado, composto por edição. **Nunca** peça à IA que desenhe
+  o logotipo: ela inventa um parecido. Já aconteceu, em 18/10, e está documentado em
+  `docs/REFERENCIA-sites-cinematograficos.md`.
+- O texto alternativo e qualquer legenda **não afirmam** que as pessoas da foto são
+  profissionais ou clientes da Apoio Vital. A empresa não tem clientes, e afirmar isso seria o
+  art. 37 §1º do CDC, publicidade enganosa por omissão.
+- Nada de procedimento clínico na imagem: a empresa oferece cuidador e acompanhante
+  hospitalar, não enfermagem.
 
 **Citação jurídica só com fonte aberta e conferida.** As normas do site levam ao Planalto, ao
 Diário Oficial e ao COFEN. Três resoluções do COFEN não podem ser citadas por estarem revogadas

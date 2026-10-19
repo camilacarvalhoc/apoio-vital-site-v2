@@ -77,6 +77,22 @@ evidencia mostrou que o vazio e maior e mais estrutural do que se supunha.
 
 ## O que a pesquisa resolveu sem precisar de decisao
 
+> **NOTA DE 19/10/2026. A decisao abaixo continua valendo, e aqui esta por que.**
+> Em 18/10 eu quase a derrubei: a socia disse que a tipografia nao estava boa, e
+> eu e a revisao editorial concluimos que a saida era trocar para uma serifada,
+> Playfair Display. Cheguei a implementar.
+>
+> No dia seguinte ela apontou o site que ela considera o padrao,
+> `magnific.com`. Fui medir, e ele e **sem serifa**. O que ele faz diferente e a
+> regulagem: peso 700 contra os nossos 800, entrelinha 1,20 contra 1,06,
+> entreletra -0,01em contra -0,022em, corpo a 18px com entrelinha 1,5.
+>
+> Ou seja: o incomodo nunca foi a familia. Era o titulo estar um peso mais
+> gordo, com entrelinha 13% mais curta e entreletra duas vezes mais apertada.
+> A Playfair foi retirada, a Figtree ficou, e a regulagem passou a ser a medida
+> acima. **Esta linha sai intacta: a familia nao muda.** O que mudou foi como
+> ela e usada, que a pesquisa abaixo nunca tratou.
+
 **Tipografia: nao mexer.** Montserrat e a mais comum da categoria, 4 de 9, e
 Roboto aparece em 3, boa parte por ser padrao do construtor de paginas.
 **Figtree nao apareceu em nenhum site do levantamento, e Inter em um.** A

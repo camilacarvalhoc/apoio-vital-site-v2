@@ -2137,3 +2137,400 @@ html[data-texto="gg"] { --t-base: 1.5rem;    --t-md: 1.3125rem; --t-sm: 1.1875re
   .secao { padding-block: 1rem; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
 }
+
+/* ======================================================================= */
+/* 20. DIRECAO VISUAL DA PRANCHA                                           */
+/* Implementa a referencia aprovada pela socia: fundo perola chapado,      */
+/* composicao do hero em duas areas com a fotografia sangrando a direita,  */
+/* curva terracota ligando as duas, e barra inferior em abas no celular.   */
+/* Paleta e tipografia nao mudam: a prancha pede Playfair e Montserrat,    */
+/* mas docs/POSICIONAMENTO.md decidiu depois, com evidencia de mercado,    */
+/* manter Figtree e Inter. Ali esta escrito "Tipografia: nao mexer".       */
+/* ======================================================================= */
+
+/* ---- 20.1 fundo: a prancha e perola chapado, sem degrade nem bolha ---- */
+.hero { background: var(--creme-claro); }
+.hero::before { display: none; }
+
+/* ---- 20.2 composicao em duas areas -------------------------------- */
+@media (min-width: 1040px) {
+  .hero__grade {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
+    gap: clamp(var(--e-8), 4vw, var(--e-16));
+    align-items: center;
+    padding-block: clamp(var(--e-10), 5vw, var(--e-16));
+  }
+  /* a fotografia alcanca a borda direita da tela, como na referencia.
+     .hero ja tem overflow hidden, entao isto nao cria rolagem lateral. */
+  .hero__foto { margin-right: calc(50% - 50vw); }
+}
+
+/* ---- 20.3 a curva que liga texto e fotografia ---------------------- */
+/* Na prancha e uma fita derivada do simbolo. Aqui e o mesmo gesto: um  */
+/* arco terracota saindo de tras do texto em direcao a fotografia.      */
+@media (min-width: 1040px) {
+  .hero { position: relative; }
+  .hero::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    right: 34%;
+    top: -14%;
+    width: 44vw;
+    height: 128%;
+    border-right: 13px solid rgba(196, 122, 90, .38);
+    border-radius: 50%;
+    transform: rotate(9deg);
+    pointer-events: none;
+  }
+}
+
+/* ---- 20.4 a moldura da fotografia --------------------------------- */
+.hero__foto {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--petroleo-100);
+  box-shadow: var(--sombra-4);
+}
+@media (min-width: 1040px) {
+  .hero__foto {
+    aspect-ratio: 1 / 1;
+    border-radius: 34px 0 0 34px;
+  }
+}
+.hero__foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* placeholder enquanto nao ha fotografia real. Ver o comentario no HTML. */
+.hero__foto__provisorio {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 90% at 18% 2%, var(--menta-100) 0%, transparent 58%),
+    linear-gradient(158deg, var(--petroleo-100) 0%, var(--creme) 100%);
+}
+.hero__foto__simbolo { width: min(44%, 230px); height: auto; opacity: .22; }
+
+/* ---- 20.5 hierarquia tipografica do hero -------------------------- */
+.hero h1 {
+  font-size: clamp(2.2rem, 1.3rem + 3.2vw, 3.6rem);
+  line-height: 1.06;
+  letter-spacing: -.022em;
+}
+.hero__texto .sobretitulo { margin-bottom: var(--e-4); }
+@media (min-width: 1040px) {
+  .hero__texto .subtitulo { max-width: 46ch; }
+}
+
+/* ---- 20.6 celular: botoes de largura inteira ---------------------- */
+@media (max-width: 719px) {
+  .hero .grupo-botoes { flex-direction: column; align-items: stretch; }
+  .hero .grupo-botoes .btn { width: 100%; }
+  /* a marca no centro do cabecalho, como na referencia, com o Menu a direita */
+  /* centralizacao removida: ver o desvio documentado em 20.13 */
+}
+
+/* ---- 20.7 barra inferior em abas ---------------------------------- */
+@media (max-width: 719px) {
+  .barra-acao {
+    background: rgba(255, 255, 255, .97);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    gap: 0;
+    border-top: 1px solid var(--borda);
+    box-shadow: 0 -6px 22px -14px rgba(9, 28, 37, .32);
+  }
+  .barra-acao a {
+    flex-direction: column;
+    gap: 3px;
+    min-height: 62px;
+    padding: var(--e-2) var(--e-1);
+    font-size: var(--t-xs);
+    font-weight: 600;
+    color: var(--texto-suave);
+  }
+  .barra-acao a[aria-current] { color: var(--petroleo-700); }
+  .barra-acao svg { width: 22px; height: 22px; }
+  /* o WhatsApp continua sendo o canal principal, entao segue preenchido */
+  .barra-acao__whats { background: var(--whatsapp-escuro); color: #fff; }
+  .rodape__legal { padding-bottom: calc(62px + var(--e-8) + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ---- 20.8 o conteudo que saiu da coluna direita do hero ----------- */
+.modalidades__grade { display: grid; gap: var(--e-6); }
+@media (min-width: 940px) {
+  .modalidades__grade { grid-template-columns: 7fr 5fr; align-items: start; }
+}
+.bloco-plantao { position: relative; }
+.bloco-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-4);
+  padding: var(--e-4) var(--e-5);
+  background: var(--branco);
+  border: 1px solid rgba(13, 41, 53, .14);
+  border-radius: var(--r-md);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  color: var(--texto-suave);
+}
+.bloco-aviso strong { display: block; font-size: var(--t-md); margin-bottom: 2px; }
+
+/* ---- 20.9 ajustes da comparacao visual, rodada 1 ------------------ */
+/* O placeholder estava lendo como forma cinza grande. Na referencia a  */
+/* fotografia e o elemento; aqui ele precisa ser so uma marca d'agua.   */
+.hero__foto__simbolo { width: min(26%, 140px); opacity: .13; }
+
+/* A curva terracota nao aparecia. Na referencia ela passa por tras da  */
+/* fotografia, saindo do campo de texto. Reposicionada e mais firme.    */
+@media (min-width: 1040px) {
+  .hero::after {
+    right: 42%;
+    top: -22%;
+    width: 38vw;
+    height: 150%;
+    border-right-width: 16px;
+    border-right-color: rgba(196, 122, 90, .55);
+    transform: rotate(14deg);
+  }
+}
+
+/* A referencia nao tem faixa escura no topo. A barra de utilidades fica, */
+/* porque leva o WhatsApp, o Trabalhe conosco e o controle de tamanho de  */
+/* texto, mas passa a ser perola e discreta em vez de um bloco petroleo.  */
+.barra-contato {
+  background: var(--creme-claro);
+  color: var(--texto-suave);
+  border-bottom: 1px solid var(--borda);
+}
+.barra-contato a,
+.barra-contato__aviso { color: var(--texto-suave); }
+.barra-contato a:hover { color: var(--petroleo-700); }
+.barra-contato .controle-texto__rotulo { color: var(--texto-suave); }
+
+/* O cabecalho da referencia assenta no mesmo perola do hero. */
+.topo { background: rgba(243, 240, 232, .94); }
+
+/* Botao principal do hero em terracota, como na referencia. O destino e  */
+/* o icone continuam os do WhatsApp: muda a cor, nao a funcao.            */
+.hero .btn--whatsapp {
+  --btn-fundo: var(--interativo);
+  --btn-texto: var(--texto-invertido);
+}
+.hero .btn--whatsapp:hover { --btn-fundo: var(--interativo-hover); }
+
+/* ---- 20.10 ajustes da comparacao visual, rodada 2 ----------------- */
+/* .hero__foto img tem especificidade 0,1,1 e vencia a classe sozinha.  */
+/* Por isso a marca d'agua continuava do tamanho da moldura inteira.    */
+.hero__foto .hero__foto__simbolo {
+  width: min(26%, 150px);
+  height: auto;
+  object-fit: contain;
+  opacity: .14;
+}
+
+/* Na referencia o bloco de texto respira antes do titulo. */
+@media (min-width: 1040px) {
+  .hero__grade { padding-block: clamp(var(--e-12), 6vw, var(--e-20)); }
+}
+
+/* A curva ficou um fio no alto. Na referencia ela e um gesto largo e */
+/* suave que atravessa a altura inteira da composicao.                 */
+@media (min-width: 1040px) {
+  .hero::after {
+    right: 40%;
+    top: -40%;
+    width: 46vw;
+    height: 190%;
+    border-right-width: 22px;
+    border-right-color: rgba(196, 122, 90, .30);
+    transform: rotate(16deg);
+    filter: blur(.4px);
+  }
+}
+
+/* ---- 20.11 ajustes da comparacao visual, rodada 3 ----------------- */
+/* Na referencia o lado direito tem peso: uma fotografia quente sustenta */
+/* metade da composicao. Com o placeholder claro a pagina ficava torta,  */
+/* com todo o peso a esquerda. Enquanto a fotografia real nao existe, o  */
+/* painel assume peso proprio, em petroleo, e le como decisao de design  */
+/* e nao como imagem que faltou carregar.                                */
+.hero__foto__provisorio {
+  background:
+    radial-gradient(90% 70% at 78% 8%, rgba(196, 122, 90, .42) 0%, transparent 62%),
+    radial-gradient(80% 60% at 12% 96%, rgba(143, 197, 188, .26) 0%, transparent 58%),
+    linear-gradient(152deg, var(--petroleo-700) 0%, var(--petroleo-900) 100%);
+}
+.hero__foto .hero__foto__simbolo { opacity: .30; filter: brightness(0) invert(1); }
+
+/* A curva precisa ser vista. Na referencia ela separa os dois campos. */
+@media (min-width: 1040px) {
+  .hero::after {
+    border-right-color: rgba(196, 122, 90, .52);
+    border-right-width: 18px;
+  }
+}
+
+/* ---- 20.12 ajustes da comparacao visual, rodada 4 ----------------- */
+/* A marca centralizada passava por baixo do botao Menu. A referencia    */
+/* nao tem botao de menu no celular, porque usa a barra inferior como    */
+/* navegacao. Aqui os dois existem, entao a marca fica centralizada com  */
+/* folga reservada dos dois lados, do tamanho do proprio botao.          */
+@media (max-width: 719px) {
+  /* regras retiradas: height:auto soltava a altura da marca e criava
+     rolagem lateral de 86 px. A altura dela e clamp(30px, 5.4vw, 44px). */
+}
+
+/* ---- 20.13 ajustes da comparacao visual, rodada 5 ----------------- */
+/* DESVIO DELIBERADO DA REFERENCIA, medido antes de decidir.            */
+/* Na referencia a marca fica centralizada no cabecalho do celular. La  */
+/* nao existe botao de menu: a navegacao inteira esta na barra inferior. */
+/* Aqui o botao Menu existe e ocupa 104 px. Com a marca centralizada,   */
+/* ela terminava em 263 px e o botao comecava em 255: sobreposicao      */
+/* medida, nao impressao. As saidas seriam encolher a marca para 119 px */
+/* ou tirar a palavra "Menu" e deixar so o risquinho. O publico do site */
+/* e a familia, quase sempre no celular e sob pressao, entao nenhuma    */
+/* das duas serve. A marca volta para a esquerda, que e onde ela cabe.  */
+@media (max-width: 719px) {
+  .topo .container { padding-inline: var(--e-5); justify-content: space-between; }
+  .topo .marca-logo { margin-inline: 0; }
+  .topo .abrir-menu { position: static; transform: none; }
+}
+
+/* ---- 20.14 ajustes da comparacao visual, rodada 6 ----------------- */
+/* 1. A sangria nao chegava na borda. margin-right: calc(50% - 50vw)    */
+/*    e a receita para elemento cuja caixa de referencia e o container  */
+/*    inteiro. Aqui a caixa e a celula da grade, entao os 50% valiam    */
+/*    metade da coluna. Medido a 1440: faltavam 138 px, que e           */
+/*    (1440 - 1220) / 2 + 20 de respiro. A conta passa a ser essa.      */
+@media (min-width: 1040px) {
+  .hero__foto {
+    margin-right: calc(-1 * (100vw - min(100vw, var(--largura-max))) / 2 - var(--e-5));
+  }
+}
+
+/* 2. A curva era uma elipse de 662 px com borda direita de 18 px. Em   */
+/*    tela de alta densidade o arco lia como um fio claro atravessando  */
+/*    a composicao, que nao e o que a referencia tem. No lugar entra o  */
+/*    que ela tem de fato: uma transicao quente entre o campo de texto  */
+/*    e a fotografia.                                                   */
+@media (min-width: 1040px) {
+  .hero::after {
+    right: 28%;
+    top: 50%;
+    width: min(46vw, 620px);
+    height: min(46vw, 620px);
+    border: 0;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    filter: none;
+    background: radial-gradient(circle at 50% 50%,
+      rgba(196, 122, 90, .26) 0%,
+      rgba(196, 122, 90, .11) 46%,
+      transparent 70%);
+  }
+}
+
+
+/* ======================================================================= */
+/* 21. REGULAGEM DOS TITULOS                                               */
+/* Decisao de 19/10/2026. A socia disse duas vezes que a tipografia nao    */
+/* estava boa, e apontou https://www.magnific.com como o padrao que ela    */
+/* queria. Fui medir o site dela em vez de adivinhar:                      */
+/*                                                                         */
+/*            Magnific          Apoio Vital antes                          */
+/*   peso        700                   800                                 */
+/*   entrelinha  1,20                  1,06                                */
+/*   entreletra  -0,01em              -0,022em                             */
+/*   corpo       18px / 1,5            17px / 1,62                         */
+/*                                                                         */
+/* E o Magnific e SEM SERIFA. Ou seja, o problema nunca foi serifa contra  */
+/* sem serifa, que foi o que eu e a revisao editorial passamos uma rodada  */
+/* inteira discutindo: era o titulo estar um peso mais gordo, com          */
+/* entrelinha 13% mais curta e entreletra duas vezes mais apertada.        */
+/*                                                                         */
+/* A familia nao muda. Figtree nos titulos e Inter no corpo continuam, e o */
+/* docs/POSICIONAMENTO.md segue valendo, porque ele decidiu a FAMILIA com  */
+/* pesquisa de mercado, e nao a regulagem dela.                            */
+/* ======================================================================= */
+
+h1,
+.cabecalho-secao h2 {
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+
+.hero h1 {
+  font-size: clamp(2.15rem, 1.2rem + 3.3vw, 3.5rem);
+  line-height: 1.20;
+}
+h1 { line-height: 1.2; }
+
+.cabecalho-secao h2 {
+  font-size: clamp(1.65rem, 1.1rem + 2vw, 2.4rem);
+  line-height: 1.2;
+}
+
+/* No celular a linha e curta e quebra muito; um pouco menos de entrelinha
+   evita o titulo virar uma escada de cinco degraus. */
+@media (max-width: 719px) {
+  .hero h1 { line-height: 1.16; letter-spacing: -.008em; }
+  .cabecalho-secao h2 { line-height: 1.18; }
+}
+
+/* Folga entre a ultima linha do titulo e a fotografia, no desktop. */
+@media (min-width: 1040px) {
+  .hero__grade { gap: clamp(var(--e-10), 4.5vw, var(--e-16)); }
+}
+
+/* ======================================================================= */
+/* 22. ALINHAMENTO DO HERO E ENQUADRAMENTO DA FOTOGRAFIA                   */
+/* Dois defeitos apontados pela socia em 19/10/2026, os dois medidos antes */
+/* de mexer, no viewport de 1440x900.                                      */
+/* ======================================================================= */
+
+/* ---- 22.1 o traco do sobretitulo quebrava o alinhamento --------------- */
+/* .sobretitulo e inline-flex com align-items:center, e o traco e um       */
+/* ::before dentro dele. Com o texto quebrando em tres linhas, o traco     */
+/* ficava ao lado da SEGUNDA linha e recuado para fora da coluna de texto. */
+/* Medido: sobretitulo, h1, paragrafos e botao alinham todos em 122,5px; o */
+/* traco era a unica coisa fora. No hero ele passa a ser bloco acima do    */
+/* texto, e tudo encosta na mesma margem.                                  */
+.hero .sobretitulo {
+  display: block;
+  max-width: 38ch;
+  letter-spacing: .14em;
+  font-size: var(--t-xs);
+  line-height: 1.6;
+}
+.hero .sobretitulo::before {
+  display: block;
+  margin-bottom: var(--e-3);
+}
+
+/* ---- 22.2 a fotografia passava da dobra ------------------------------- */
+/* Medido a 1440x900: a moldura terminava 181px abaixo da borda inferior   */
+/* da tela, entao num notebook a foto chegava cortada. Nao era recorte do  */
+/* object-fit: era o hero mais alto que a tela.                            */
+/* A moldura deixa de ser quadrada no desktop, passa a ter altura limitada */
+/* pela propria tela e ancora no topo da grade, para caber inteira na      */
+/* primeira vista. O cover tira um pouco de ceu e de chao, que e           */
+/* exatamente a folga descartavel que a foto foi pedida para ter.          */
+@media (min-width: 1040px) {
+  .hero__grade { align-items: start; }
+  .hero__foto {
+    aspect-ratio: auto;
+    height: min(62vh, 580px);
+  }
+  .hero__grade { padding-block: clamp(var(--e-10), 4vw, var(--e-16)); }
+}
+
+/* Entre 1040 e 1240 a tela e mais baixa e a moldura precisa ceder mais. */
+@media (min-width: 1040px) and (max-height: 820px) {
+  .hero__foto { height: min(58vh, 500px); }
+}

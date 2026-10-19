@@ -67,3 +67,53 @@ custa processo e reputação.
 3. Trocar o `<div class="foto foto--vazia">` pela tag `<img>` com `alt` descrevendo a cena.
 4. O `alt` descreve o que se vê, não o que se quer vender. Quem usa leitor de tela merece a
    cena, não o slogan.
+
+---
+
+## A fotografia do hero: o que aconteceu, 18 e 19/10/2026
+
+A direcao visual aprovada pela socia coloca uma fotografia ocupando a metade
+direita da pagina inicial, sangrando ate a borda da tela.
+
+**Em 18/10 eu montei um painel provisorio** em petroleo com a marca d'agua do
+simbolo, porque a regra do projeto proibia imagem de IA com pessoas e
+`assets/img/fotos/` estava vazia.
+
+**Em 19/10 a socia decidiu publicar uma fotografia gerada por IA.** Apresentei
+as tres saidas e mostrei, antes da escolha, o texto da regra e o motivo dela,
+que esta no topo deste documento e continua valendo como analise. Ela escolheu
+ciente disso. O painel provisorio saiu; a fotografia entrou.
+
+O arquivo e `assets/img/fotos/hero-cuidado-em-casa.jpg`, 1254x1254, gerado a
+partir de especificacao escrita: sala de estar brasileira, luz natural de fim
+de tarde, convivencia cotidiana, sem leito hospitalar, sem equipamento medico,
+sem procedimento clinico, em tons quentes que convivem com o perola e o
+terracota da paleta.
+
+### A pendencia conhecida, registrada e nao resolvida
+
+**O emblema no uniforme da cuidadora foi desenhado pela propria IA e NAO e a
+marca da Apoio Vital.** O batimento virou uma cruz, as duas fitas trocaram de
+hierarquia e ganharam degrade que os arquivos aprovados nao tem, e o nome
+embaixo saiu ilegivel. Mostrei a ampliacao lado a lado a socia e ela optou por
+publicar assim e ajustar depois.
+
+A correcao ja esta montada e e a que a lei 9 da
+`docs/REFERENCIA-sites-cinematograficos.md` prescreve: compor o arquivo
+aprovado `apoio-vital-simbolo-m-negativo.svg` por cima da fotografia, por
+edicao de imagem, em vez de pedir a IA que desenhe o logotipo.
+
+### O texto alternativo
+
+Descreve a cena e **nao afirma** que as pessoas sao profissionais ou clientes
+da Apoio Vital. A empresa nao tem clientes. Afirmar que tem, por imagem, e o
+art. 37 §1º do CDC.
+
+### Medida do encaixe
+
+
+
+A moldura e quadrada acima de 1040 px (`aspect-ratio: 1 / 1`) e 4:3 abaixo
+disso. Sangra ate a borda direita da tela, com canto arredondado de 34 px
+apenas do lado esquerdo. Para o lado direito nao aparecer cortado em tela
+larga, a foto precisa de area util sobrando a direita do assunto principal.
