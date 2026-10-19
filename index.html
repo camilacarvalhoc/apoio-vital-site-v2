@@ -88,9 +88,8 @@
         "@id": "https://apoiovital.com/#organizacao"
       },
       "url": "https://apoiovital.com/",
-      "description": "Cuidado e acompanhamento para sua família: cuidador de pessoa idosa, técnico de enfermagem e acompanhante hospitalar.",
+      "description": "Cuidado e acompanhamento para sua família: cuidador de pessoa idosa e acompanhante hospitalar no Rio de Janeiro.",
       "email": "contato@apoiovital.com",
-      "priceRange": "5986",
       "currenciesAccepted": "BRL",
       "image": "https://apoiovital.com/assets/img/og-apoio-vital.png",
       "address": {
@@ -101,22 +100,6 @@
         "postalCode": "22775-024",
         "addressCountry": "BR"
       },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-          ],
-          "opens": "00:00",
-          "closes": "23:59"
-        }
-      ],
       "areaServed": [
         {
           "@type": "City",
@@ -184,23 +167,6 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "@id": "https://apoiovital.com/servicos/tecnico-de-enfermagem.html#servico",
-              "name": "Técnico e auxiliar de enfermagem a domicílio",
-              "serviceType": "Enfermagem em domicílio",
-              "url": "https://apoiovital.com/servicos/tecnico-de-enfermagem.html",
-              "provider": {
-                "@id": "https://apoiovital.com/#organizacao"
-              },
-              "areaServed": {
-                "@type": "City",
-                "name": "Rio de Janeiro"
-              }
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
               "@id": "https://apoiovital.com/servicos/acompanhante-hospitalar.html#servico",
               "name": "Acompanhante hospitalar",
               "serviceType": "Acompanhante em internação, consultas e exames",
@@ -248,7 +214,7 @@
           "name": "Quanto custa um cuidador de pessoa idosa no Rio de Janeiro?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "O valor muda conforme cinco coisas: o tipo de profissional, a carga horária, o grau de dependência, se há plantão noturno ou feriado, e a região do Rio. Por isso não existe tabela fechada que sirva para todo mundo, e desconfie de quem diz um número antes de conhecer o caso. A avaliação em casa é gratuita e você sai dela com uma proposta por escrito, discriminando o que está e o que não está incluído. Entenda como funciona a contratação"
+            "text": "O valor muda conforme cinco coisas: o tipo de profissional, a carga horária, o grau de dependência, se há plantão noturno ou feriado, e a região do Rio. Por isso não existe tabela fechada que sirva para todo mundo, e desconfie de quem diz um número antes de conhecer o caso. A avaliação em casa é gratuita. As condições do atendimento, os valores e o que está incluído são esclarecidos antes de qualquer contratação. Entenda como funciona a contratação"
           }
         },
         {
@@ -264,7 +230,7 @@
           "name": "E se o cuidador faltar?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Essa é a reclamação número um do setor, e a nossa resposta é operacional. Se o profissional não puder comparecer, a Apoio Vital avisa a família e verifica a possibilidade de substituição conforme a disponibilidade. Se houver falta, a família é avisada e procuramos outro profissional compatível, conforme a disponibilidade. A sua casa não fica sem profissional e você não precisa resolver nada."
+            "text": "Essa é a reclamação número um do setor, e a nossa resposta é operacional. Se o profissional não puder comparecer, a Apoio Vital informará a família e verificará a possibilidade de indicar outro profissional compatível, conforme a disponibilidade. Se o profissional não puder comparecer, a Apoio Vital informará a família e verificará a possibilidade de indicar outro profissional compatível, conforme a disponibilidade. A Apoio Vital avisa a família e procura outro profissional compatível, conforme a disponibilidade."
           }
         },
         {
@@ -280,7 +246,7 @@
           "name": "Vocês atendem em qual região?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A Apoio Vital fica no Rio de Janeiro e atende conforme a disponibilidade de profissionais para cada localidade. Informe o bairro ou o município pelo WhatsApp e a gente verifica a possibilidade de atendimento. Ver a lista de bairros e municípios"
+            "text": "A Apoio Vital recebe solicitações de diferentes municípios do estado do Rio de Janeiro. A possibilidade de atendimento é verificada conforme a localidade, o serviço necessário, o período solicitado e a disponibilidade de profissionais compatíveis."
           }
         },
         {
@@ -344,7 +310,6 @@
           <div class="submenu">
             <a href="servicos.html"><strong>Todos os serviços</strong><span>Visão geral do que fazemos</span></a>
             <a href="servicos/cuidador-de-idosos.html">Cuidador de pessoa idosa<span>Escalas conforme disponibilidade</span></a>
-            <a href="servicos/tecnico-de-enfermagem.html">Técnico de enfermagem<span>Atendimento conforme a necessidade</span></a>
             <a href="servicos/acompanhante-hospitalar.html">Acompanhante hospitalar<span>Internação, consultas e exames</span></a>
             <a href="alta-hospitalar.html"><strong>Alta hospitalar</strong><span>O que fazer quando o hospital libera</span></a>
             <a href="areas-de-atendimento.html">Onde atendemos<span>Como verificamos a disponibilidade</span></a>
@@ -401,7 +366,6 @@
       <a href="index.html">Início</a>
       <a href="servicos.html">Serviços</a>
       <a class="sub" href="servicos/cuidador-de-idosos.html">Cuidador de pessoa idosa</a>
-      <a class="sub" href="servicos/tecnico-de-enfermagem.html">Técnico de enfermagem</a>
       <a class="sub" href="servicos/acompanhante-hospitalar.html">Acompanhante hospitalar</a>
       <a href="como-funciona.html">Como funciona</a>
       <a href="alta-hospitalar.html">Alta hospitalar</a>
@@ -426,19 +390,20 @@
   <div class="container">
     <div class="hero__grade">
       <div class="hero__texto">
-        <p class="sobretitulo">Cuidado e acompanhamento para sua família</p>
+        <p class="sobretitulo">Cuidados para pessoas idosas e acompanhamento hospitalar no Rio de Janeiro</p>
         <h1>Cuidado e acompanhamento para quem é importante para você</h1>
-        <p class="subtitulo">Escolher quem vai cuidar de alguém da sua família não é uma decisão simples, e a gente sabe disso. Por isso a família recebe as informações sobre o profissional indicado antes do início, e lê todo dia o que aconteceu em cada plantão. A visita de avaliação não custa nada.</p>
+          <p class="subtitulo">Quando alguém da família precisa de cuidados ou acompanhamento, encontrar o apoio adequado faz diferença. Cada situação tem suas particularidades, e entender essas necessidades é o primeiro passo para buscar a melhor opção.</p>
+          <p class="subtitulo">A Apoio Vital conecta famílias a profissionais para cuidados de pessoas idosas e acompanhamento hospitalar, conforme as necessidades de cada caso e a disponibilidade de atendimento na localidade.</p>
 
         <div class="grupo-botoes">
           <a class="btn btn--grande btn--whatsapp" href="https://wa.me/5521974792051?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Apoio%20Vital%20e%20preciso%20de%20atendimento%20domiciliar%20no%20Rio%20de%20Janeiro." data-whats="Olá! Vim pelo site da Apoio Vital e preciso de atendimento domiciliar no Rio de Janeiro." data-origem="AV-01" target="_blank" rel="noopener">
             <svg class="icone" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.6 0a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2a.4.4 0 0 0 0-.4L9.3 8c-.2-.4-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.5 11.5 0 0 0 4.4 3.9c1.6.6 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2z"/></svg>
-            Falar agora no WhatsApp
+            Fale com a Apoio Vital
           </a>
-          <a class="btn btn--contorno btn--grande" href="contato.html">Fale com a Apoio Vital</a>
+          <a class="btn btn--contorno btn--grande" href="servicos.html">Conheça nossos serviços</a>
         </div>
 
-        <p class="mt-6"><small>Recebeu alta e precisa resolver hoje? Chame no WhatsApp. Tem gente atendendo a qualquer hora, inclusive de madrugada.</small></p>
+        <p class="mt-6"><small>Entre em contato com a nossa equipe pelo WhatsApp. Queremos entender sua situação e orientar você sobre as possibilidades de atendimento.</small></p>
 
         <div class="hero__selos">
           <span class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Documentos conferidos antes do plantão</span>
@@ -471,7 +436,7 @@
           <span class="hero__cartao__selo" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
           </span>
-          <span><strong>Para solicitações urgentes, respondemos ao primeiro contato pelo WhatsApp a qualquer hora</strong>Inclusive de madrugada, fim de semana e feriado. Os outros contatos são respondidos no horário do escritório. A resposta inicial não garante que o atendimento possa começar imediatamente.</span>
+          <span><strong>O WhatsApp é nosso principal canal para o primeiro contato.</strong> Você pode enviar sua mensagem a qualquer hora; a resposta e a possibilidade de início do atendimento dependem da disponibilidade da equipe e dos profissionais para a necessidade apresentada.</span>
           </div>
       </div>
     </div>
@@ -516,17 +481,17 @@
         <span class="link-seta cobre-cartao">Ver o que fazer</span>
       </a>
 
-      <a class="cartao cartao--ligavel revelar" href="servicos/tecnico-de-enfermagem.html#acamado">
+      <a class="cartao cartao--ligavel revelar" href="servicos/cuidador-de-idosos.html">
         <span class="cartao__icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 14h18"/><circle cx="7.5" cy="9.5" r="2"/><path d="M3 18v2M21 18v2"/></svg></span>
         <h3>Pessoa acamada</h3>
-        <p>Mudança de decúbito, prevenção de lesão por pressão, higiene e cuidados de enfermagem.</p>
+        <p>Apoio na higiene, no posicionamento e na rotina de quem passa o dia na cama.</p>
         <span class="link-seta cobre-cartao">Ver o que fazer</span>
       </a>
 
-      <a class="cartao cartao--ligavel revelar" href="servicos/tecnico-de-enfermagem.html#pos-operatorio">
+      <a class="cartao cartao--ligavel revelar" href="servicos/cuidador-de-idosos.html">
         <span class="cartao__icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 11v5M9.5 13.5h5"/></svg></span>
         <h3>Pós-operatório em casa</h3>
-        <p>Curativo, medicação no horário, sinais vitais e olho no que o médico pediu para observar.</p>
+        <p>Companhia e apoio na rotina enquanto a pessoa se recupera em casa.</p>
         <span class="link-seta cobre-cartao">Ver o que fazer</span>
       </a>
 
@@ -570,18 +535,6 @@
         <span class="link-seta cobre-cartao">Ver a página do cuidador</span>
       </a>
 
-      <a class="cartao cartao--ligavel revelar" href="servicos/tecnico-de-enfermagem.html">
-        <span class="cartao__icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18" transform="rotate(45 12 12)"/><rect x="9.5" y="2.5" width="5" height="19" rx="2.5"/><path d="M2.5 9.5h19v5h-19z"/></svg></span>
-        <h3>Técnico e auxiliar de enfermagem</h3>
-        <p>Procedimentos que a lei reserva à equipe de enfermagem, executados em casa conforme prescrição.</p>
-        <ul class="cartao__lista">
-          <li>Administração de medicação, inclusive injetável</li>
-          <li>Curativo prescrito e cuidado com lesões</li>
-          <li>Cuidado com sondas, aspiração e oxigenoterapia</li>
-          <li>Aferição e registro de sinais vitais</li>
-        </ul>
-        <span class="link-seta cobre-cartao">Ver a página de enfermagem</span>
-      </a>
 
 
       <a class="cartao cartao--ligavel revelar" href="servicos/acompanhante-hospitalar.html">
@@ -619,9 +572,9 @@
           <li><strong>Certidão de antecedentes criminais</strong> Exigida de todo profissional antes do primeiro plantão.</li>
           <li><strong>No mínimo duas referências checadas</strong> Falamos com quem já trabalhou com a pessoa.</li>
           <li><strong>Entrevista com a cofundadora, técnica de enfermagem</strong> Avaliação técnica, não conversa de RH.</li>
-          <li><strong>Relatório diário de cuidados</strong> A família lê o que aconteceu em cada plantão.</li>
+          <li><strong>Registro diário da rotina</strong> A família acompanha como foi o dia: alimentação, higiene, humor e atividades.</li>
           <li><strong>Canal direto com as sócias</strong> Você fala com quem decide.</li>
-          <li><strong>Troca sem custo no período de adaptação</strong> Se não houver sintonia, a gente troca.</li>
+          <li><strong>Possibilidade de troca na adaptação</strong> Se não houver sintonia, a Apoio Vital avalia a possibilidade de indicar outro profissional.</li>
         </ul>
       </div>
     </div>
@@ -707,12 +660,12 @@
         <p>A gente vai até aí, conversa com quem vai receber o cuidado e olha a casa com calma. Só depois disso se fala em valor, e você não fica com compromisso nenhum.</p>
       </div>
       <div class="passo revelar">
-        <h3>Plano de cuidados e proposta</h3>
-        <p>Você recebe por escrito o que será feito, por quem, em qual escala e quanto custa. Sem taxa de adesão.</p>
+        <h3>Condições do atendimento</h3>
+        <p>Antes da contratação, as condições do atendimento, a escala, os valores e os itens incluídos são esclarecidos com a família. Sem taxa de adesão.</p>
       </div>
       <div class="passo revelar">
         <h3>Início e acompanhamento</h3>
-        <p>A família recebe as informações sobre o profissional indicado antes do início. Depois vem o relatório diário de cada plantão.</p>
+        <p>A família recebe as informações sobre o profissional indicado antes do início. Depois vem o registro diário da rotina, conforme o serviço contratado.</p>
       </div>
     </div>
 
@@ -732,12 +685,8 @@
         <span class="indicador__rotulo">Referências profissionais checadas por telefone antes de cada contratação</span>
       </div>
       <div class="indicador">
-        <span class="indicador__numero">24h</span>
-        <span class="indicador__rotulo">Para solicitações urgentes, respondemos ao primeiro contato pelo WhatsApp a qualquer hora</span>
-      </div>
-      <div class="indicador">
         <span class="indicador__numero">0</span>
-        <span class="indicador__rotulo">Custo da avaliação em casa e da proposta por escrito</span>
+        <span class="indicador__rotulo">Custo da avaliação em casa</span>
       </div>
       <div class="indicador">
         <span class="indicador__numero">100%</span>
@@ -779,28 +728,25 @@
         <article class="artefato">
           <div class="artefato__topo">
             <span class="artefato__marca"><img src="assets/img/logo/apoio-vital-simbolo-m-mono-reduzido.svg" alt="" width="329" height="135"><b>Apoio Vital</b></span>
-            <span class="artefato__tipo">Relatório diário<br>de cuidados</span>
+            <span class="artefato__tipo">Registro diário<br>da rotina</span>
           </div>
           <div class="artefato__corpo">
             <dl>
               <div class="artefato__linha"><dt>Plantão</dt><dd>Diurno, 7h às 19h</dd></div>
-              <div class="artefato__linha"><dt>Sinais vitais</dt><dd>PA 128x76 · FC 74 · Tax 36,4 · SpO₂ 97%</dd></div>
-              <div class="artefato__linha"><dt>Medicação</dt><dd><span class="artefato__tags"><span class="artefato__tag artefato__tag--ok">8h ✓</span><span class="artefato__tag artefato__tag--ok">12h ✓</span><span class="artefato__tag artefato__tag--ok">18h ✓</span></span></dd></div>
               <div class="artefato__linha"><dt>Alimentação</dt><dd>Aceitou bem o almoço. Jantar pela metade. Hidratação dentro do combinado.</dd></div>
-              <div class="artefato__linha"><dt>Eliminações</dt><dd>Diurese normal. Evacuação presente.</dd></div>
-              <div class="artefato__linha"><dt>Higiene</dt><dd>Banho de chuveiro com apoio. Pele íntegra, sem área de pressão.</dd></div>
+              <div class="artefato__linha"><dt>Higiene</dt><dd>Banho de chuveiro com apoio.</dd></div>
               <div class="artefato__linha"><dt>Humor e sono</dt><dd>Tranquila pela manhã. Agitação leve por volta das 17h, cedeu com música.</dd></div>
               <div class="artefato__linha"><dt>Atividades</dt><dd>Caminhou até a varanda duas vezes. Assistiu ao jornal. Falou ao telefone com a filha.</dd></div>
               <div class="artefato__linha"><dt>Intercorrências</dt><dd><span class="artefato__tag artefato__tag--atencao">Nenhuma</span></dd></div>
             </dl>
             <p class="artefato__nota"><strong>Observação para a família:</strong> ela perguntou duas vezes pelo marido hoje. Redirecionei a conversa sem corrigir, como combinado.</p>
             <div class="artefato__assina">
-              <span><b>Nome do cuidador</b>Assinatura eletrônica no fim do plantão</span>
+              <span><b>Nome do cuidador</b>Preenchido ao fim do plantão</span>
               <span style="text-align:right"><b>17/10/2026</b>19h04</span>
             </div>
           </div>
         </article>
-        <span class="artefato__legenda">Chega todo dia, ao fim de cada plantão. Exemplo ilustrativo, com dados fictícios.</span>
+        <span class="artefato__legenda">Exemplo ilustrativo, com dados fictícios. O conteúdo varia conforme o serviço contratado.</span>
       </div>
 
       <div>
@@ -877,7 +823,7 @@
         <summary>Quanto custa um cuidador de pessoa idosa no Rio de Janeiro?<span class="faq__sinal" aria-hidden="true"></span></summary>
         <div class="faq__resposta">
           <p>O valor muda conforme cinco coisas: o tipo de profissional, a carga horária, o grau de dependência, se há plantão noturno ou feriado, e a região do Rio. Por isso não existe tabela fechada que sirva para todo mundo, e desconfie de quem diz um número antes de conhecer o caso.</p>
-          <p>A avaliação em casa é gratuita e você sai dela com uma proposta por escrito, discriminando o que está e o que não está incluído.</p>
+          <p>A avaliação em casa é gratuita. As condições do atendimento, os valores e o que está incluído são esclarecidos antes de qualquer contratação.</p>
           <a class="link-seta" href="precos.html">Entenda como funciona a contratação</a>
         </div>
       </details>
@@ -894,7 +840,7 @@
       <details class="faq__item" id="se-faltar">
         <summary>E se o cuidador faltar?<span class="faq__sinal" aria-hidden="true"></span></summary>
         <div class="faq__resposta">
-          <p>Essa é a reclamação número um do setor, e a nossa resposta é operacional. Se o profissional não puder comparecer, a Apoio Vital avisa a família e verifica a possibilidade de substituição conforme a disponibilidade. Se houver falta, a família é avisada e procuramos outro profissional compatível, conforme a disponibilidade. A sua casa não fica sem profissional e você não precisa resolver nada.</p>
+          <p>Essa é a reclamação número um do setor, e a nossa resposta é operacional. Se o profissional não puder comparecer, a Apoio Vital informará a família e verificará a possibilidade de indicar outro profissional compatível, conforme a disponibilidade. Se o profissional não puder comparecer, a Apoio Vital informará a família e verificará a possibilidade de indicar outro profissional compatível, conforme a disponibilidade. A Apoio Vital avisa a família e procura outro profissional compatível, conforme a disponibilidade.</p>
         </div>
       </details>
 
@@ -909,7 +855,7 @@
       <details class="faq__item" id="quais-bairros">
         <summary>Vocês atendem em qual região?<span class="faq__sinal" aria-hidden="true"></span></summary>
         <div class="faq__resposta">
-          <p>A Apoio Vital fica no Rio de Janeiro e atende conforme a disponibilidade de profissionais para cada localidade. Informe o bairro ou o município pelo WhatsApp e a gente verifica a possibilidade de atendimento.</p>
+          <p>A Apoio Vital recebe solicitações de diferentes municípios do estado do Rio de Janeiro. A possibilidade de atendimento é verificada conforme a localidade, o serviço necessário, o período solicitado e a disponibilidade de profissionais compatíveis.</p>
           <a class="link-seta" href="areas-de-atendimento.html">Ver a lista de bairros e municípios</a>
         </div>
       </details>
@@ -935,7 +881,7 @@
     <div class="faixa-cta__grade">
       <div>
         <h2>Comece com uma conversa</h2>
-        <p class="subtitulo">São quinze minutos com a gente, sem custo e sem compromisso, para entender a rotina da casa e as necessidades de cuidado. A indicação do atendimento adequado depende da análise de cada caso.</p>
+        <p class="subtitulo">Uma conversa com a gente, sem custo e sem compromisso, para entender a rotina da casa e as necessidades de cuidado. A indicação do atendimento adequado depende da análise de cada caso.</p>
       </div>
       <div class="grupo-botoes">
         <a class="btn btn--claro btn--grande" href="https://wa.me/5521974792051?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Apoio%20Vital%20e%20gostaria%20de%20conversar%20sobre%20cuidado%20em%20casa." data-whats="Olá! Vim pelo site da Apoio Vital e gostaria de conversar sobre cuidado em casa." data-origem="AV-03" target="_blank" rel="noopener">Falar no WhatsApp</a>
@@ -954,7 +900,7 @@
         <span class="marca-logo">
           <img src="assets/img/logo/apoio-vital-assinatura-h-negativo.svg" alt="Apoio Vital Home Care" width="1394" height="184">
         </span>
-        <p class="mt-4">Cuidado e acompanhamento conforme a disponibilidade na sua região. Equipe selecionada e plano de cuidados individual para cada pessoa.</p>
+        <p class="mt-4">Cuidado e acompanhamento conforme a disponibilidade na sua região. Profissionais selecionados conforme os requisitos de cada função.</p>
         <!-- ===================================================================
              RESPONSÁVEL TÉCNICA: bloco desativado de propósito, não é esquecimento.
 
@@ -978,7 +924,6 @@
         <h3>Serviços</h3>
         <ul>
           <li><a href="servicos/cuidador-de-idosos.html">Cuidador de idosos</a></li>
-          <li><a href="servicos/tecnico-de-enfermagem.html">Técnico de enfermagem</a></li>
           <li><a href="servicos/acompanhante-hospitalar.html">Acompanhante hospitalar</a></li>
           <li><a href="servicos.html">Ver todos</a></li>
         </ul>
