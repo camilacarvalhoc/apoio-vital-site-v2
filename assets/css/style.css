@@ -2539,3 +2539,78 @@ h1 { line-height: 1.2; }
 @media (min-width: 1040px) and (max-height: 820px) {
   .hero__foto { height: min(58vh, 500px); }
 }
+
+/* ======================================================================= */
+/* 23. AFINACAO PELA MEDICAO DOS CONCORRENTES                              */
+/* 19/10/2026. A socia pediu para medir a tipografia e o espacamento das   */
+/* maiores empresas de home care e trazer o que serve. Medi cinco, com     */
+/* regua, nao de olho. O levantamento inteiro esta em                      */
+/* docs/PESQUISA-tipografia-concorrentes.md.                               */
+/*                                                                         */
+/*                       titulo                      corpo                 */
+/*                  fonte        peso  entrel. track   tam  entrel.        */
+/*  Pronep          Montserrat    800   1,30   -5px    20px   1,60         */
+/*  Home Doctor     Recoleta       .     .     normal   .      .           */
+/*  Home Instead    Plus Jakarta  700   1,25   normal  16px   1,50         */
+/*  Honor           Plus Jakarta  400   1,33   normal  16px   1,50         */
+/*  Birdie          Poppins       600   1,20   normal  20px   1,50         */
+/*  Apoio Vital     Figtree       700   1,20  -0,01em  17px   1,62         */
+/*                                                                         */
+/* Tres conclusoes, e as tres entram aqui:                                 */
+/*                                                                         */
+/* 1. ENTRELETRA NEGATIVA E EXCECAO. Quatro dos cinco usam normal. So a    */
+/*    Pronep aperta, e aperta demais. O nosso -0,01em veio do Magnific,    */
+/*    que e plataforma de IA e nao empresa de cuidado. Volta para normal.  */
+/*    Para leitor idoso, entreletra apertada e perda de legibilidade sem   */
+/*    ganho nenhum.                                                        */
+/*                                                                         */
+/* 2. ENTRELINHA DO TITULO: a mediana do setor e 1,25, e a faixa vai de    */
+/*    1,20 a 1,33. Estavamos no piso. Sobe para 1,25.                      */
+/*                                                                         */
+/* 3. A COLUNA DE TEXTO DELES E MAIS LARGA: 650 a 760px, contra os nossos  */
+/*    547px a 1440. Em caracteres eles ficam entre 60 e 75; nos em 46.     */
+/*    Vai para 54ch, que e cerca de 640px, dentro da faixa boa de leitura  */
+/*    e com menos quebras no titulo e no paragrafo.                        */
+/*                                                                         */
+/* O QUE NAO COPIEI, de proposito: a entrelinha de corpo deles, que e      */
+/* 1,50. A nossa e 1,62 e fica. O publico aqui e a familia de uma pessoa   */
+/* idosa, muitas vezes lendo no celular e sob pressao, e entrelinha mais   */
+/* folgada ajuda. Nisto o setor nao e referencia melhor que o nosso leitor.*/
+/* ======================================================================= */
+
+/* O seletor precisa ser .hero h1, com especificidade 0,1,1. Escrever so h1
+   nao resolve: a secao 20.5 define .hero h1 { letter-spacing: -.022em } e
+   ganha de h1 sozinho. Foi por isso que a "regulagem" de 18/10 mudou peso e
+   entrelinha mas NAO mudou a entreletra, que ficou em -0,022em o tempo todo.
+   Medido no navegador: -1,232px num corpo de 56px, que e exatamente -0,022em. */
+h1,
+h2,
+.hero h1,
+.cabecalho-secao h2 {
+  letter-spacing: normal;
+}
+
+.hero h1 { line-height: 1.25; }
+h1 { line-height: 1.25; }
+.cabecalho-secao h2 { line-height: 1.25; }
+
+@media (max-width: 719px) {
+  .hero h1 { line-height: 1.2; letter-spacing: normal; }
+  .cabecalho-secao h2 { line-height: 1.22; }
+}
+
+@media (min-width: 1040px) {
+  .hero__texto .subtitulo { max-width: 54ch; }
+  .hero .sobretitulo { max-width: 44ch; }
+}
+
+/* ---- 23.1 a coluna de texto: quem limitava era a grade, nao o max-width */
+/* Medido: com minmax(0,1fr) e minmax(0,1.04fr) num container de 1220, a      */
+/* coluna de texto fica em 547px. O max-width de 54ch nunca entrava em acao,  */
+/* porque a celula da grade ja era mais estreita que ele. A proporcao muda:   */
+/* 1,12fr para o texto contra 1fr para a fotografia da cerca de 640px de      */
+/* texto, que e a faixa dos concorrentes, e sobra fotografia suficiente       */
+/* porque ela ainda sangra ate a borda da tela.                               */
+@media (min-width: 1040px) {
+  .hero__grade { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); }
+}
