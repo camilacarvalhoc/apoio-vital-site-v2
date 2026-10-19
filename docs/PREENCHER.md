@@ -35,7 +35,7 @@ Estes já estão corretos nas 18 páginas. Nada a fazer.
 | `(21) 97479-2051` e `+5521974792051` | Telefone fixo da empresa |
 | `(21) 99999-0000` e `5521974792051` | WhatsApp comercial |
 | ~~`contato@apoiovital.com`~~ | **Resolvido.** É este mesmo |
-| `rh@apoiovital.com` | E-mail de recrutamento |
+| ~~`rh@apoiovital.com`~~ | **Resolvido.** A caixa não existia e o endereço saiu do site. A caixa de recrutamento é `vagas@apoiovital.com`, criada em 19/10/2026. Enquanto a entrega nela não for testada, o formulário Trabalhe Conosco envia o currículo para `contato@` |
 | `privacidade@apoiovital.com` | Canal de LGPD |
 | `ouvidoria@apoiovital.com` | Canal de ouvidoria |
 | `Enfª Nome Sobrenome` | Nome da enfermeira responsável técnica |
@@ -181,8 +181,10 @@ JSON-LD do index. Trocar o número exige trocar os três lugares.
 ### O que NÃO deve ser trocado
 
 Já estão corretos e verificados: razão social, CNPJ `69.306.846/0001-50`, endereço na Av. Ator
-José Wilker, NIRE, capital social, CNAEs, o domínio `apoiovital.com` e os e-mails
-`contato@`, `rh@`, `privacidade@` e `ouvidoria@apoiovital.com`.
+José Wilker, NIRE, capital social, CNAEs, o domínio `apoiovital.com` e o e-mail
+`contato@apoiovital.com`. Em 19/10/2026 foram criados no hPanel, confirmados na API do painel, os
+apelidos `privacidade@`, `ouvidoria@` e `financeiro@`, que entregam na caixa de `contato@`, e a
+caixa `vagas@`. A entrega a cada um ainda precisa ser confirmada lendo a caixa.
 
 Já foram **desativados de propósito**, e não são marcadores esquecidos: responsável técnica,
 inscrição da empresa no COREN-RJ, licença sanitária e CNES. Cada um tem, no HTML, um comentário

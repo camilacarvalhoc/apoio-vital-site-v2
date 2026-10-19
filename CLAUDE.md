@@ -16,7 +16,7 @@ HTML, CSS e JavaScript puros. Sem build, sem framework, sem banco de dados. Trê
 para o que precisa de servidor.
 
 ```
-*.html              22 páginas públicas
+*.html              23 páginas públicas
 _modelo*.html       moldes que geram as páginas, bloqueados no .htaccess
 assets/css/style.css   folha única, com as variáveis de cor em :root
 assets/js/main.js      interatividade, tudo como reforço
@@ -52,7 +52,7 @@ página a página está em `docs/CONFRONTO-operacao.md`.
 **"Regido pela" e não "em conformidade com"** a RDC ANVISA nº 917/2024. Diferença de duas
 palavras e de peso jurídico inteiramente distinto.
 
-**Nada funciona só com JavaScript.** Os 150 botões de WhatsApp têm o endereço no HTML, os
+**Nada funciona só com JavaScript.** Os botões de WhatsApp têm o endereço no HTML, os
 formulários têm `action` e `method`. Teste com o script desligado antes de cada publicação.
 
 **Sem travessão, sem superlativo, sem autoelogio, sem marketing de medo.** Publicidade em

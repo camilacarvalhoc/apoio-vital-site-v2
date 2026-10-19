@@ -43,9 +43,15 @@ mensagem de outro endereço para `contato@apoiovital.com` e confirmar que chega.
   descontinuou o e-mail profissional gratuito em abril de 2025; o Premium inclui um período de
   teste e depois vira assinatura à parte. **Confirmar o preço de renovação por caixa**, que
   vence em data separada da hospedagem.
+  Situação em 19/10/2026: plano "Teste grátis do Starter Business Email", com vencimento em
+  10/10/2027; 2 caixas (`contato@` e `vagas@`), 1 GB cada, 100 envios por 24 h, até 5 apelidos
+  por caixa. `privacidade@`, `ouvidoria@` e `financeiro@` são apelidos de `contato@`. O que
+  acontece com as 2 caixas depois do teste não foi confirmado com a Hostinger.
 
-**O limite de caixas não afeta o site:** o formulário não envia e-mail. Ele monta a mensagem e
-abre o WhatsApp. Não há SMTP, não há backend, não consome caixa.
+**O limite de caixas não afeta o site:** o `enviar.php` entrega por `mail()` da hospedagem, sem
+SMTP e sem login em caixa, e não há banco de dados. O currículo anexado pelo Trabalhe Conosco
+ocupa espaço na caixa de destino (1 GB) e não fica guardado no servidor. Os formulários seguem
+abrindo o WhatsApp com os dados preenchidos.
 
 ## Estado do site no ar
 

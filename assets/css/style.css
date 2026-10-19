@@ -1313,6 +1313,43 @@ a.cartao .link-seta { text-decoration: underline; text-underline-offset: 4px; co
 .campo select[aria-invalid="true"]:focus,
 .campo textarea[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px var(--erro-050); }
 
+/* Campo de arquivo (curriculo). O botao "Escolher arquivo" do navegador ganha
+   a mesma familia visual dos botoes do site, sem tirar o controle nativo. */
+.campo input[type="file"] {
+  padding: var(--e-2) var(--e-3);
+  font-size: var(--t-sm);
+  color: var(--texto-suave);
+  cursor: pointer;
+}
+.campo input[type="file"]::file-selector-button {
+  margin-right: var(--e-3);
+  min-height: 36px;
+  padding: var(--e-2) var(--e-4);
+  background: var(--petroleo-050);
+  border: 1.5px solid var(--petroleo-200);
+  border-radius: var(--r-sm);
+  color: var(--petroleo-900);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.campo input[type="file"]:hover::file-selector-button { background: var(--petroleo-100); }
+
+.campo__remover {
+  justify-self: start;
+  min-height: 44px;
+  padding: 0 var(--e-2);
+  background: none;
+  border: 0;
+  color: var(--petroleo-900);
+  font: inherit;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.campo__remover[hidden] { display: none; }
+
 .campo__erro {
   display: none;
   align-items: center;

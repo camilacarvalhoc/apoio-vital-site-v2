@@ -35,6 +35,7 @@
 
     // Pagina de agradecimento apos envio bem-sucedido
     paginaObrigado: 'obrigado.html',
+    paginaObrigadoCadastro: 'obrigado-candidatura.html',
 
     // Medicao propria, no proprio servidor. Deixe vazio enquanto o site nao
     // estiver na Hostinger; assim nada e enviado e nada quebra.
@@ -286,14 +287,28 @@
      9. Validacao e envio do formulario
      ====================================================================== */
   var MENSAGENS = {
-    vazio: 'Este campo e obrigatorio.',
+    vazio: 'Este campo \u00e9 obrigat\u00f3rio.',
     nomeCurto: 'Informe o nome completo.',
-    email: 'Informe um e-mail valido, como nome@email.com.br',
+    email: 'Informe um e-mail v\u00e1lido, como nome@email.com.br',
     telefone: 'Informe um telefone com DDD, como (21) 99999-0000',
-    escolha: 'Escolha uma das opcoes.',
-    consentimento: 'E preciso concordar para que possamos entrar em contato.',
-    arquivo: 'Envie um arquivo PDF, DOC ou DOCX de ate 5 MB.'
+    escolha: 'Escolha uma das op\u00e7\u00f5es.',
+    consentimento: '\u00c9 preciso concordar para que possamos entrar em contato.',
+    arquivoTipo: 'Envie o curr\u00edculo em PDF, DOC ou DOCX.',
+    arquivoGrande: 'O arquivo \u00e9 maior que 5 MB. Envie um PDF, DOC ou DOCX de at\u00e9 5 MB.',
+    arquivoVazio: 'O arquivo est\u00e1 vazio. Escolha outro.'
   };
+
+  // Mesmos limites do enviar.php, que confere de novo no servidor
+  var ARQUIVO_MAX = 5 * 1024 * 1024;
+
+  function erroDoArquivo(campo) {
+    var f = campo.files && campo.files[0];
+    if (!f) return '';
+    if (!/\.(pdf|doc|docx)$/i.test(f.name)) return MENSAGENS.arquivoTipo;
+    if (f.size === 0) return MENSAGENS.arquivoVazio;
+    if (f.size > ARQUIVO_MAX) return MENSAGENS.arquivoGrande;
+    return '';
+  }
 
   function validarCampo(campo) {
     var valor = (campo.value || '').trim();
@@ -301,7 +316,8 @@
     var obrigatorio = campo.hasAttribute('required');
     var erro = '';
 
-    if (obrigatorio && !valor && campo.type !== 'checkbox') erro = MENSAGENS.vazio;
+    if (campo.type === 'file') erro = erroDoArquivo(campo);
+    else if (obrigatorio && !valor && campo.type !== 'checkbox') erro = MENSAGENS.vazio;
     else if (obrigatorio && campo.type === 'checkbox' && !campo.checked) erro = MENSAGENS.consentimento;
     else if (valor && tipo === 'nome' && valor.split(/\s+/).length < 2) erro = MENSAGENS.nomeCurto;
     else if (valor && tipo === 'email' && !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(valor)) erro = MENSAGENS.email;
@@ -337,16 +353,30 @@
     return campo.value;
   }
 
+  function ehCadastro(form) {
+    var tipo = form.querySelector('[name="formulario"]');
+    return !!tipo && tipo.value === 'trabalhe';
+  }
+
+  // O rotulo sem a dica que vem dentro dele: a dica e uma frase de apoio,
+  // nao faz parte do nome do campo.
+  function rotuloLimpo(rotuloEl) {
+    var copia = rotuloEl.cloneNode(true);
+    $$('.dica', copia).forEach(function (d) { d.parentNode.removeChild(d); });
+    return copia.textContent.replace(/\s*\*\s*$/, '').replace(/\s+/g, ' ').trim();
+  }
+
   function montarResumoWhats(form) {
-    var linhas = ['*Novo contato pelo site - Apoio Vital*', ''];
+    var cadastro = ehCadastro(form);
+    var linhas = [cadastro ? '*Novo cadastro de profissional pelo site - Apoio Vital*' : '*Novo contato pelo site - Apoio Vital*', ''];
     $$('input, select, textarea', form).forEach(function (campo) {
       if (campo.type === 'submit' || campo.type === 'hidden' || campo.type === 'file') return;
       var envolto = campo.closest('.campo') || campo.closest('.escolha') || campo.closest('.consentimento');
       var rotuloEl = envolto ? $('label', envolto) : null;
-      var rotulo = rotuloEl ? rotuloEl.textContent.replace(/\s*\*\s*$/, '').replace(/\s+/g, ' ').trim() : campo.name;
+      var rotulo = rotuloEl ? rotuloLimpo(rotuloEl) : campo.name;
 
       if (campo.type === 'checkbox') {
-        if (campo.checked && campo.name !== 'consentimento') linhas.push('• ' + (campo.value || rotulo));
+        if (campo.checked && campo.name.indexOf('consentimento') !== 0) linhas.push('\u2022 ' + (campo.value || rotulo));
         return;
       }
       if (campo.type === 'radio') {
@@ -355,6 +385,11 @@
       }
       if ((campo.value || '').trim()) linhas.push('*' + rotulo + ':* ' + textoDoCampo(campo).trim());
     });
+    if (cadastro) {
+      var arq = $('input[type="file"]', form);
+      var f = arq && arq.files && arq.files[0];
+      linhas.push('*Curr\u00edculo:* ' + (f ? 'anexado no formul\u00e1rio do site. Se n\u00e3o chegar por e-mail, pe\u00e7a o reenvio por aqui' : 'n\u00e3o anexado'));
+    }
     return linhas.join('\n');
   }
 
@@ -364,6 +399,34 @@
       var botao = $('[type="submit"]', form);
       var textoBotao = botao ? botao.textContent : '';
 
+      // O botao "Remover arquivo" so existe com JavaScript e so aparece com um
+      // arquivo escolhido. Sem JS o campo continua opcional e o form envia igual.
+      var arqCampo = $('input[type="file"]', form);
+      var remover = null;
+      if (arqCampo && arqCampo.parentNode) {
+        remover = document.createElement('button');
+        remover.type = 'button';
+        remover.className = 'campo__remover';
+        remover.textContent = 'Remover arquivo';
+        remover.hidden = true;
+        arqCampo.parentNode.insertBefore(remover, $('.campo__erro', arqCampo.parentNode));
+        on(remover, 'click', function () {
+          arqCampo.value = '';
+          remover.hidden = true;
+          validarCampo(arqCampo);
+          arqCampo.focus();
+        });
+      }
+      function sincronizarRemover() {
+        if (remover) remover.hidden = !(arqCampo.files && arqCampo.files[0]);
+      }
+
+      // Voltar pelo historico pode devolver a pagina com o botao travado em "Enviando..."
+      on(window, 'pageshow', function (e) {
+        if (e.persisted && botao) { botao.disabled = false; botao.textContent = textoBotao; }
+        sincronizarRemover();
+      });
+
       // Valida ao sair do campo, e revalida ao digitar depois de um erro
       $$('input, select, textarea', form).forEach(function (campo) {
         if (campo.type === 'submit') return;
@@ -372,7 +435,8 @@
           if (campo.getAttribute('aria-invalid') === 'true') validarCampo(campo);
         });
         on(campo, 'change', function () {
-          if (campo.type === 'checkbox' || campo.tagName === 'SELECT') validarCampo(campo);
+          if (campo.type === 'checkbox' || campo.type === 'file' || campo.tagName === 'SELECT') validarCampo(campo);
+          if (campo.type === 'file') sincronizarRemover();
         });
       });
 
@@ -406,25 +470,51 @@
 
         // Dois caminhos ao mesmo tempo, por decisao da socia:
         //   1. abre o WhatsApp com os dados preenchidos, que e onde o setor fecha
-        //   2. manda o mesmo conteudo por e-mail, para nada se perder se a
-        //      pessoa desistir no meio ou nao tiver WhatsApp naquele aparelho
+        //   2. manda o mesmo conteudo por e-mail (no cadastro de profissional, com
+        //      o curriculo anexado), para nada se perder se a pessoa desistir no
+        //      meio ou nao tiver WhatsApp naquele aparelho
         // Sem JavaScript, o proprio form tem action e method e vai direto
         // para o enviar.php.
+        // A tela so diz que o e-mail chegou depois que o servidor confirmou.
 
         var destino = CONFIG.endpointFormulario || form.getAttribute('action');
+        var cadastro = ehCadastro(form);
+        var arquivo = $('input[type="file"]', form);
+        var temArquivo = !!(arquivo && arquivo.files && arquivo.files[0]);
+
+        function aviso(estado, texto, link) {
+          if (!retorno) return;
+          var caixa = document.createElement('span');
+          caixa.appendChild(document.createTextNode(texto));
+          if (link) {
+            var a = document.createElement('a');
+            a.href = link.href;
+            a.textContent = link.texto;
+            if (link.externo) { a.target = '_blank'; a.rel = 'noopener'; }
+            caixa.appendChild(document.createTextNode(' '));
+            caixa.appendChild(a);
+            caixa.appendChild(document.createTextNode('.'));
+          }
+          retorno.textContent = '';
+          retorno.appendChild(caixa);
+          retorno.setAttribute('data-estado', estado);
+          if (estado === 'erro') {
+            retorno.setAttribute('tabindex', '-1');
+            retorno.focus({ preventScroll: true });
+          }
+          retorno.scrollIntoView({ behavior: movimentoReduzido ? 'auto' : 'smooth', block: 'center' });
+        }
 
         // O WhatsApp abre primeiro, porque navegador bloqueia janela aberta
         // depois de uma resposta assincrona.
         var janela = window.open(linkWhats(montarResumoWhats(form)), '_blank', 'noopener');
 
-        if (retorno) {
-          retorno.setAttribute('data-estado', 'sucesso');
-          retorno.textContent = janela
-            ? 'Abrimos o WhatsApp com os seus dados preenchidos. \u00c9 s\u00f3 tocar em enviar. A gente tamb\u00e9m recebeu por aqui e responde assim que poss\u00edvel.'
-            : 'Recebemos os seus dados e respondemos assim que poss\u00edvel.';
+        if (!destino) {
+          aviso(janela ? 'sucesso' : 'erro', janela
+            ? 'Abrimos o WhatsApp com os seus dados preenchidos. \u00c9 s\u00f3 tocar em enviar.'
+            : 'N\u00e3o conseguimos abrir o WhatsApp.');
+          return;
         }
-
-        if (!destino) return;
 
         if (botao) { botao.disabled = true; botao.textContent = 'Enviando...'; }
 
@@ -434,18 +524,43 @@
           headers: { Accept: 'application/json' }
         })
           .then(function (r) {
-            if (!r.ok) throw new Error('Falha no envio');
-            medir('envio_formulario', { formulario: form.querySelector('[name="formulario"]') ? form.querySelector('[name="formulario"]').value : 'contato' });
-            if (!janela) { window.location.href = prefixo + CONFIG.paginaObrigado; return; }
-            if (botao) { botao.disabled = false; botao.textContent = textoBotao; }
+            return r.json().catch(function () { return null; }).then(function (corpo) {
+              if (!r.ok || (corpo && corpo.ok === false)) {
+                var erro = new Error('Falha no envio');
+                erro.servidor = r.status === 400 && corpo && corpo.mensagem ? corpo.mensagem : '';
+                throw erro;
+              }
+            });
           })
-          .catch(function () {
+          .then(function () {
+            medir('envio_formulario', { formulario: form.querySelector('[name="formulario"]') ? form.querySelector('[name="formulario"]').value : 'contato' });
+            if (!janela) {
+              window.location.href = prefixo + (cadastro ? CONFIG.paginaObrigadoCadastro : CONFIG.paginaObrigado);
+              return;
+            }
             if (botao) { botao.disabled = false; botao.textContent = textoBotao; }
-            // O WhatsApp ja abriu, entao o lead nao se perdeu. Avisa sem assustar.
-            if (retorno && !janela) {
-              retorno.setAttribute('data-estado', 'erro');
-              retorno.innerHTML = 'N\u00e3o conseguimos enviar agora. Fale direto no WhatsApp: ' +
-                '<a href="' + linkWhats(montarResumoWhats(form)) + '" target="_blank" rel="noopener"><strong>abrir conversa</strong></a>.';
+            aviso('sucesso', cadastro
+              ? 'Recebemos o seu cadastro' + (temArquivo ? ' e o seu curr\u00edculo' : '') + '. Abrimos tamb\u00e9m o WhatsApp com os seus dados preenchidos: \u00e9 s\u00f3 tocar em enviar.'
+              : 'Abrimos o WhatsApp com os seus dados preenchidos. \u00c9 s\u00f3 tocar em enviar. A gente tamb\u00e9m recebeu por aqui e responde assim que poss\u00edvel.');
+          })
+          .catch(function (erro) {
+            if (botao) { botao.disabled = false; botao.textContent = textoBotao; }
+            var motivo = (erro && erro.servidor) || '';
+            if (cadastro) {
+              var textoErro = (motivo || 'N\u00e3o conseguimos enviar o cadastro agora.') +
+                (janela ? ' O WhatsApp abriu com os seus dados.' : '');
+              if (/contato@apoiovital\.com/.test(motivo)) {
+                aviso('erro', textoErro);
+              } else {
+                aviso('erro',
+                  textoErro + (temArquivo && !motivo ? ' Para mandar o curr\u00edculo, escolha o arquivo de novo ou envie para' : ' Se preferir, escreva para'),
+                  { href: 'mailto:contato@apoiovital.com', texto: 'contato@apoiovital.com' });
+              }
+            } else if (janela) {
+              aviso('erro', 'O WhatsApp abriu com os seus dados, mas n\u00e3o conseguimos enviar pelo site agora. \u00c9 s\u00f3 tocar em enviar l\u00e1.');
+            } else {
+              aviso('erro', 'N\u00e3o conseguimos enviar agora. Fale direto no WhatsApp:',
+                { href: linkWhats(montarResumoWhats(form)), texto: 'abrir conversa', externo: true });
             }
           });
       });
